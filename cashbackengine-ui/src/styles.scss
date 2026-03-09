@@ -1,0 +1,88 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$indigo-palette);
+$accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$warn: mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($theme);
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f5f5f5;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.page-header {
+  padding: 24px 0 16px;
+  h1 { margin: 0; font-size: 28px; font-weight: 500; }
+}
+
+.card-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.stat-card {
+  mat-card-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    .stat-value { font-size: 32px; font-weight: 700; }
+    .stat-label { color: rgba(0,0,0,.6); font-size: 14px; }
+  }
+}
+
+.form-container {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 32px;
+  mat-card { padding: 32px; }
+  mat-form-field { width: 100%; }
+}
+
+.spacer { flex: 1 1 auto; }
+
+.error-msg {
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.success-chip {
+  background: #e8f5e9 !important;
+  color: #2e7d32 !important;
+}
+
+.warning-chip {
+  background: #fff8e1 !important;
+  color: #f57f17 !important;
+}
+
+.danger-chip {
+  background: #ffebee !important;
+  color: #c62828 !important;
+}
