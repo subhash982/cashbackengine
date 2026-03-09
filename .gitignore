@@ -1,0 +1,32 @@
+# Gradle
+.gradle/
+build/
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Environment
+.env
+*.env.local
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# Node / Angular
+cashbackengine-ui/node_modules/
+cashbackengine-ui/dist/
+cashbackengine-ui/.angular/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"C:\\\\Users\\\\subha\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\f4ebd65c-a1e5-4c3c-8d9a-9ee57e6bb8fe\\\\c9b7df36-5f2f-4fb7-b26c-9aba357da728\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"C:\\\\Users\\\\subha\\\\Downloads\\\\cashback_engine_requirements.docx\" \"C:\\\\Users\\\\subha\\\\Downloads\\\\cashback_unpacked\")",
+      "Bash(python3 \"C:\\\\Users\\\\subha\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\f4ebd65c-a1e5-4c3c-8d9a-9ee57e6bb8fe\\\\c9b7df36-5f2f-4fb7-b26c-9aba357da728\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"C:\\\\Users\\\\subha\\\\Downloads\\\\cashback_engine_requirements.docx\" \"/tmp/cashback_unpacked\")",
+      "Read(//usr/**)",
+      "Read(//usr/local/**)",
+      "Bash(command -v python3.exe)",
+      "Bash(/c/Python38/python.exe \"C:\\\\Users\\\\subha\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\f4ebd65c-a1e5-4c3c-8d9a-9ee57e6bb8fe\\\\c9b7df36-5f2f-4fb7-b26c-9aba357da728\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"C:\\\\Users\\\\subha\\\\Downloads\\\\cashback_engine_requirements.docx\" \"C:\\\\Users\\\\subha\\\\Downloads\\\\cashback_unpacked\")",
+      "Bash(cmd.exe /c \"cd C:\\\\Python38 && dir\")",
+      "Bash(unzip -p \"C:\\\\Users\\\\subha\\\\Downloads\\\\cashback_engine_requirements.docx\" word/document.xml)",
+      "Bash(java -version)",
+      "Bash(gradle --version)",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(docker --version)",
+      "WebSearch"
+    ]
+  }
+}

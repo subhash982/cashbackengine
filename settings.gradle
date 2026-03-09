@@ -1,0 +1,4 @@
+rootProject.name = 'cashbackengine'
+
+include 'cashbackengine-service'
+include 'cashbackengine-ui'
