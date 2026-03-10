@@ -22,7 +22,7 @@ CREATE INDEX idx_users_email ON users(email);
 INSERT INTO users (email, password_hash, first_name, last_name, role, email_verified)
 VALUES (
     'admin@cashbackengine.com',
-    '$2a$12$LYGxe3bJ.VqxhWqZLFWVEuaDVg0jXQ4S/3bZH5aVn.LPgAuWyGa2W',
+    '$2a$10$AUJSvRWkoQQ.6e9KOYjA5.O5QOogum6cISBn8JEC7t5jSQ.nmDGZa',
     'System',
     'Admin',
     'ADMIN',
