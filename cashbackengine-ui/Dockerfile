@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Install dependencies first (cached layer)
 COPY cashbackengine-ui/package*.json ./
-RUN npm ci --silent
+RUN npm install --silent
 
 # Build Angular app
 COPY cashbackengine-ui/ .

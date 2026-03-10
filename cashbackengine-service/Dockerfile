@@ -9,6 +9,9 @@ COPY gradle/ gradle/
 COPY build.gradle settings.gradle ./
 COPY cashbackengine-service/build.gradle cashbackengine-service/
 
+# Ensure gradlew is executable (Windows hosts strip execute bit)
+RUN chmod +x gradlew
+
 # Download dependencies (cached layer)
 RUN ./gradlew :cashbackengine-service:dependencies --no-daemon 2>/dev/null || true
 
