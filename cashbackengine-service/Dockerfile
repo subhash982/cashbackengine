@@ -9,6 +9,9 @@ COPY gradle/ gradle/
 COPY build.gradle settings.gradle ./
 COPY cashbackengine-service/build.gradle cashbackengine-service/
 
+# Ensure gradlew is executable (Windows hosts strip execute bit)
+RUN chmod +x gradlew
+
 # Download dependencies (cached layer)
 RUN ./gradlew :cashbackengine-service:dependencies --no-daemon 2>/dev/null || true
 
@@ -20,6 +23,9 @@ RUN ./gradlew :cashbackengine-service:bootJar --no-daemon -x test
 FROM eclipse-temurin:21-jre-alpine AS runtime
 
 WORKDIR /app
+
+# Install curl for health checks
+RUN apk add --no-cache curl
 
 # Create non-root user
 RUN addgroup -S cashback && adduser -S cashback -G cashback

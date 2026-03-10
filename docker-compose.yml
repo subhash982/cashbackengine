@@ -32,7 +32,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-cashbackengine}
       POSTGRES_USER: ${POSTGRES_USER:-cashback_user}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cashback_pass}
-      JWT_SECRET: ${JWT_SECRET:-cashback-engine-super-secret-jwt-key-minimum-32-chars-long}
+      JWT_SECRET: ${JWT_SECRET:-Y2FzaGJhY2tlbmdpbmVzdXBlcnNlY3JldGp3dGtleTMyY2hhcnNsb25n}
       JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
       MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
       MAIL_PORT: ${MAIL_PORT:-587}

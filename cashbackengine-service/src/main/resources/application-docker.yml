@@ -10,6 +10,11 @@ spring:
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
 
+management:
+  health:
+    mail:
+      enabled: false
+
 logging:
   level:
     com.cashback: INFO
