@@ -1,27 +1,19 @@
 package com.cashback.engine.controller.admin;
 
-import com.cashback.engine.domain.payout.PayoutStatus;
-import com.cashback.engine.domain.transaction.TransactionStatus;
-import com.cashback.engine.dto.request.MerchantRequest;
-import com.cashback.engine.dto.request.OfferRequest;
+import com.cashback.engine.domain.User;
 import com.cashback.engine.dto.response.ApiResponse;
-import com.cashback.engine.dto.response.MerchantResponse;
-import com.cashback.engine.dto.response.TransactionResponse;
+import com.cashback.engine.dto.response.UserResponse;
+import com.cashback.engine.repository.RetailerRepository;
 import com.cashback.engine.repository.TransactionRepository;
 import com.cashback.engine.repository.UserRepository;
-import com.cashback.engine.service.MerchantService;
-import com.cashback.engine.service.OfferService;
-import com.cashback.engine.service.PayoutService;
-import com.cashback.engine.service.TransactionService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/admin")
@@ -29,79 +21,54 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final MerchantService merchantService;
-    private final OfferService offerService;
-    private final TransactionService transactionService;
-    private final PayoutService payoutService;
     private final UserRepository userRepository;
+    private final RetailerRepository retailerRepository;
     private final TransactionRepository transactionRepository;
 
-    // ---- Merchant Management ----
-
-    @PostMapping("/merchants")
-    public ResponseEntity<ApiResponse<MerchantResponse>> createMerchant(
-            @Valid @RequestBody MerchantRequest request) {
-        return ResponseEntity.ok(ApiResponse.success("Merchant created", merchantService.createMerchant(request)));
+    @GetMapping("/users")
+    public ResponseEntity<ApiResponse<List<UserResponse>>> getAllUsers() {
+        List<UserResponse> users = userRepository.findAll()
+                .stream()
+                .map(UserResponse::from)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(ApiResponse.success(users));
     }
 
-    @PutMapping("/merchants/{id}")
-    public ResponseEntity<ApiResponse<MerchantResponse>> updateMerchant(
-            @PathVariable Long id, @Valid @RequestBody MerchantRequest request) {
-        return ResponseEntity.ok(ApiResponse.success("Merchant updated", merchantService.updateMerchant(id, request)));
+    @PutMapping("/users/{id}/role")
+    public ResponseEntity<ApiResponse<UserResponse>> updateUserRole(
+            @PathVariable Integer id,
+            @RequestBody Map<String, String> body) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+        user.setRole(body.get("role"));
+        user = userRepository.save(user);
+        return ResponseEntity.ok(ApiResponse.success("Role updated", UserResponse.from(user)));
     }
 
-    @DeleteMapping("/merchants/{id}")
-    public ResponseEntity<ApiResponse<Void>> deactivateMerchant(@PathVariable Long id) {
-        merchantService.deactivateMerchant(id);
-        return ResponseEntity.ok(ApiResponse.success("Merchant deactivated", null));
+    @PutMapping("/users/{id}/status")
+    public ResponseEntity<ApiResponse<UserResponse>> updateUserStatus(
+            @PathVariable Integer id,
+            @RequestBody Map<String, String> body) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+        user.setStatus(body.get("status"));
+        user = userRepository.save(user);
+        return ResponseEntity.ok(ApiResponse.success("Status updated", UserResponse.from(user)));
     }
 
-    // ---- Offer Management ----
-
-    @PostMapping("/offers")
-    public ResponseEntity<ApiResponse<Map<String, Object>>> createOffer(
-            @Valid @RequestBody OfferRequest request) {
-        return ResponseEntity.ok(ApiResponse.success("Offer created", offerService.createOffer(request)));
-    }
-
-    @DeleteMapping("/offers/{id}")
-    public ResponseEntity<ApiResponse<Void>> deactivateOffer(@PathVariable Long id) {
-        offerService.deactivateOffer(id);
-        return ResponseEntity.ok(ApiResponse.success("Offer deactivated", null));
-    }
-
-    // ---- Transaction Management ----
-
-    @PatchMapping("/transactions/{id}/status")
-    public ResponseEntity<ApiResponse<TransactionResponse>> updateTransactionStatus(
-            @PathVariable Long id, @RequestParam TransactionStatus status) {
-        return ResponseEntity.ok(ApiResponse.success(transactionService.updateStatus(id, status)));
-    }
-
-    // ---- Payout Management ----
-
-    @PatchMapping("/payouts/{id}/status")
-    public ResponseEntity<ApiResponse<Map<String, Object>>> updatePayoutStatus(
-            @PathVariable Long id,
-            @RequestParam PayoutStatus status,
-            @RequestParam(required = false) String externalTxId) {
-        return ResponseEntity.ok(ApiResponse.success(payoutService.updatePayoutStatus(id, status, externalTxId)));
-    }
-
-    // ---- Analytics Dashboard ----
-
-    @GetMapping("/analytics/summary")
-    public ResponseEntity<ApiResponse<Map<String, Object>>> getAnalyticsSummary() {
-        Instant thirtyDaysAgo = Instant.now().minus(30, ChronoUnit.DAYS);
+    @GetMapping("/stats")
+    public ResponseEntity<ApiResponse<Map<String, Object>>> getSystemStats() {
         long totalUsers = userRepository.count();
-        long recentTransactions = transactionRepository.countTransactionsSince(thirtyDaysAgo);
-        var totalRevenue = transactionRepository.sumOrderValueSince(thirtyDaysAgo);
+        long totalRetailers = retailerRepository.count();
+        long totalTransactions = transactionRepository.count();
+        long pendingTransactions = transactionRepository.countByStatus("pending");
 
-        Map<String, Object> summary = Map.of(
+        Map<String, Object> stats = Map.of(
                 "totalUsers", totalUsers,
-                "transactionsLast30Days", recentTransactions,
-                "revenueLastLast30Days", totalRevenue.orElse(java.math.BigDecimal.ZERO)
+                "totalRetailers", totalRetailers,
+                "totalTransactions", totalTransactions,
+                "pendingTransactions", pendingTransactions
         );
-        return ResponseEntity.ok(ApiResponse.success(summary));
+        return ResponseEntity.ok(ApiResponse.success(stats));
     }
 }

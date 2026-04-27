@@ -54,12 +54,14 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                     "/api/v1/auth/**",
-                    "/api/v1/clicks/track",
-                    "/api/v1/webhook/**",
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
                     "/swagger-ui.html",
                     "/actuator/health"
+                ).permitAll()
+                .requestMatchers(org.springframework.http.HttpMethod.GET,
+                    "/api/v1/retailers/**",
+                    "/api/v1/categories/**"
                 ).permitAll()
                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

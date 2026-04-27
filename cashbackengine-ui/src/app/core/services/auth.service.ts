@@ -47,12 +47,18 @@ export class AuthService {
   }
 
   private storeAuth(auth: AuthResponse): void {
-    localStorage.setItem(TOKEN_KEY, auth.accessToken);
+    localStorage.setItem(TOKEN_KEY, auth.token);
     this.isLoggedIn.set(true);
-    this.http.get<ApiResponse<UserProfile>>(`${this.apiUrl}/users/me`).subscribe(res => {
-      localStorage.setItem(USER_KEY, JSON.stringify(res.data));
-      this.currentUser.set(res.data);
-    });
+    const profile: UserProfile = {
+      userId: auth.userId,
+      username: auth.username,
+      email: auth.email,
+      role: auth.role,
+      status: 'active',
+      created: new Date().toISOString()
+    };
+    localStorage.setItem(USER_KEY, JSON.stringify(profile));
+    this.currentUser.set(profile);
   }
 
   private loadUser(): UserProfile | null {

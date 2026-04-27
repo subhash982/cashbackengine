@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthService } from '../../core/services/auth.service';
@@ -9,45 +8,318 @@ import { AuthService } from '../../core/services/auth.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, MatIconModule, MatMenuModule],
   template: `
-    <mat-toolbar color="primary">
-      <a routerLink="/" class="brand">
-        <mat-icon>account_balance_wallet</mat-icon>
-        <span>CashbackEngine</span>
-      </a>
-      <span class="spacer"></span>
+    <!-- Top header bar -->
+    <div class="header-top">
+      <div class="header-inner">
 
-      @if (auth.isLoggedIn()) {
-        <a mat-button routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
-        <a mat-button routerLink="/merchants" routerLinkActive="active-link">Merchants</a>
-        <a mat-button routerLink="/transactions" routerLinkActive="active-link">Transactions</a>
-        <a mat-button routerLink="/wallet" routerLinkActive="active-link">Wallet</a>
-        @if (auth.isAdmin()) {
-          <a mat-button routerLink="/admin" routerLinkActive="active-link">Admin</a>
-        }
-        <button mat-icon-button [matMenuTriggerFor]="userMenu">
-          <mat-icon>account_circle</mat-icon>
-        </button>
-        <mat-menu #userMenu="matMenu">
-          <span mat-menu-item disabled>{{ auth.currentUser()?.email }}</span>
-          <button mat-menu-item (click)="auth.logout()">
-            <mat-icon>logout</mat-icon> Logout
+        <!-- Logo -->
+        <a routerLink="/" class="logo-wrap">
+          <img src="assets/images/hifi/logo.jpg" alt="HiFi Cashback" class="logo-img" />
+        </a>
+
+        <!-- Search bar -->
+        <div class="search-wrap">
+          <input
+            type="text"
+            placeholder="Search for stores..."
+            [(ngModel)]="searchQuery"
+            (keyup.enter)="onSearch()"
+          />
+          <button class="search-btn" (click)="onSearch()">
+            <mat-icon>search</mat-icon>
           </button>
+        </div>
+
+        <!-- User / Auth area -->
+        @if (auth.isLoggedIn()) {
+          <div class="user-trigger" [matMenuTriggerFor]="userMenu">
+            <mat-icon class="user-icon">account_circle</mat-icon>
+            <span class="user-greeting">Hi, {{ firstName }}</span>
+            <mat-icon class="dropdown-arrow">arrow_drop_down</mat-icon>
+          </div>
+          <mat-menu #userMenu="matMenu">
+            <span mat-menu-item disabled>{{ auth.currentUser()?.email }}</span>
+            <a mat-menu-item routerLink="/dashboard">
+              <mat-icon>dashboard</mat-icon> Dashboard
+            </a>
+            <a mat-menu-item routerLink="/transactions">
+              <mat-icon>receipt_long</mat-icon> Transactions
+            </a>
+            <a mat-menu-item routerLink="/wallet">
+              <mat-icon>account_balance_wallet</mat-icon> Wallet
+            </a>
+            <button mat-menu-item (click)="auth.logout()">
+              <mat-icon>logout</mat-icon> Logout
+            </button>
+          </mat-menu>
+        } @else {
+          <div class="auth-links">
+            <a routerLink="/auth/login" class="auth-link">Login</a>
+            <a routerLink="/auth/register" class="auth-link signup">Sign Up</a>
+          </div>
+        }
+
+      </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <nav class="header-nav">
+      <div class="nav-inner">
+        <a routerLink="/home" routerLinkActive="nav-active">Home</a>
+
+        <div class="nav-dropdown" [matMenuTriggerFor]="categoryMenu">
+          Shop by category <mat-icon class="nav-arrow">arrow_drop_down</mat-icon>
+        </div>
+        <mat-menu #categoryMenu="matMenu">
+          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'All Stores' }">All Stores</a>
+          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'Fashion' }">Fashion</a>
+          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'Electronics' }">Electronics</a>
+          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'Travel' }">Travel</a>
+          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'Food & Dining' }">Food & Dining</a>
         </mat-menu>
-      } @else {
-        <a mat-button routerLink="/auth/login">Login</a>
-        <a mat-raised-button routerLink="/auth/register" color="accent">Sign Up</a>
-      }
-    </mat-toolbar>
+
+        <a routerLink="/stores" routerLinkActive="nav-active">Stores</a>
+        <a routerLink="/coupons" routerLinkActive="nav-active">Coupons</a>
+        <a routerLink="/all-offers" routerLinkActive="nav-active">All Offers</a>
+
+        @if (auth.isLoggedIn()) {
+          <a routerLink="/favourites" routerLinkActive="nav-active">My Favourites</a>
+        }
+
+        <a routerLink="/how-it-works" routerLinkActive="nav-active">How it works</a>
+        <a routerLink="/supports" routerLinkActive="nav-active">Support</a>
+
+        @if (auth.isLoggedIn() && auth.isAdmin()) {
+          <a routerLink="/admin" routerLinkActive="nav-active">Admin</a>
+        }
+      </div>
+    </nav>
   `,
   styles: [`
-    mat-toolbar { position: sticky; top: 0; z-index: 100; }
-    .brand { display: flex; align-items: center; gap: 8px; color: white; text-decoration: none; font-size: 20px; font-weight: 500; }
-    .spacer { flex: 1; }
-    .active-link { background: rgba(255,255,255,.15); border-radius: 4px; }
+    :host {
+      display: block;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    /* ── Top bar ── */
+    .header-top {
+      background: #fff;
+      padding: 14px 0;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* Logo */
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Search */
+    .search-wrap {
+      flex: 1;
+      display: flex;
+      border: 2.5px solid #F5A623;
+      border-radius: 4px;
+      overflow: hidden;
+      max-width: 560px;
+    }
+
+    .search-wrap input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 10px 16px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      color: #555;
+      background: #fff;
+    }
+
+    .search-btn {
+      background: #F5A623;
+      border: none;
+      padding: 0 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .search-btn:hover {
+      background: #e09515;
+    }
+
+    .search-btn mat-icon {
+      color: #fff;
+    }
+
+    /* User trigger */
+    .user-trigger {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .user-trigger:hover {
+      background: #f5f5f5;
+    }
+
+    .user-icon {
+      font-size: 34px;
+      width: 34px;
+      height: 34px;
+      color: #1976d2;
+    }
+
+    .user-greeting {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1976d2;
+      white-space: nowrap;
+    }
+
+    .dropdown-arrow {
+      color: #1976d2;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Auth links */
+    .auth-links {
+      display: flex;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .auth-link {
+      color: #1976d2;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .auth-link:hover {
+      background: #e3f2fd;
+    }
+
+    .auth-link.signup {
+      background: #F5A623;
+      color: #fff;
+    }
+
+    .auth-link.signup:hover {
+      background: #e09515;
+    }
+
+    /* ── Nav bar ── */
+    .header-nav {
+      background: #17A8D4;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .header-nav a {
+      font-family: 'Open Sans', sans-serif;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      transition: background 0.2s;
+      display: block;
+    }
+
+    .header-nav a:hover {
+      background: rgba(255,255,255,.15);
+    }
+
+    .header-nav a.nav-active {
+      background: rgba(255,255,255,.22);
+      border-bottom: 3px solid #F5A623;
+    }
+
+    .nav-dropdown {
+      font-family: 'Open Sans', sans-serif;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .nav-dropdown:hover {
+      background: rgba(255,255,255,.15);
+    }
+
+    .nav-arrow {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      margin-left: 2px;
+    }
   `]
 })
 export class NavbarComponent {
   auth = inject(AuthService);
+  private router = inject(Router);
+
+  searchQuery = '';
+
+  get firstName(): string {
+    const user = this.auth.currentUser();
+    return user?.fname || user?.username || user?.email?.split('@')[0] || 'User';
+  }
+
+  onSearch(): void {
+    if (this.searchQuery.trim()) {
+      this.router.navigate(['/merchants'], { queryParams: { q: this.searchQuery.trim() } });
+    }
+  }
 }

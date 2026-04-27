@@ -4,31 +4,35 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest {
+  username: string;
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber?: string;
-  country?: string;
+  fname?: string;
+  lname?: string;
+  phone?: string;
+  address?: string;
+  address2?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
 }
 
 export interface AuthResponse {
-  accessToken: string;
+  token: string;
   tokenType: string;
   userId: number;
   email: string;
+  username: string;
   role: string;
 }
 
 export interface UserProfile {
-  id: number;
+  userId: number;
+  username: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  fname?: string;
+  lname?: string;
   role: string;
-  walletBalance: number;
-  phoneNumber?: string;
-  country?: string;
-  emailVerified: boolean;
-  createdAt: string;
+  status: string;
+  created: string;
 }
