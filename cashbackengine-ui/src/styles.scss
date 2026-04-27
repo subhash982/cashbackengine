@@ -1,5 +1,68 @@
 @use '@angular/material' as mat;
 
+// ── Original HiFi CSS (reusable across all components) ──
+@import './assets/css/reset.css';
+
+// ── HiFi key classes (extracted from hifi.css, broken asset refs removed) ──
+
+body { background: #EAEAEA; font-size: 12px; font-family: arial; color: #686868; line-height: normal; }
+a { color: #0292CA; text-decoration: none; }
+a:hover { color: #0292CA; text-decoration: underline; }
+p { margin-bottom: 10px; font-family: arial; color: #686868; line-height: 18px; }
+
+// Section headers
+.h2, .h3, .h4 { padding: 10px 15px; color: #fff; font-size: 20px; font-weight: normal; }
+.h2 { background: #F1A502; }
+.h3 { background: #0292CA; }
+.h4 { background: #282828; }
+.h3.secondary { background: none; color: #0292CA; padding: 0 0 10px 0; }
+.heading1 { font-size: 16px; color: #686868; font-family: arial; }
+.default-heading { color: #686868; background: none; font-size: 18px; margin: 0 0 10px; font-family: arial; padding: 0; }
+
+// Buttons
+.button, a.button { line-height: 22px; display: inline-block; text-align: center; border: 0; background: #686868; border-radius: 0; color: #fff !important; font-size: 18px !important; padding: 5px 10px; font-weight: normal; cursor: pointer; outline: none; }
+a.button:hover, .button:hover { background: #484848; text-decoration: none; }
+.primary, a.primary { background: #0292CA; }
+.primary:hover, a.primary:hover { background: #04ACEE; }
+.button.secondary, a.secondary { background: #F1A502; }
+
+// Login message
+.login_msg { background: #E63C00; text-align: center; color: #fff; padding: 14px 0; margin-bottom: 20px; font-size: 13px; }
+.login_msg a { color: #fff; text-decoration: underline; }
+
+// Right sidebar sections
+.right-section { display: block; margin-bottom: 30px; }
+
+// How it works sidebar
+.right-how-works .how-works { margin: 0; padding: 0; list-style: none; width: 100%; position: relative; overflow: hidden; }
+.right-how-works li { margin: 0; padding: 20px 0; display: none; }
+.right-how-works li span.character { background: url('assets/images/hifi/how-it-works.jpg') no-repeat; height: 237px; width: 237px; display: block; margin: auto; }
+.right-how-works li span.character.join-us { background-position: 0 0; }
+.right-how-works li span.character.do-shopping { background-position: -252px 0; }
+.right-how-works li span.character.earn-cashback { background-position: -506px 0; }
+.right-how-works li span.character.bank-transfer { background-position: -760px 0; }
+.right-how-works li h3 { color: #0292ca; font-size: 20px; padding: 0 0 5px; margin: 0 10px 10px; border-bottom: 1px solid #f0f0f0; }
+.right-how-works li p { color: #686868; font-size: 12px; padding: 0 10px; margin: 0 0 5px; }
+
+// Progress bar / step dots
+.progressbar { position: relative; height: 6px; background: #f9f9f9; border: 1px solid #f0f0f0; margin: 10px 5px; text-align: center; }
+.progressbar .step { display: inline-block; line-height: 21px; font-size: 12px; width: 25px; height: 25px; border-radius: 25px; background: #fff; border: 1px solid #f0f0f0; margin: -11px 15px 0; color: #ccc; }
+.progressbar .step.active { color: #fff; background: #f1a502; }
+
+// Retailer box (store cards)
+.retailer-box { cursor: pointer; border: 2px solid #AEAEAE; vertical-align: top; width: 30%; padding: 10px 10px 0; min-height: 100px; display: inline-block; margin: 0 9px 20px; }
+.retailer-box .retailer-logo { display: block; margin-bottom: 10px; height: 55px; }
+.retailer-box .retailer-logo img { max-width: 100%; max-height: 100%; }
+
+// Utility
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.bold { font-weight: bold; }
+.white-bg { background: #fff; }
+.content-box { background: #fff; padding: 20px; margin-bottom: 20px; }
+.exclusive { display: inline-block; font-size: 12px; color: #fff; padding: 2px 5px; background: #f1a502; }
+.featured { display: inline-block; font-size: 12px; color: #fff; padding: 2px 5px; background: #0292ca; }
+
 @include mat.core();
 
 $primary: mat.define-palette(mat.$indigo-palette);

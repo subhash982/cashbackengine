@@ -1,38 +1,37 @@
 package com.cashback.engine.dto.response;
 
-import com.cashback.engine.domain.user.User;
+import com.cashback.engine.domain.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserResponse {
-    private Long id;
+    private Integer userId;
+    private String username;
     private String email;
-    private String firstName;
-    private String lastName;
+    private String fname;
+    private String lname;
     private String role;
-    private BigDecimal walletBalance;
-    private String phoneNumber;
-    private String country;
-    private boolean emailVerified;
-    private Instant createdAt;
+    private String status;
+    private LocalDateTime created;
 
     public static UserResponse from(User user) {
         return UserResponse.builder()
-                .id(user.getId())
+                .userId(user.getUserId())
+                .username(user.getUsername())
                 .email(user.getEmail())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .role(user.getRole().name())
-                .walletBalance(user.getWalletBalance())
-                .phoneNumber(user.getPhoneNumber())
-                .country(user.getCountry())
-                .emailVerified(user.isEmailVerified())
-                .createdAt(user.getCreatedAt())
+                .fname(user.getFname())
+                .lname(user.getLname())
+                .role(user.getRole())
+                .status(user.getStatus())
+                .created(user.getCreated())
                 .build();
     }
 }

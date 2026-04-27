@@ -1,44 +1,52 @@
 package com.cashback.engine.dto.response;
 
-import com.cashback.engine.domain.transaction.Transaction;
+import com.cashback.engine.domain.Transaction;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TransactionResponse {
-    private Long id;
-    private String transactionId;
-    private Long merchantId;
-    private String merchantName;
-    private BigDecimal orderValue;
-    private BigDecimal commission;
-    private BigDecimal cashbackAmount;
-    private String currency;
+    private Integer transactionId;
+    private String referenceId;
+    private Integer networkId;
+    private String retailer;
+    private String programId;
+    private Integer userId;
+    private String paymentType;
+    private BigDecimal transactionAmount;
+    private BigDecimal transactionCommission;
+    private BigDecimal amount;
     private String status;
-    private boolean fraudSuspected;
-    private Instant createdAt;
-    private Instant confirmedAt;
-    private Instant paidAt;
+    private String reason;
+    private LocalDateTime created;
+    private LocalDateTime updated;
+    private LocalDateTime processDate;
 
     public static TransactionResponse from(Transaction t) {
         return TransactionResponse.builder()
-                .id(t.getId())
                 .transactionId(t.getTransactionId())
-                .merchantId(t.getMerchant().getId())
-                .merchantName(t.getMerchant().getName())
-                .orderValue(t.getOrderValue())
-                .commission(t.getCommission())
-                .cashbackAmount(t.getCashbackAmount())
-                .currency(t.getCurrency())
-                .status(t.getStatus().name())
-                .fraudSuspected(t.isFraudSuspected())
-                .createdAt(t.getCreatedAt())
-                .confirmedAt(t.getConfirmedAt())
-                .paidAt(t.getPaidAt())
+                .referenceId(t.getReferenceId())
+                .networkId(t.getNetworkId())
+                .retailer(t.getRetailer())
+                .programId(t.getProgramId())
+                .userId(t.getUser() != null ? t.getUser().getUserId() : null)
+                .paymentType(t.getPaymentType())
+                .transactionAmount(t.getTransactionAmount())
+                .transactionCommission(t.getTransactionCommission())
+                .amount(t.getAmount())
+                .status(t.getStatus())
+                .reason(t.getReason())
+                .created(t.getCreated())
+                .updated(t.getUpdated())
+                .processDate(t.getProcessDate())
                 .build();
     }
 }

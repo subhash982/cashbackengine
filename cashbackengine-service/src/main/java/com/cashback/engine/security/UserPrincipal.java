@@ -1,6 +1,6 @@
 package com.cashback.engine.security;
 
-import com.cashback.engine.domain.user.User;
+import com.cashback.engine.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,16 +14,23 @@ import java.util.List;
 @Getter
 public class UserPrincipal implements UserDetails {
 
-    private Long id;
+    private Integer id;
     private String email;
+    private String username;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
     public static UserPrincipal create(User user) {
         List<GrantedAuthority> authorities = List.of(
-                new SimpleGrantedAuthority("ROLE_" + user.getRole().name())
+                new SimpleGrantedAuthority("ROLE_" + user.getRole())
         );
-        return new UserPrincipal(user.getId(), user.getEmail(), user.getPasswordHash(), authorities);
+        return new UserPrincipal(
+                user.getUserId(),
+                user.getEmail(),
+                user.getUsername(),
+                user.getPassword(),
+                authorities
+        );
     }
 
     @Override

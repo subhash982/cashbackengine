@@ -76,7 +76,7 @@ export class MerchantsComponent implements OnInit {
   }
 
   getTrackingUrl(merchant: Merchant): string {
-    const userId = this.auth.currentUser()?.id;
+    const userId = this.auth.currentUser()?.userId;
     return `/api/v1/clicks/track?userId=${userId}&merchantId=${merchant.id}`;
   }
 }

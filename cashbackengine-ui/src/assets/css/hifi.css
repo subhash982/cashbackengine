@@ -1,0 +1,959 @@
+body{
+	background:#EAEAEA; background-image: none; font-size: 12px; font-family: arial; color: #686868; line-height: normal;
+}
+
+@font-face {
+    font-family: 'Josefin Sans', sans-serif;
+    src: url(../fonts/hifi-Regular.woff);
+}
+@font-face {
+    font-family: rupee;
+    src: url(../fonts/IndianRupee.ttf);
+}
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+html *{ box-sizing:border-box;}
+html.no-scroll{overflow: hidden;}
+.clearfix { display: block; }
+a{color: #0292CA; text-decoration: none;}
+a:hover{color: #0292CA; text-decoration: underline;}
+
+#pagination{display: none;}
+/*slider classes starts here*/
+.jssorb01 {
+    position: absolute;
+}
+.jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
+    position: absolute;
+    /* size of bullet elment */
+    width: 12px;
+    height: 12px;
+    filter: alpha(opacity=70);
+    opacity: .7;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius:12px;
+}
+.jssorb01 div { background-color: white; border: 1px solid #ccc;}
+.jssorb01 div:hover, .jssorb01 .av:hover { background-color: #0292CA; }
+.jssorb01 .av { background-color: #0292CA; }
+.jssorb01 .dn, .jssorb01 .dn:hover { background-color: #555555; }
+
+.jssora02l, .jssora02r {
+    display: block;
+    position: absolute;
+    /* size of arrow element */
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    background: url('../images/hifi/a02.png') no-repeat;
+    overflow: hidden;
+    opacity: 0.5;
+}
+.jssora02l { background-position: -3px -33px; }
+.jssora02r { background-position: -63px -33px; }
+.jssora02l:hover { background-position: -123px -33px; }
+.jssora02r:hover { background-position: -183px -33px; }
+.jssora02l.jssora02ldn { background-position: -3px -33px; }
+.jssora02r.jssora02rdn { background-position: -63px -33px; }
+
+.slider-wrapper{position: relative; margin: 0 auto; top: 0px; left: 0px; width: 732px; height: 300px; overflow: hidden; visibility: hidden;}
+.slider-loader-box{position: absolute; top: 0px; left: 0px;}
+.slider-loading-image{position:absolute;display:block;background:url('../images/hifi/loading.svg') no-repeat center center;top:0px;left:0px;width:100%;height:100%;}
+.slides-container{cursor: default; position: relative; top: 0px; left: 0px; width: 732px; height: 300px; overflow: hidden;}
+.slides img{cursor: pointer;}
+.caption{position: absolute; background-color: rgba(0,0,0,0.3);  color: #fff; font-size: 14px; padding: 10px; max-width: 300px; border-radius: 10px;}
+.retailer-caption.caption{background-color: rgba(255,255,255,1); color: #686868;}
+.retailer-caption.caption img{width: 50px;}
+.caption img{width: 40px; vertical-align: middle;}
+.caption.thoda-jyada{background: url('../images/hifi/thoda-jyada.png') no-repeat; width: 95px; height: 50px;}
+.slides .caption-top-left{top: 311px; left: 30px;}
+.slides .caption-top-right{top: 20px; right: -550px;}
+.slides .caption-bottom-left{bottom: 10px; left: -385px;}
+.slider-navigator{bottom:16px;right:16px;}
+.slider-arrow-left{top:0px;left:8px;width:55px;height:55px;}
+.slider-arrow-right{top:0px;right:8px;width:55px;height:55px;}
+
+.slider-wrapper.retailers{margin-top: 10px; text-align: center; height: 250px;}
+.slider-wrapper.retailers .slides-container{height: 250px; width: 650px; left: 40px;}
+.retailer-box{cursor:pointer; border: 2px solid #AEAEAE; vertical-align: top; width: 30%; padding: 10px 10px 0; min-height: 100px; display: inline-block; margin: 0 9px 20px;}
+.retailer-box .retailer-logo{display: block; margin-bottom: 10px; height: 55px;}
+.retailer-box .retailer-logo img{max-width: 100%; max-height: 100%;}
+.retailer-box p{margin: 0;}
+.retailer-box .retailer-rating{float: left; margin-top: 4px; width: 65px;}
+.retailer-box .retailers-visit{float: right; background: url('../images/hifi/icon-visit.png') no-repeat 0 center; padding-left: 22px; background-size: 19px auto;}
+.slider-wrapper.retailers .jssora02l, .slider-wrapper.retailers .jssora02r {
+    width: 18px;
+    height: 35px;
+    background: url('../images/hifi/slider-btns.png') no-repeat;
+    overflow: hidden;
+    opacity: 0.5;
+}
+.slider-wrapper.retailers .jssora02l{background-position: -1px 0; left: 15px;}
+.slider-wrapper.retailers .jssora02l:hover{background-position: -1px -41px;}
+.slider-wrapper.retailers .jssora02r{background-position: -23px 0; right: 15px;}
+.slider-wrapper.retailers .jssora02r:hover{background-position: -23px -41px;}
+
+
+/*header classes starts here*/
+header{background:#fff;}
+.header-content{max-width:1200px; margin: auto; padding:25px 10px; min-height:107px;}
+header .logo{margin:0; float: left; width: 231px; height: 57px; background: url("../images/hifi/logo.jpg") no-repeat; text-indent: -99999px; margin-right: 75px;}
+header .logo.beta{background: url("../images/hifi/logo-beta.jpg") no-repeat; width: 265px;}
+header .logo a{display:block; width: 231px; height: 57px;}
+.search-main{background: #F1A502; padding:5px 45px 5px 5px; float: left; width: 47%; position: relative;}
+.search-main input[type="text"]{border: none!important; background:#fff; float: left; height: 35px; width: 100%; padding: 0 10px; color: #686868;}
+.search-main input:focus{box-shadow: none!important;}
+.search-main .search-icon{background: url("../images/hifi/search-icon.png") no-repeat 0 6px; width: 29px; height: 35px; border: 0; cursor: pointer; position: absolute; right: 8px;}
+.search-main .ac_results{position: absolute!important; background: #fff; z-index: 9999999999; width: 100%!important; left: 0!important;  padding:5px; top: 45px!important; border: 1px solid #f0f0f0; border-width: 0 1px 1px;}
+.search-main .ac_results .ac_over{background: #CBEDFA!important;}
+.search-main .ac_results .ac_odd{background: #f9f9f9;}
+.search-main .ac_results ul{overflow: auto; max-height: 180px;}
+.header-right{float: right; width: 220px; line-height: 20px;}
+.header-right .button{float: right; padding: 11px 20px; margin-left: 10px; line-height: 18px;}
+.header-right .my-account{position: relative; padding: 5px 20px 0 35px; margin-top: 10px; min-height: 30px; display: inline-block; cursor: pointer; background: url("../images/hifi/user-icon.png") no-repeat 0 0 / 24px auto; float: right;}
+.header-right .my-account > span{color: #0292ca;}
+.header-right .my-account:after {
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #686868;
+    position: absolute; top: 13px; right: 5px;
+}
+.header-right .my-account .links{display:none; margin: 0; padding: 0; list-style: none; position: absolute; right: 0px; top: 32px; width: 150px; z-index: 9999; background:#fff; border: 1px solid #ccc; box-shadow: 0 0 5px rgba(0,0,0,0.2);}
+.header-right .my-account .links:before{
+    content: "";
+    width: 10px; 
+    height: 10px; 
+    border-style: solid;
+    border-color: #ccc;
+    border-width:1px 1px 0 0;
+    position: absolute; top: -6px; right: 40px; background: #bbb; transform:rotate(-45deg);
+}
+.header-right .my-account .links li{margin: 0; padding: 0;}
+.header-right .my-account .links li a{display: block; padding: 10px; border-bottom: 1px solid #fff; background: #f9f9f9; color: #686868; transition:0.3s; line-height: 20px;}
+.header-right .my-account .links li a:hover{text-decoration: none; background: #f0f0f0;}
+.header-right .my-account .links li.my-wallet a{background: #bbb; color: #fff;}
+.header-right .my-account .links li.logout a{background: #f0f0f0; color: #0292ca;}
+
+.scrollup{background:rgba(104,104,104,1); display: none; z-index: 999; color: #fff; padding: 10px; text-indent: 0; width: auto; height: auto; background-image: none; right: 0; bottom: 50px; position: fixed; opacity: inherit;}
+.scrollup:after{content: ""; position: absolute; left: 50%; top: 0; margin: -7px 0 0 -7px; transform:rotate(45deg); width: 10px; height: 20px; background:rgba(104,104,104,1); display: block;}
+.scrollup:hover, .scrollup:hover:after{background: #282828; text-decoration: none; color: #fff;}
+.search-responsive{display: none;}
+.login_msg{background: #E63C00; text-align: center; color: #fff; padding: 14px 0px; margin-bottom: 20px; font-size: 13px;}
+.login_msg a{color: #fff; text-decoration: underline;}
+
+
+/*top navigation classes starts here*/
+.top-nav{background: #0292CA; max-width: 1200px; margin: auto; position: relative; min-height: 40px;}
+.top-nav ul{list-style: none; height: 40px; z-index: 9999;}
+.top-nav ul li{margin:0; padding: 0; float: left; font-size: 18px;}
+.top-nav ul li a{color: #fff; font-family: 'Josefin Sans', sans-serif; padding: 0 35px; line-height: 40px; display: inline-block; transition: 0.8s;}
+.top-nav ul li a:hover{background: #01668D; text-decoration: none;}
+.top-nav ul li.dropdown > a{position: relative;}
+.top-nav ul li.dropdown.active > a{background: #01668D;}
+.top-nav ul li.dropdown > a:after{
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid #fff;
+    position: absolute; top: 20px; right: 8px;
+}
+.top-nav ul li.dropdown.active > a:before{
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 8px solid #0292ca;
+    position: absolute; bottom: 0px; left: 50%; z-index: 99999;
+}
+.top-nav ul li.dropdown > ul{display:none; position: absolute; height: auto; left: 0; padding: 10px;}
+.top-nav ul li.dropdown > ul a{font-size: 12px; font-family: arial; transition:0s;}
+.top-nav ul li.dropdown > ul a:hover{background: none; text-decoration: underline;}
+
+/*footer classes starts here*/
+footer{background: #fff; padding: 0; text-align: center;}
+.footer-arrow{margin:0 auto; padding:30px;  width: 97px; height: 97px; display: inline-block; background:url("../images/hifi/footer-arrow.gif") no-repeat center center;  transition: 0.5s;}
+.footer-content{max-width: 1200px; margin: auto; text-align: left; display: none;}
+.footer-content.open{display: block; transition: 0.8s;}
+.footer-arrow.open{transform:rotate(180deg);}
+footer .helpful{width: 25%; float: left; padding: 10px;}
+footer .popular-categories{width: 48%; float: left; padding: 10px;}
+footer .stay-connected{width: 27%; float: right; padding: 10px;}
+footer .h3, .stay-connected .h3{background: transparent; color: #686868; padding: 0 0 10px; border-bottom: 1px solid #f0f0f0; margin: 0 0 20px;}
+footer .helpful-links, footer .category-list{list-style: none;}
+footer .helpful-links li{padding-bottom: 10px;}
+footer .category-list li{float: left; margin: 0 5px 5px 0;}
+footer .category-list li a{background: #f9f9f9; color: #686868; padding:8px 10px; display: inline-block; border: 1px solid #f0f0f0;}
+footer .category-list li a:hover{background: #ccc; color:#fff;  text-decoration: none; border: 1px solid #b4b4b4;}
+footer .newsletter{padding:10px; background:#EAEAEA; color: #686868; margin:0 0 30px 0; text-align: center;}
+footer .newsletter input[type="text"]{border: 1px solid #ccc; height: 35px; padding: 0 10px; width: 225px; margin-right: 10px;}
+footer .newsletter button{vertical-align: middle;}
+footer .terms-condition{padding:10px; background:#EAEAEA; color: #686868; text-align: center;}
+.social-icons a{width: 32px; height: 32px; display: block; text-indent: -99999px; float: left; margin-right: 5px; transition:0.7s;}
+.social-icons a.facebook{background: url("../images/hifi/social-icons.gif");}
+.social-icons a.linked-in{background: url("../images/hifi/social-icons.gif") -40px 0;}
+.social-icons a.twitter{background: url("../images/hifi/social-icons.gif") -80px 0;}
+.social-icons a.google-plus{background: url("../images/hifi/social-icons.gif")-120px 0;}
+.social-icons a.instagram{background: url("../images/hifi/social-icons.gif") -160px 0;}
+.social-icons a.facebook:hover{background-position:0 -40px;}
+.social-icons a.linked-in:hover{background-position:-40px -40px;}
+.social-icons a.twitter:hover{background-position:-80px -40px;}
+.social-icons a.google-plus:hover{background-position:-120px -40px;}
+.social-icons a.instagram:hover{background-position:-160px -40px;}
+.po, .powered-by-cashbackengine, .rss{display: none;}
+
+
+/*home page slider classes starts here*/
+.home-banner-slider{width: 100%!important; margin-top: 0!important;}
+.home-banner-slider ul li img{width: 100%!important;}
+.home-banner-slider li{height: auto!important;}
+.home-top-left .slider-wrapper:first-child{border-bottom: 1px solid #f0f0f0;}
+.home-top-left .slider-wrapper.retailers .jssorb01 div{display: none;}
+.home-top-left ol#controls{text-align: center; top: -20px;}
+.home-top-left ol#controls li{height: auto; line-height: normal; float: none; display: inline-block; margin: 0 3px;}
+.home-top-left ol#controls li a{text-indent: -9999px; width: 10px; height: 10px; border-radius: 10px; border:none;}
+.home-top-left ol#controls li.current a{background: #0292CA;}
+
+/*home page signup form classes starts here*/
+.signup-form{list-style: none;}
+.signup-form li{margin: 0 0 15px; padding:0; position: relative;}
+.signup-form input[type="text"], .signup-form input[type="password"]{width: 100%; z-index: 7; position: relative; height: 50px; background: none; padding-top: 15px!important;}
+.signup-form label{position: absolute; left:10px; top: 14px; font-size: 16px; color:#bfbdbd; z-index: 8; transition: 0.4s;}
+.signup-form input:focus + label, .signup-form label.active{font-size: 11px; top: 3px; left: 6px;}
+.signup-form li.no-animation input[type="checkbox"]{vertical-align: sub;}
+.signup-form li.no-animation label{position: static; font-size: 14px!important; color: #686868;}
+.signup-form li.button-box{padding-top: 15px;}
+.login-form{display: none;}
+.login-form .stay-connected{width: 100%; float: none; padding:0 30px;}
+.login-form .stay-connected a{background: none; width: 45%; text-indent: inherit; margin-bottom: 10px;}
+.login-form .stay-connected a:hover{text-decoration: none;}
+.login-form .social-icons span{width: 32px; transition: 0.7s; vertical-align: middle; height: 32px;text-indent: -99999px; display: inline-block; margin-right: 5px; opacity: 0.6;}
+.login-form .social-icons span.facebook{background: url("../images/hifi/social-icons.gif");}
+.login-form .social-icons span.linked-in{background: url("../images/hifi/social-icons.gif") -40px 0;}
+.login-form .social-icons span.twitter{background: url("../images/hifi/social-icons.gif") -80px 0;}
+.login-form .social-icons span.google-plus{background: url("../images/hifi/social-icons.gif")-120px 0;}
+.login-form .social-icons span.instagram{background: url("../images/hifi/social-icons.gif") -160px 0;}
+.login-form .social-icons a:hover span{opacity: 1;}
+.login-form .social-icons a:hover span.facebook{background-position:0 -40px;}
+.login-form .social-icons a:hover span.linked-in{background-position:-40px -40px;}
+.login-form .social-icons a:hover span.twitter{background-position:-80px -40px;}
+.login-form .social-icons a:hover span.google-plus{background-position:-120px -40px;}
+.login-form .social-icons a:hover span.instagram{background-position:-160px -40px;}
+
+
+/*common classes starts here*/
+hr{margin:30px 0;}
+.special-word{font-size: 18px; font-style: italic; font-family: 'Josefin Sans', sans-serif;}
+.ul{list-style: none; margin: 0; padding: 0;}
+.ul li{position: relative; padding-left: 20px; margin-bottom: 10px;}
+.ul li:before{
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 5px solid #686868;
+    position: absolute; top: 8px; left: 0; transform:rotate(-90deg);
+}
+
+.white-bg{background: #fff;}
+.unbold{font-weight: normal!important;}
+.height-auto{height: auto!important;}
+.no-margin{margin: 0!important;}
+.no-padding-bottom{padding-bottom: 0!important;}
+.rupee{font-family: rupee;}
+.cursor-pointer{cursor: pointer;}
+p{margin-bottom: 10px; font-family: arial; color: #686868; line-height: 18px;}
+.h2, .h3, .h4{padding: 10px 15px; color: #fff; font-size: 20px; font-family: 'Josefin Sans', sans-serif; font-weight: normal;}
+h1,h2,h3,h4,h5{font-family: 'Josefin Sans', sans-serif;}
+.heading1{font-size: 16px; color: #686868; font-family: arial;}
+.h2{background: #F1A502;}
+.h3{background: #0292CA;}
+.h3.secondary{background: none; color: #0292CA; padding:0 0 10px 0;}
+.h3.with-icon{border-bottom: 1px solid #0292CA; padding:7px 0 0 55px; background-repeat: no-repeat; min-height: 41px;}
+.h3.offer-icon{background-image: url("../images/hifi/icon-offer.gif");}
+.h3.stores-icon{background-image: url("../images/hifi/icon-similar-cashback.gif");}
+.h3.cupon-icon{background-image: url("../images/hifi/icon-cupon2.gif");}
+.h3.comments-icon{background-image: url("../images/hifi/icon-user-comment.gif");}
+.h4{background: #282828;}
+.default-heading{color: #686868; background: none; font-size: 18px; margin: 0 0 10px; font-family: arial; padding: 0;}
+.content-padding{padding: 30px;}
+.text-center{text-align: center!important;}
+.text-right{text-align: right!important;}
+.text-left{text-align: left!important;}
+.left{float: left;}
+.right{float: right;}
+.button, a.button, a.goback{line-height:22px; display:inline-block; text-align: center; border: 0; text-shadow:none; background:#686868; border-radius:0; color: #fff!important; font-size: 18px!important; padding:5px 10px; font-weight: normal; font-family: 'Josefin Sans', sans-serif; cursor: pointer; outline: none;}
+a.button:hover, .button:hover{background: #484848; text-decoration: none;}
+.button.large{padding: 20px 30px; font-size: 24px;}
+.primary, a.primary, a.goback{background: #0292CA;}
+.primary:hover,a.primary:hover{background:#04ACEE;}
+.button.secondary, a.secondary{background:#F1A502;}
+.button.secondary:hover, a.secondary:hover{background:#FFAF03;}
+a.goback{padding-left: 30px; position: relative;}
+a.goback:before{
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 9px solid #fff;
+    position: absolute; top: 12px; left: 7px; transform:rotate(90deg);
+}
+.margin-top30{margin-top: 30px !important;}
+.margin-top10{margin-top: 10px !important;}
+.margin-bottom30{margin-bottom: 30px!important;}
+.margin-bottom20{margin-bottom: 20px!important;}
+.margin-right10{margin-right: 10px!important;}
+.margin-left10{margin-left: 10px!important;}
+.padding-10{padding:10px;}
+.padding-top-10{padding-top:10px!important;}
+.padding-top-bottom-20{padding-top:20px; padding-bottom: 20px;}
+.font-14{font-size: 14px;}
+.font-16{font-size: 16px!important;}
+.color-red{color: #DE2B02 !important;}
+.color-green{color: #98de02 !important;}
+.light-blue-bg{background: #E6F4F9;}
+.light-blue-bg2{background: #CBEDFA;}
+.bold{font-weight: bold;}
+.default-list{list-style: none;}
+.default-list li{background: url("../images/hifi/check.png") no-repeat 0 0 / 20px auto; min-height: 24px; line-height: 18px; padding: 2px 0 15px 35px; }
+
+/*icon classes starts here*/
+.icon{padding-left: 20px; background-repeat: no-repeat!important; min-height: 16px; display: inline-block; margin: 0 0 10px;}
+.icon.dropdown{position: relative;}
+.icon.dropdown.active .dropdown-content{display: block;}
+.icon.dropdown .dropdown-content{position: absolute; left: 0; top: 25px; background: #fff; z-index: 99; border: 1px solid #f0f0f0; width: 200px; padding: 10px; color: #686868; line-height: 18px; box-shadow: 0 0 10px rgba(0,0,0,0.1); cursor: default; display: none;}
+.icon.dropdown .dropdown-content:after{
+    content: "";
+    position: absolute; transform: rotate(-45deg);
+    width: 10px; height: 10px; background: #fff; border-style: solid; border-color: #f0f0f0; border-width: 1px 1px 0 0; top: -7px; left: 20px;
+}
+.favorite{background-image: url("../images/hifi/icon-heart.png");}
+.flag{background-image: url("../images/hifi/icon-flag.png");}
+.info{background-image: url("../images/hifi/icon-info.png");}
+.remove{background-image: url("../images/hifi/icon-remove.png");}
+.warning{background-image: url("../images/hifi/icon-warning.png");}
+.add{background-image: url("../images/hifi/icon-add.png");}
+.cupon-small{background-image: url("../images/hifi/icon-cupon.png");}
+.icon-big{padding-left: 30px;}
+.view{background: url('../images/hifi/icon-visit.png');}
+.reply{background: url('../images/hifi/icon-reply.png');}
+
+
+.content-wrapper{max-width: 1200px; margin: auto; padding:30px 0; position: relative; padding: 30px 330px 0 0; /*background: #eaeaea;*/}
+.content-wrapper.home-page{ padding: 30px 0 0 0; margin-bottom: 30px;}
+.home-top-left{float: left; width:61%; overflow: hidden; background:#fff;}
+.home-top-right{float: right; width: 36%; overflow: hidden; min-height: 560px;}
+
+.how-earn-cashback ol{list-style: none; overflow: hidden; color: #fff; font-family: 'Josefin Sans', sans-serif; font-size: 20px; margin-bottom: 30px;}
+.how-earn-cashback ol li{background-color: #0292CA; width: 44%; margin:10px; height: 180px; text-align: center; float: left; background-repeat: no-repeat; padding-top: 140px; background-position: center 30px;}
+.how-earn-cashback ol li.join-free{background-image:url("../images/hifi/join-free.png");}
+.how-earn-cashback ol li.shop{background-image:url("../images/hifi/cart-icon.png");}
+.how-earn-cashback ol li.earn-cashback{background-image:url("../images/hifi/earn-cashback.png");}
+.how-earn-cashback ol li.bank-transfer{background-image:url("../images/hifi/bank-transfer.png");}
+.how-earn-cashback ol li.find-store{background-image:url("../images/hifi/search-icon-big.png"); cursor: pointer;}
+.how-earn-cashback.get-started ol li{background-color: #0292CA; width: 30%; transition: 0.5s;}
+.how-earn-cashback li.cursor-pointer:hover{background-color: #F1A502;}
+
+.store-starting-char a{display: inline-block; padding: 8px; border: 1px solid #eaeaea; margin: 0 0 5px;}
+.store-starting-char a:hover, .store-starting-char a.active{color: #fff; background: #0292CA; text-decoration: none;}
+
+.favorite-stores{list-style: none;}
+.favorite-stores li{position: relative; color: #686868; padding: 5px 30px 5px 10px; border: 1px solid #ccc; float: left; cursor: pointer; margin: 0 10px 10px;}
+.favorite-stores li:hover{background: #F1A502; border-color: #F1A502; color: #fff;}
+.favorite-stores li span{position: absolute; right: 10px; font-weight: bold; top: 5px;}
+
+.listing-wrapper{background: #fff; padding-bottom: 30px; margin-bottom: 30px;}
+.deals-listing{list-style: none; background: #fff; padding: 20px 20px 0;}
+.deals-listing li{float: left; position: relative; width: 17%; background: #fff;text-align: center; margin:0 15px 30px; cursor: pointer; border: 1px solid #ccc;}
+.deals-listing li:hover{background: #f9f9f9;}
+.deals-listing li.deals:hover .store-img{background: #fff;}
+.deals-listing li a{font-size: 14px; color: #282828; margin:10px; display: block; text-decoration: none;}
+.deals-listing li a.button{margin: 0;}
+
+.listing-scroller{list-style: none; background: #fff; padding: 20px;}
+.listing-scroller .deals{position: relative; width: 100%; background: #fff;text-align: center; margin:0; cursor: pointer; border: 1px solid #ccc;}
+.listing-scroller .deals:hover{background: #f9f9f9;}
+.listing-scroller .deals.deals:hover .store-img{background: #fff;}
+.listing-scroller .deals a{font-size: 14px; color: #282828; margin:10px; display: block; text-decoration: none;}
+.listing-scroller .deals a.button{margin: 0;}
+
+.deals{position:relative;}
+.deals.hot, .deals.exclusive-offer, .deals.featured-store{padding: 0;}
+.deals.hot:before{content: ""; position: absolute; left: -1px; top: -1px; background: url('../images/hifi/hot-icon.gif') no-repeat; width: 50px; height: 38px;}
+.deals.featured-store:before{content: ""; position: absolute; width: 67px; height: 60px; background: url('../images/hifi/featured-exclusive.png') no-repeat; left: -1px; top: -1px;}
+.deals.exclusive-offer:before{content: ""; position: absolute; width: 67px; height: 60px; background: url('../images/hifi/featured-exclusive.png') no-repeat -80px 0; left: -1px; top: -1px;}
+.deals .listing-hover{display: flex; align-items:center; padding: overflow: hidden; word-wrap: break-word; text-align: center; transition: 0.5s; height: 0; width: 100%; left: 0; color: #fff; margin: 0; position: absolute; top:45%; background: rgba(0, 146, 202, .8); opacity: 0;}
+.deals .listing-hover .hover-content{vertical-align: middle; display: inline-block; padding:0 10px; width: 100%;}
+.deals .listing-hover.secondary{background: rgba(241, 165, 2, .9);}
+.deals .listing-hover .store-name{font-size: 18px; display: block; margin-bottom: 10px; font-family: 'Josefin Sans', sans-serif; padding: 10px;}
+.deals .listing-hover .store-offer{font-size: 12px; font-weight: bold;}
+.deals .listing-hover .store-offer .offer-desc{display: block; font-weight: normal; margin-bottom: 10px;}
+.deals-listing li:hover .listing-hover{height:calc(100% - 32px); border-bottom: 1px solid #fff; opacity: 1; top: 0;}
+.deals .more-offers{display: block; padding: 5px; background: #989898; color: #fff; height: 27px; white-space: nowrap; text-overflow:ellipsis; overflow: hidden;}
+.deals .more-offers strong{font-size: 15px;}
+.deals .more-offers.fix{margin-bottom: 0; overflow: hidden; white-space: nowrap; text-overflow:ellipsis;}
+.deals .cashback-desc{padding: 0 5px; margin: 0; line-height: normal; height: 47px; overflow: hidden;}
+.price-tag{font-size: 18px; color: #686868; font-weight: bold; padding: 5px; margin-bottom: 5px; text-overflow:ellipsis; overflow:hidden; white-space: nowrap;}
+.old-price{text-decoration: line-through; color: #999; font-weight: normal; margin-right: 5px;}
+.new-price{ color: #0292ca;}
+.deals .store-img {height: 120px; text-align: center; font: 0/0 a; border-bottom: 1px solid #EAEAEA;}
+.deals .store-img:before { content: ' '; display: inline-block; vertical-align: middle; height: 100%;}
+.deals .store-img img { display: inline-block; vertical-align: middle; max-width: 90%;max-height: 90%;}
+.deals .deals-button{background: #f8f8f8; color: #686868; line-height: 33px; font-size: 13px;}
+.deals .deals-button .button{width: 100%;}
+.deals .add-favorite{position: absolute; cursor: pointer; z-index: 8; margin: 0; right: 0; top: 0; width: 20px; height: 20px; background: #dadada url("../images/hifi/star-icon.png") no-repeat 4px 3px;}
+.deals .add-favorite.active{background-color:#0292CA;}
+.deals .title{font-weight: bold; font-size: 20px; color: #0292CA; margin: 0 10px;}
+.deals .cupon-code{border: 2px dashed #026E97; margin-top: 5px; padding: 10px; display: block; background: #0292CA; color: #fff; font-size: 16px; text-transform: uppercase;}
+.cupon-expired{color: #aaa; font-size: 12px;}
+.loader{background: url("../images/hifi/loading.svg") no-repeat center center; min-height: 100px;}
+.no-item{background: url('../images/hifi/no-item.jpg') no-repeat center 10px / 100px auto; min-width: 230px; margin: auto; border: 1px solid #f0f0f0; padding-top: 180px; display: inline-block;}
+.no-item span{border-top: 1px solid #f0f0f0; padding: 10px 10px 10px 30px; display: block; position: relative; text-align: left;}
+.no-item span:before{background: url('../images/hifi/icon-info.png') no-repeat; content: ""; position: absolute; width: 14px; height: 13px; left: 9px; top: 13px;}
+
+.stores-listing .deals .store-img{border: none;}
+.stores-listing .all-offers .deals .store-img{border: none; margin: 0; border-bottom: 1px solid #f0f0f0;}
+.stores-listing .deals-listing li{height: auto;}
+
+.offers-with-store{position: relative; width: 70%; height: 35px; display: block; border-color: #f0f0f0; border-style: solid; border-width: 1px; margin: -17px auto 0; background: #fff;}
+.offers-with-store.for-home{margin: -28px auto 10px;}
+.offers-with-store:before { content: ' '; display: inline-block; vertical-align: middle; height: 100%;}
+.offers-with-store img { display: inline-block; vertical-align: middle; max-width: 90%;max-height: 90%;}
+
+.similar-stores .deals .store-img{border: none;}
+.similar-stores .deals-listing li{height: auto; width: 20%;}
+.similar-stores .deals-listing li .button {width: 100%; margin: 0; color: #fff; font-size: 18px;}
+
+.all-stores .deals .store-img{border: none;}
+.all-stores .deals-listing li{height: auto; width: 29%; cursor: default;}
+.all-stores .deals-listing li .button {width: 100%; margin: 0; color: #fff; font-size: 18px;}
+.all-stores .deals-listing li:hover{background: none;}
+
+.testimonials-content{list-style: none; background:#686868; padding:30px; color: #fff;}
+.testimonials-content li{float: left; margin-right: 45px; width: 21%; text-align: center; font-size: 14px;}
+.testimonials-content li:nth-child(4n){margin-right: 0;}
+.testimonials-content .user-img{width: 130px; height: 130px; margin: 0 0 25px; display: inline-block; border:3px solid #fff; border-radius: 130px; overflow: hidden; position: relative; z-index: 1;}
+.testimonials-content .user-img img{position: absolute; left: 50%; top: 50%; margin:-70px 0 0 -80px;}
+.testimonials-content .user-name{font-family: 'Josefin Sans', sans-serif; font-size: 24px; font-weight: bold; color: #fff; margin: 0 0 5px;}
+.testimonials-content .user-place{margin:0 0 10px; display: block;}
+.testimonials-content .user-review{color: #fff;}
+
+
+.user-count{text-align: center; padding:30px 0; background: #fff; }
+.user-count li{	
+background: rgba(38,185,243,1);/* Old Browsers */
+background: -moz-linear-gradient(top, rgba(38,185,243,1) 0%, rgba(38,185,243,1) 50%, rgba(0,173,241,1) 51%, rgba(0,173,241,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(38,185,243,1)), color-stop(50%, rgba(38,185,243,1)), color-stop(51%, rgba(0,173,241,1)), color-stop(100%, rgba(0,173,241,1)));/* Chrome, Safari4+ */
+background: -webkit-linear-gradient(top, rgba(38,185,243,1) 0%, rgba(38,185,243,1) 50%, rgba(0,173,241,1) 51%, rgba(0,173,241,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(38,185,243,1) 0%, rgba(38,185,243,1) 50%, rgba(0,173,241,1) 51%, rgba(0,173,241,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(38,185,243,1) 0%, rgba(38,185,243,1) 50%, rgba(0,173,241,1) 51%, rgba(0,173,241,1) 100%); /* IE 10+ */
+background: linear-gradient(to bottom, rgba(38,185,243,1) 0%, rgba(38,185,243,1) 50%, rgba(0,173,241,1) 51%, rgba(0,173,241,1) 100%);/* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26b9f3', endColorstr='#00adf1', GradientType=0 );/* IE6-9 */
+
+height: 70px; display: inline-block; width: 50px; line-height: 70px; color: #fff; font-size: 36px; font-family: 'Josefin Sans', sans-serif;
+}
+
+.burger-menu{float: right; overflow: hidden; margin: 11px 18px 0 0; background:url("../images/hifi/burger-menu.gif") center center no-repeat; padding: 15px; text-transform: uppercase; color: #fff; font-weight: bold; font-size: 14px; height: 19px; width: 25px; display: none; text-indent: -999px; position: relative; outline: none; transform: rotate(0deg);}
+.burger-menu.active{background:url("../images/hifi/burger-menu-active.png") center center no-repeat; z-index: 99999; position: fixed; right: 0;
+    -webkit-animation: burgeranimation 5s infinite; /* Chrome, Safari, Opera */
+    animation: burgeranimation .5s infinite;
+    -webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+    animation-iteration-count: 1;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes burgeranimation {
+}
+    100% {-webkit-transform: rotate(360deg);}
+
+/* Standard syntax */
+@keyframes burgeranimation {
+    100% {transform: rotate(360deg);}
+}
+.page-overlay{position: fixed; width: 100%; height: 100%; display: none; z-index: 999; background: rgba(0,0,0,.5); transition: 1s; opacity: 0;}
+
+.breadcrumbs{background: none; width: 100%; margin: -25px 0 7px; padding: 0;}
+.breadcrumbs a{color: #027BAA; text-decoration: none; display: inline-block;}
+.breadcrumbs a, .breadcrumbs span{padding-top: 3px; float: left; margin-right: 10px;}
+.breadcrumbs span{font-weight: bold;}
+.breadcrumbs a:first-child{background: url("../images/hifi/home-icon.png"); text-indent: -9999px; width: 16px; height: 16px; padding: 0; margin-top: 2px;}
+.breadcrumbs .seperator{display: inline-block; height: 16px; width: 5px; background: url("../images/hifi/small-arrow.png") no-repeat 0 bottom; padding: 0;}
+
+/*faq page classes starts here*/
+.faq-content{margin: 0; list-style: none; padding: 0;}
+.faq-content li{display: block; margin: 0 0 20px; padding: 0;}
+.faq-content li.h3{padding: 0; margin: 30px 0 20px; color: #686868; font-family: arial;}
+.faq-content li .question{display: block; cursor: pointer; padding: 10px; border: 1px solid #f0f0f0; position: relative; color: #0292ca; font-weight: bold;}
+.faq-content li .question:after{
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #686868;
+    position: absolute; top: 15px; right: 20px;}
+.faq-content li.active .question{border-color: #ccc;}
+.faq-content li.active .question:after{border-bottom: 6px solid #686868; border-top: 0;}
+.faq-content li .answer{background: #f9f9f9; padding: 10px; display: none; line-height: 22px;}
+.faq-content li .answer ul{}
+.faq-content li .answer ul li{position: relative; padding-left: 20px; margin-bottom: 10px;}
+.faq-content li .answer ul li:before{
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 5px solid #686868;
+    position: absolute; top: 8px; left: 0; transform:rotate(-90deg);
+}
+
+/*left nav classes starts here*/
+.left-nav{width: 310px; position: absolute; right: 0; top: 30px;}
+.accordian .accordian-panel{background: #0292CA url("../images/hifi/plus.gif") 95% 16px no-repeat; color: #fff; list-style: none; border-bottom: 1px solid #f0f0f0;}
+.accordian .accordian-panel.open{background-image:url("../images/hifi/minus.gif");}
+.accordian .accordian-panel > span{font-size: 16px; font-family: 'Josefin Sans', sans-serif; display: block; padding: 10px 20px; cursor: pointer;}
+.accordian .accordian-panel.open > ul{display: block; max-height: 370px; overflow: auto;}
+.accordian .accordian-panel > ul{background: #fff; list-style: none; font-size: 14px; display: none;}
+.accordian .accordian-panel > ul li{font-family: arial; color: #0292CA;}
+.accordian .accordian-panel > ul li a{background: url("../images/hifi/arrow.png") no-repeat 20px center; padding: 10px 20px 10px 45px; display: block;}
+.accordian .accordian-panel > ul li a:hover{background-color: #f9f9f9; text-decoration: none;}
+.accordian .accordian-panel > ul li a .new-num{background: #F1A502; border-radius: 10px; color: #fff; font-size: 12px; font-weight: bold; padding: 2px 7px; margin: 0 0 0 3px;}
+.banners{padding:20px 0; overflow: hidden;}
+.banners img{margin-bottom: 20px;}
+.left-nav section{background: #fff; margin-bottom:20px;}
+
+.how-it-works-steps{margin: 0; padding: 0; list-style: none;}
+.how-it-works-steps li{padding: 0 0 0 80px; margin:0 0 50px; position: relative; min-height: 60px; border-bottom: 1px solid #f0f0f0;}
+.how-it-works-steps li:before{position: absolute; left: 0; top: 0; width: 60px; height: 100%; font-size: 48px; background: #ccc; color: #fff; text-align: center;}
+.how-it-works-steps li.one:before{content: "1";}
+.how-it-works-steps li.two:before{content: "2";}
+.how-it-works-steps li.three:before{content: "3";}
+.how-it-works-steps li.four:before{content: "4";}
+.how-it-works-steps li.five:before{content: "5";}
+.how-it-works-steps li h3{font-size: 20px; color: #686868; font-weight: normal; margin-bottom: 5px;}
+.how-it-works-steps li p{font-size: 13px;}
+
+
+.right-how-works .how-works{margin: 0; padding:0; list-style: none; width: 100%; position: relative; height: 500px; overflow: hidden;}
+.right-how-works li{margin: 0; padding:0; display: none; padding: 20px 0; height: 500px;}
+.right-how-works li span.character{background: url('../images/hifi/how-it-works.jpg') no-repeat; height: 237px; width: 237px; display: block; margin: auto;}
+.right-how-works li span.character.join-us{background-position:0 0;}
+.right-how-works li span.character.do-shopping{background-position:-252px 0;}
+.right-how-works li span.character.earn-cashback{background-position:-506px 0;}
+.right-how-works li span.character.bank-transfer{background-position:-760px 0;}
+.right-how-works li h3{color: #0292ca; font-size: 24px; font-family: 'Josefin Sans', sans-serif; padding: 0 0 5px; margin: 0 10px 10px; border-bottom: 1px solid #f0f0f0;}
+.right-how-works li p{color: #686868; font-size: 12px; padding: 0 10px; margin: 0 0 5px;}
+
+.progressbar{position: relative; height: 6px; background: #f9f9f9; border: 1px solid #f0f0f0; margin: 30px 5px; text-align: center;}
+.progressbar .step{display: block; float: left; line-height: 21px; font-size: 12px; width: 25px; height: 25px; border-radius: 25px; background: #fff; border: 1px solid #f0f0f0; margin:-11px 23px 0; color: #ccc;}
+.progressbar .step.active{color: #fff; background: #f1a502;}
+
+.right-top-offers{overflow: hidden;}
+.right-top-offers .top-offers{margin: 0; list-style: none; padding: 10px 0 0; position: relative; overflow: hidden; transition: 0.9s;}
+.right-top-offers li{margin: 0 10px; padding: 0; float: left;}
+.right-top-offers li a{color: #686868; border-bottom: 1px solid #f0f0f0; padding: 0 0 5px; margin-bottom: 10px;}
+.right-top-offers li a:hover{color: #282828; text-decoration: none;}
+.right-top-offers li a:hover strong{color: #02B7FD;}
+.right-top-offers li strong{color: #0292ca; font-size: 16px; font-weight: normal;}
+.right-top-offers li i{float: right; background: #f1a502; padding:5px; color: #fff; font-style: normal;}
+.right-top-offers li span{display: block; padding: 15px 0 10px; width: 100%;}
+
+
+/*content classes starts here*/
+.right-section{display: block; margin-bottom: 30px;}
+.content-box{background: #fff; padding: 20px; margin-bottom: 20px;}
+.content-box.min-height{min-height: 515px;}
+.store-detail-container{position: relative; padding-left: 200px; margin-bottom: 30px;}
+.store-detail-container.cupons{border-style:dashed!important;}
+.no-listing-image{padding: 10px!important;}
+.store-detail-container.cupons:before{content:""; background:url("../images/hifi/icon_scissors.png") no-repeat; background-size: 26px; position: absolute; height: 25px; width: 40px; left: 50%; top: -11px; opacity: 0.7;}
+.retailer-img {width:180px; height: 160px; text-align: center; font: 0/0 a; border: 1px solid #EAEAEA; margin-bottom: 10px; position: absolute; left: 0;}
+.retailer-img:before { content: ' '; display: inline-block; vertical-align: middle; height: 100%;}
+.retailer-img img { display: inline-block; vertical-align: middle; max-width: 80%; max-height:100%;}
+.store-detail{}
+.exclusive, .featured{display: inline-block; font-size: 12px; color: #fff; padding:2px 5px;}
+.exclusive{background: #f1a502;}
+.featured{background: #0292ca;}
+.offer-count{float: right; color: #fff; background: #0292CA; padding: 10px; font-size: 36px; font-family: 'Josefin Sans', sans-serif; font-weight: normal; margin:0 0 20px 20px;}
+
+.offer-listing{border-bottom: 1px solid #E7E9EA;  padding: 20px 0;}
+.cashback-offer .retailer-img{position: static; float: left;margin-right:40px;}
+.get-earnup-box{float: left; width:auto;}
+.get-off{float: left; font-size: 16px; color: #686868; width: 90px; text-align: center;}
+.get-earnup-box .offer-perc{display:block;  min-width: 80px; padding:5px 0; background: #F1A502; color: #fff; font-size: 22px; margin: 5px 0;}
+.get-earnup-box .offer-perc span{font-size: 16px;}
+.get-earnup-box .offer-seperator{background: url("../images/hifi/offer-seperator.gif") no-repeat; width: 80px; height: 80px; float: left; margin: 0 50px;}
+.get-store-cashback{float: right; width: 150px; text-align: right;}
+.get-store-cashback a, .get-store-cashback span{display: block; margin-top: 10px;}
+.get-store-cashback .expiring-date{color: #C0BEBE;}
+.offer-listing .heading1{margin: 20px 0 10px;}
+.cupon-offer .offer-perc, .cupon-offer .secondary{background:#0292CA;}
+.cupon-offer .get-earnup-box .offer-seperator{background: url("../images/hifi/offer-seperator2.gif") no-repeat;}
+
+.user-comments{list-style: none;}
+.user-comments li{position: relative; margin: 0; padding: 0 0 0 65px; min-height: 50px; margin: 20px 0;}
+.user-comments .user-image{position: absolute; width: 50px; height: 50px; border:1px solid #EBEBEB; left: 0; top: 0; overflow: hidden; text-align: center;}
+.user-comments .user-image:before { content: ' '; display: inline-block; vertical-align: middle; height: 100%;}
+.user-comments .user-image img { display: inline-block; vertical-align: middle; max-width: 100%;}
+.user-comments p{margin: 0 0 10px;  min-height: 26px;}
+.user-comments .user-info{font-weight: bold;}
+.user-comments .user-info .user-name{margin-right: 20px;}
+.user-comments .user-info strong{color: #BABABA; font-weight: normal;}
+.user-comments .user-info .user-rating img{vertical-align: middle;}
+
+/*searc page classes starts here*/
+.filter-block{margin-right: 10px;}
+.filter-block .input-medium{max-width: 150px;}
+.sort-block .input-medium{width: auto;}
+.browse_top{background: #f7f7f7; height: auto; padding:10px; border: 1px solid #f0f0f0; margin-bottom: 30px;}
+.browse_top .results{padding-top: 5px;}
+.search-listing .store-detail-container{background: #fff; border: 1px solid #eaeaea; padding:10px 10px 10px 200px;}
+.search-listing .retailer-img{left: 10px; border-width: 0 1px 0 0; height: 90%;}
+.search-listing .cupon-code{position:relative; cursor: pointer; background: #686868; float: right; border: 2px dashed #282828; color: #fff; font-family: 'Josefin Sans', sans-serif; font-size: 18px; font-weight: normal; margin: 0 0 20px 20px; padding: 10px;}
+.search-listing .cupon-code span{position: absolute; left: 0; top: 0; width: 70%; height: 100%; background: #0292CA; transition: 0.4s;}
+.search-listing .cupon-code:hover span{width: 0px;}
+.search-listing .cupon-code span:after{content: ""; position: absolute; width: 5px; height: 100%; right: -5px; top: 0; background: #0292CA; opacity: 0.6;}
+.search-listing .cupon-right{float: right;}
+
+/*table classes starts here*/
+.table-scroller{overflow-x: auto;}
+.table-scroller .table-listing{min-width: 690px;}
+.table-listing{width: 100%; text-align: left; padding: 0; border: 1px solid #f0f0f0; color: #686868;}
+.table-listing th{color: #282828; border-bottom: 1px solid #e0e0e0;}
+.table-listing th, .table-listing td{text-align: left; padding: 10px;}
+.table-listing td .row-label{display: none;}
+.table-listing thead tr{background: #f0f0f0;}
+.table-listing tbody:nth-child(even){background: #f9f9f9;}
+.table-listing tbody tr{}
+.table-listing tbody tr td{border-bottom: 1px solid #f0f0f0;}
+.table-listing tbody tr td.light-blue-bg{border-bottom: 1px solid #f9f9f9;}
+.table-listing tbody tr.user-comment-row{border: none;}
+.table-listing tbody tr.user-comment-row td{padding-top: 0;}
+.table-listing .total-row{font-size: 16px; color: #282828;}
+.status{padding-left: 30px; display: inline-block; min-height: 25px; line-height: 18px; min-width: 100px; text-align: left;}
+.confirmed{background: url("../images/hifi/check.png") no-repeat 0 0 / 18px auto;}
+.declined{background: url("../images/hifi/cross.png") no-repeat 0 0 / 18px auto;}
+.in-progress{background: url("../images/hifi/hour-glass.png") no-repeat 0 0 / 18px auto;}
+.paid{background: url("../images/hifi/paid.png") no-repeat 0 0;}
+
+/*message classes starts here*/
+.success-message{color: #98DE02; margin: 0 0 20px; font-size: 14px; font-weight: bold;  padding: 10px 10px 10px 35px; background: url("../images/hifi/check.png") no-repeat 0px 6px;}
+.error-message{color: #e94e4e; margin: 0 0 20px; font-size: 12px; padding: 10px;}
+.error-message img{vertical-align: middle; margin-right: 5px;}
+
+.no-page-left{float: left; width: 46%; text-align: center;}
+.no-page-right{float: left; width: 50%; min-height: 300px; border-left: 1px solid #f0f0f0; margin-left: 20px; padding-left: 20px;}
+.page-not-found{background: url('../images/hifi/404.gif') no-repeat center 0; padding-top: 120px; font-family: 'Josefin Sans', sans-serif; font-size: 36px;}
+.search-store-main{position: relative;}
+.search-store-main input[type='text']{height: 40px; width: 100%; padding:0 45px 0 10px!important;}
+.search-store-main button{text-indent:-999999px; width: 30px; height: 30px; background: url('../images/hifi/search-icon-grey.png') no-repeat center 0; border: none; position: absolute; right: 8px; top: 8px;}
+.no-page-right a{background: #f9f9f9; color: #686868; padding:8px 10px; display: inline-block; border: 1px solid #f0f0f0; margin: 0 5px 8px 0;}
+.no-page-right a:hover{background: #ccc; color:#fff;  text-decoration: none; border: 1px solid #b4b4b4;}
+
+/*form classes starts here*/
+.form-row{margin-bottom: 20px; padding: 0 0 0 10%;}
+.form-row .label{float: left; font-weight: bold; width: 30%; padding: 10px 30px 0 0; font-size: 13px;}
+.form-row .label strong{display: block; font-size: 11px; padding-top: 10px;}
+.form-row .label p{font-size: 11px; font-weight: normal;}
+.form-row .label.small{width: 20%;}
+input[type="text"], input[type="password"], textarea, select{border: 1px solid #ccc!important; padding: 5px!important; color: #686868; font-family: Arial; display: inline-block; background: #fff; font-size: 12px;}
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus{box-shadow: 0px 0px 5px #9FD4E9;}
+input.disable{background: #f0f0f0;}
+.input-medium{width: 30%;}
+.input-large{width: 50%;}
+.form-row.without-label{padding-left: 37%;}
+.form-row.without-label.small{padding-left: 28%;}
+.form-row .value{float: left; font-weight: bold; width: 70%; padding: 10px 30px 0 0; font-size: 13px;}
+.req{color: #ff0000;}
+
+.balance-data .form-row .label{font-weight: normal;}
+
+@media screen and (max-width: 1120px) {
+    .deals-listing li{width:21%;}
+    .breadcrumbs{padding: 0 10px;}
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1112px) {
+    .how-earn-cashback ol li{width: 43%;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .top-nav ul li a{padding: 0 25px;}
+    header .logo{margin-right: 20px;}
+    .how-earn-cashback ol li{width: 45%;}
+}
+
+@media screen and (max-width: 1024px) {
+    ..home-top-left, .home-top-right{min-height: 510px;}
+    .how-earn-cashback .content-padding{padding:20px 0 0;}
+    .how-earn-cashback .content-padding p{padding-top:20px;}
+    .how-earn-cashback ol{margin: 0;}
+    .how-earn-cashback ol li{width: 45%; margin-right:5px; margin-bottom: 5px;}
+    .how-earn-cashback ol li:last-child{margin-right: 0;}
+    .testimonials-content li{width: 45%; margin:0 15px 30px; text-align: left;}
+    .testimonials-content .user-img{float: left; margin:0 20px 10px 0; }
+    .all-stores .store-offer{margin-bottom: 10px;}
+    .all-stores .store-offer, .all-stores .store-rating{width: 100%;}
+    input[type="text"], input[type="password"], select{height: 40px;}
+    .footer-arrow{width: 100%;}
+    .all-stores .deals-listing li{width: 28%;}
+    .filter-block .input-medium{width: 150px;}
+}
+
+@media screen and (max-width: 915px) {
+    header{width: 100%; position: fixed; z-index: 99; border-bottom: 1px solid #f0f0f0;}
+    .header-content{padding-bottom: 0; padding-top: 15px;}
+    .content-wrapper{padding: 160px 270px 0 0;}
+    .content-wrapper.home-page{padding: 130px 0 0 0;}
+    .home-top-right{width: 100%; float: none; min-height: inherit; padding: 20px 10px;}
+    .home-top-left{float: none; width: 100%; margin-bottom: 30px;}
+    .left-nav{top: 160px; width: 250px;}
+    .progressbar .step{margin:-11px 17px 0;}
+    .deals-listing li{width:28%;}
+    .accordian .accordian-panel > span{padding: 10px;}
+    .header-right{float: none;}
+    .header-right .button{padding: 10px; font-size: 14px; margin-left: 5px; width: auto;}
+    .header-right.loggedIn{display: none;}
+    .burger-menu{display: block; position: fixed; right: 0;}
+    .page-overlay.active{display: block; opacity: 1;}
+    .top-nav{position: absolute; z-index: 9999999; width: 60px; right: 0; top: 0; background: none;}
+    .top-nav ul{width: 100%; width: 250px; right: -290px; top: 0; position: fixed; overflow: auto; height: 100%; background:#0292ca; transition: 0.4s; padding-top: 50px; z-index: 999;}
+    .top-nav ul.active{right: 0; box-shadow: 0 0 20px rgba(0,0,0,0.5);}
+    .nav-list:after{content: ""; position: fixed; right: -290px; top: 0; width: 250px; height: 50px; background:#0292ca; transition: 0.4s;}
+    .nav-list.active:after{right: 0;}
+    .top-nav ul li{width: 100%; border-bottom: 1px solid rgba(255, 255, 255, 0.3);}
+    .top-nav ul li.dropdown > a.my-account{background: #f1a502;}
+    .top-nav ul li.dropdown > ul{position: static; padding: 0; border: none; background: #f9f9f9;}
+    .top-nav ul li.dropdown > ul li{border:none;}
+    .top-nav ul li.dropdown > a:after{top: 25px; right: 18px; border: none; width: 11px; height: 1px; background: #fff;}
+    .top-nav ul li.dropdown > a:before{top: 20px; right: 23px; border: none; width: 1px; height: 11px; background: #fff; display: block; content: ""; position: absolute;}
+    .top-nav ul li.dropdown.active > a:before{display: none;}
+    .top-nav ul li.dropdown > ul a{line-height: normal; padding: 10px 10px 10px 25px; border-bottom: 1px solid #f0f0f0; color: #686868;}
+    .top-nav ul li.dropdown > ul a:hover{text-decoration: none; background: #f0f0f0;}
+    .top-nav ul li.nav-btns{width: 50%;}
+    .top-nav ul li a{width: 100%; padding:5px 10px; margin-bottom: 0!important;}
+    .search-main{width: 100%; margin: 0 0 10px;}
+    .hide-for-medium{display: none;}
+    .get-earnup-box, .get-store-cashback, .get-store-cashback .button{width: 100%;}
+    .cashback-offer .get-earnup-box{width: auto;}
+    .get-store-cashback a, .get-store-cashback span{display: inline-block;}
+    .form-row{padding: 0;}
+    .form-row .input-large, .form-row .input-medium, .form-row .value{width: 70%;}
+    .no-page-left{width: 100%;}
+    .no-page-right{width: 100%; min-height:inherit; border-left:none; border-top: 1px solid #f0f0f0; margin: 20px 0 0 0; padding:20px 0 0;}
+    .all-stores .deals-listing li{width: 40%;}
+    .similar-stores .deals-listing li{width: 26%;}
+    .login-form .stay-connected{padding: 0;}
+    .refer-field-mobile{display: block; width: 100%; float: left; margin-top: 7px;}
+    .form-row .refer-field-mobile .input-medium{width: 62%;}
+    .form-row .refer-field-mobile input{width: 30%;}
+    .balance-data .form-row .label{width: 50%;}
+    .balance-data .form-row .value{float: right; padding: 0; width: 40%;}
+}
+
+@media screen and (max-width: 767px) {
+    header .logo{background-size: 180px!important; height: 47px; width: 100%;}
+    header .logo.beta{width: 100%;}
+    header .logo a{height: 40px;}
+    .header-content{min-height: auto; position: relative;}
+    .content-wrapper{padding: 160px 0 0 0;}
+    .login_msg{font-size: 12px;}
+    /*.search-main{width: 100%; background: none; padding: 0; position: static; width: 45px; height: 40px; float: right;}
+    .search-main .search-icon{background-position: center; padding: 0 20px; right: 0; z-index: 1000;}
+    .search-main .input-parent{background: #F1A502; width: 100%; padding: 5px 45px 5px 5px; min-height: 45px; position: absolute; top: 105px; display: none; z-index: 99999; left: 0;}
+    .search-main .input-parent.active{display: block;}
+    .search-main .input-parent:after{content: ""; position: absolute; right: 30px; top: 0; margin: -7px 0 0 -7px; transform:rotate(45deg); width: 10px; height: 20px; background:#F1A502; display: block; z-index: 999;}
+    .search-main .search-responsive{display: block; cursor: pointer; background: #F1A502 url("../images/hifi/search-icon.png") no-repeat center center; width: 44px; right: 10px; height: 40px; border: 0; cursor: pointer; position: absolute;}
+    .search-main .search-responsive.active{background: #fff url("../images/hifi/icon-remove.png") no-repeat center center; border: 1px solid #f0f0f0;}
+    .search-main .ac_results{top: 95px !important;}*/
+    footer .helpful, footer .popular-categories, footer .stay-connected{width: 100%; float: none;}
+    footer .helpful li{display: inline-block; margin: 0 10px 10px 0;}
+    footer .newsletter{text-align: left;}
+    footer .newsletter input[type="text"]{width: 100%; margin: 10px 0;}
+
+    .store-detail-container, .search-listing .store-detail-container{padding-left: 0;}
+    .retailer-img{position: static; margin-right: 20px; float: left; min-height: 160px; width: 30%;}
+    .store-detail{display: table-cell;}
+    .offer-count{font-size: 24px;}
+    .left-nav{display: none;}
+    .right-section{width: 100%; display: block; padding-right: 0;}
+    .get-store-cashback{width: 100%; text-align: left; margin-top: 20px;}
+    .get-store-cashback .button{margin-right: 10px;}
+    .get-store-cashback a, .get-store-cashback span{display: inline-block; margin-right: 10px;}
+    .form-row{padding-left: 0;}
+    .input-medium{width: 60%;}
+    .form-row.without-label{padding-left: 30%;}
+    .all-stores .deals-listing li{width: 28%;}
+    .search-listing .cupon-right{width: 100%; float: none;}
+    .search-listing .cupon-code{float: none!important; display: inline-block; width: 100%; margin:0 0 10px;}
+    .hide-for-small{display: none;}
+    .button, a.button{padding: 10px; width: 100%; margin-bottom: 10px;}
+    .store-detail{display: block;}
+    .content-box{min-height: inherit!important;}
+    .form-row.without-label.small{padding-left: 0;}
+    .small-per50{width:48%;}
+}
+
+
+
+@media screen and (max-width: 735px) {
+    .how-earn-cashback ol li{width: 22%; margin-right: 10px;}
+}
+
+@media screen and (max-width: 690px) {
+    .deals-listing li{width:43%;}
+}
+
+@media screen and (max-width: 680px) {
+    .testimonials-content li{width: 95%;}
+    .similar-stores .deals-listing li{width: 40%;}
+    .similar-stores .deals-listing li .offer-upto{width: 100%;}
+    .how-earn-cashback ol li{width: 44%;}
+    .all-stores .deals-listing li{width: 42%;}
+    .how-earn-cashback.get-started .content-padding{padding: 0;}
+}
+
+@media screen and (max-width: 560px) {
+    .user-count li{height: 50px; width: 28px; font-size: 30px; line-height: 50px;}
+    .form-row{padding-left: 0;}
+    .input-medium{width: 100%;}
+    .form-row .label{width: 100%; padding: 0 0 5px;}
+    .form-row .input-large, .form-row .input-medium, .form-row .value{width: 100%;}
+    .form-row.without-label{padding-left: 0%;}
+    .how-earn-cashback.get-started ol li{
+        background-position:15px 15px;
+        background-size:30px auto;
+        height:50px;
+        margin:0;
+        padding:15px 0 0 70px;
+        text-align:left;
+        width:100%;
+    }
+
+    .get-earnup-box{width: 100%;}
+    .get-earnup-box .offer-seperator{margin: 0 10px;}
+    .similar-stores .deals-listing li{width: 90%;}
+    .get-store-cashback .button{width: 100%;}
+    .activation-link.text-center{text-align: left!important;}
+}
+
+@media screen and (max-width: 490px) {
+    .deals-listing li{width:92%; height: auto;}
+    .deals-button .offer-upto{float: right; padding: 0 10px; font-size: 11px;}
+    .deals .deals-button .button{width: 100%;}
+    .retailer-img{width: 100%; border-right: 0; margin: 0 0 20px; min-height: 100px; border:1px solid #eaeaea;}
+    
+    .store-detail{padding:0; width: 100%;}
+    .store-detail-container, .search-listing .store-detail-container{padding: 10px;}
+    .filter-block{display: block; margin-bottom: 10px;}
+}
+
+@media screen and (max-width: 480px) {
+    /*.header-right .button{padding: 10px; font-size: 14px; margin-left: 5px;}*/
+    .all-stores .deals-listing li{width: 90%;}
+}
+
+@media screen and (max-width: 420px) {
+    .how-earn-cashback ol{margin: 0 0 30px;}
+    .how-earn-cashback ol li{
+        background-position:15px 15px;
+        background-size:30px auto;
+        height:50px;
+        margin:0;
+        padding:15px 0 0 70px;
+        text-align:left;
+        width:100%;
+    }
+
+    .no-page-left .no-page-found{background-size: 280px auto; padding-top: 100px;}
+    .browse_top .sortby{width: 100%;}
+    .filter-block .input-medium{width: 80%;}
+    .sort-block .input-medium{width: 40%;}
+}
+
+@media screen and (max-width: 360px) {
+}
+
+@media screen and (min-width: 1024px) {
+    /*festive season classes starts here*/
+    /* body{background-image: url('../images/hifi/mothers-day-bg.jpg'); background-position: -140px 0;}*/
+    /*.header-content:before{content: ""; width: 96px; height: 66px; position: absolute; left: -20px; background: url('../images/hifi/mothers-day-logo.jpg');}*/
+    /*festive season classes ends here*/
+    .hide-for-desktop{display: none;}
+    .deals-listing.all-offers li{width: 21%;}
+    .top-nav ul li.dropdown > ul{padding: 0;}
+    .top-nav ul li.dropdown > ul a:hover{text-decoration: none;}
+    .shop-by-category .dropdown-links li{border-style: solid; border-color: #888; border-width: 0 1px 1px 0; padding:0; width:20%; height: 48px;}
+    .shop-by-category .dropdown-links li a{position: relative; line-height: 27px; padding:10px 20px 10px 55px; display: block; background: rgba(104, 104, 104, 0.96); transition:0.3s;}
+    .shop-by-category .dropdown-links li a:hover{background: rgba(90, 90, 90, 0.96)!important;}
+
+    .shop-by-category .dropdown-links li a:before{background: url('../images/hifi/categories-icons.png') no-repeat; position: absolute; width: 25px; height: 25px; content: ""; left: 20px; top: 11px;}
+    .shop-by-category .dropdown-links li a.AsSeenOnTV:before{background-position: -25px 0px;}
+    .shop-by-category .dropdown-links li a.Astrology:before{background-position: -50px 0px;}
+    .shop-by-category .dropdown-links li a.Auction:before{background-position: -75px 0px;}
+    .shop-by-category .dropdown-links li a.Automotive:before{background-position: -100px 0px;}
+    .shop-by-category .dropdown-links li a.BabyKids:before{background-position: -125px -2px;}
+    .shop-by-category .dropdown-links li a.Banking:before{background-position: -150px 0px;}
+    .shop-by-category .dropdown-links li a.BizOpp:before{background-position: -175px 0px;}
+    .shop-by-category .dropdown-links li a.CarTaxiRental:before{background-position: -200px 0px;}
+    .shop-by-category .dropdown-links li a.CareersJobs:before{background-position: -225px 0px;}
+    .shop-by-category .dropdown-links li a.Apparel:before{background-position: -0 -25px;}
+    .shop-by-category .dropdown-links li a.ComputersInternet:before{background-position: -26px -25px;}
+    .shop-by-category .dropdown-links li a.ContentLock:before{background-position: -75px -29px;}
+    .shop-by-category .dropdown-links li a.DailyDeals:before{background-position: -99px -27px;}
+    .shop-by-category .dropdown-links li a.Dating:before{background-position: -125px -27px;}
+    .shop-by-category .dropdown-links li a.E-Commerce:before{background-position: -52px -27px;}
+    .shop-by-category .dropdown-links li a.Education:before{background-position: -176px -80px;}
+    .shop-by-category .dropdown-links li a.EntertainmentMusic:before{background-position: -201px -80px;}
+    .shop-by-category .dropdown-links li a.Finance:before{background-position: -176px -25px;}
+    .shop-by-category .dropdown-links li a.FoodBeverage:before{background-position: -200px -28px;}
+    .shop-by-category .dropdown-links li a.Gambling:before{background-position: -228px -28px;}
+    .shop-by-category .dropdown-links li a.Gaming:before{background-position: 0px -54px;}
+    .shop-by-category .dropdown-links li a.HealthBeauty:before{background-position: -25px -54px;}
+    .shop-by-category .dropdown-links li a.DecorFurniture:before{background-position: -50px -54px;}
+    .shop-by-category .dropdown-links li a.Incentivized:before{background-position: -74px -54px;}
+    .shop-by-category .dropdown-links li a.Insurance:before{background-position: -99px -54px;}
+    .shop-by-category .dropdown-links li a.Jewellery:before{background-position: -125px -54px;}
+    .shop-by-category .dropdown-links li a.KidsChildren:before{background-position: -151px -54px;}
+    .shop-by-category .dropdown-links li a.Lifestyle:before{background-position: -176px -54px;}
+    .shop-by-category .dropdown-links li a.Matrimony:before{background-position: -201px -55px;}
+    .shop-by-category .dropdown-links li a.MobilesAccessories:before{background-position: -226px -54px;}
+    .shop-by-category .dropdown-links li a.MobileInstall:before{background-position: -226px -54px;}
+    .shop-by-category .dropdown-links li a.MobileVAS:before{background-position: 0px -79px;}
+    .shop-by-category .dropdown-links li a.PersonalizedStuff:before{background-position: -25px -82px;}
+    .shop-by-category .dropdown-links li a.RealEstate:before{background-position: -51px -80px;}
+    .shop-by-category .dropdown-links li a.SportsFitness:before{background-position: -75px -80px;}
+    .shop-by-category .dropdown-links li a.Survey:before{background-position: -100px -77px;}
+    .shop-by-category .dropdown-links li a.TourTravel:before{background-position: -126px -77px;}
+    .shop-by-category .dropdown-links li a.WebDownloadInstall:before{background-position: -150px -27px;}
+    .shop-by-category .dropdown-links li a.WomenLingerie:before{background-position: -151px -80px;}
+    .shop-by-category .dropdown-links li a.Electronics:before{background-position: -226px -80px;}
+    .shop-by-category .dropdown-links li a.FashionAccessories:before{background-position: -200px -105px;}
+    .shop-by-category .dropdown-links li a.Footwear:before{background-position: -26px -105px;}
+    .shop-by-category .dropdown-links li a.KitchenAppliances:before{background-position: -50px -105px;}
+    .shop-by-category .dropdown-links li a.PetSupplies:before{background-position: -75px -105px;}
+    .shop-by-category .dropdown-links li a.Stationery:before{background-position: -100px -105px;}
+    .shop-by-category .dropdown-links li a.ToolsHardware:before{background-position: -125px -105px;}
+    .shop-by-category .dropdown-links li a.RechargeBillPayment:before{background-position: -174px -105px;}
+    .shop-by-category .dropdown-links li a.HealthBeautyCosmetics:before{background-position: -150px -105px;}
+
+
+}
+@media screen and (min-width: 1124px) {
+    .home-top-right, .home-top-left{min-height: 580px;}
+}

@@ -15,7 +15,7 @@ import { Wallet, Transaction } from '../../core/models/transaction.model';
   template: `
     <div class="container">
       <div class="page-header">
-        <h1>Welcome back, {{ auth.currentUser()?.firstName }}!</h1>
+        <h1>Welcome back, {{ auth.currentUser()?.fname || auth.currentUser()?.username }}!</h1>
       </div>
 
       <!-- Wallet Stats -->

@@ -9,21 +9,39 @@ import lombok.Data;
 public class RegisterRequest {
 
     @NotBlank
+    @Size(max = 70)
+    private String username;
+
+    @NotBlank
     @Email
+    @Size(max = 100)
     private String email;
 
     @NotBlank
     @Size(min = 8, max = 100)
     private String password;
 
-    @NotBlank
-    @Size(max = 100)
-    private String firstName;
+    @Size(max = 32)
+    private String fname;
 
-    @NotBlank
-    @Size(max = 100)
-    private String lastName;
+    @Size(max = 25)
+    private String lname;
 
-    private String phoneNumber;
-    private String country;
+    @Size(max = 20)
+    private String phone;
+
+    @Size(max = 32)
+    private String address;
+
+    @Size(max = 70)
+    private String address2;
+
+    @Size(max = 50)
+    private String city;
+
+    @Size(max = 50)
+    private String state;
+
+    @Size(max = 10)
+    private String zip;
 }

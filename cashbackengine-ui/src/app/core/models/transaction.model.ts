@@ -71,3 +71,65 @@ export interface ApiResponse<T> {
   message?: string;
   data: T;
 }
+
+// ── Admin models ──────────────────────────────────────
+
+export interface AdminStats {
+  totalUsers: number;
+  totalRetailers: number;
+  totalTransactions: number;
+  pendingTransactions: number;
+}
+
+export interface Retailer {
+  retailerId: number;
+  title: string;
+  url: string;
+  image?: string;
+  cashback?: string;
+  oldCashback?: string;
+  description?: string;
+  conditions?: string;
+  featured: boolean;
+  dealOfWeek: boolean;
+  visits: number;
+  status: string;
+  added?: string;
+  networkId?: number;
+  programId?: string;
+}
+
+export interface AdminUser {
+  userId: number;
+  username: string;
+  email: string;
+  fname?: string;
+  lname?: string;
+  role: string;
+  status: string;
+  created: string;
+}
+
+export interface Category {
+  categoryId: number;
+  name: string;
+  description?: string;
+  categoryUrl?: string;
+  status: string;
+  sortOrder: number;
+  parentId?: number;
+}
+
+export interface AdminTransaction {
+  transactionId: number;
+  referenceId?: string;
+  retailer?: string;
+  userId: number;
+  transactionAmount?: number;
+  transactionCommission?: number;
+  amount?: number;
+  status: string;
+  reason?: string;
+  created: string;
+  updated: string;
+}

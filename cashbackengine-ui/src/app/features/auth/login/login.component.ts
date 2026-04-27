@@ -66,7 +66,10 @@ export class LoginComponent {
     this.error = '';
 
     this.auth.login(this.form.value as any).subscribe({
-      next: () => this.router.navigate(['/dashboard']),
+      next: () => {
+        const destination = this.auth.isAdmin() ? '/admin' : '/home';
+        this.router.navigate([destination]);
+      },
       error: (err) => {
         this.error = err.error?.message || 'Invalid credentials';
         this.loading = false;
