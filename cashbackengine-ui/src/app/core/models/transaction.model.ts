@@ -115,9 +115,80 @@ export interface Category {
   name: string;
   description?: string;
   categoryUrl?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
   status: string;
   sortOrder: number;
   parentId?: number;
+  alias?: string;
+}
+
+export interface EmailTemplate {
+  templateId: number;
+  emailName: string;
+  language?: string;
+  emailSubject: string;
+  emailMessage?: string;
+  modified?: string;
+}
+
+export interface Coupon {
+  couponId: number;
+  retailerId?: number;
+  promoId?: string;
+  couponType: string;
+  title: string;
+  code?: string;
+  link?: string;
+  description?: string;
+  startDate?: string;
+  endDate?: string;
+  exclusive?: number;
+  special?: number;
+  visits?: number;
+  offer?: string;
+  offerImg?: string;
+  bannerImg?: string;
+  offerTemplate?: string;
+  status: string;
+  added?: string;
+}
+
+export interface CouponPage {
+  content: Coupon[];
+  totalElements: number;
+  totalPages: number;
+  number: number;
+  size: number;
+}
+
+export interface Content {
+  contentId: number;
+  name: string;
+  language?: string;
+  linkTitle?: string;
+  title?: string;
+  description?: string;
+  pageLocation?: string;
+  pageUrl?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  status: string;
+  modified?: string;
+}
+
+export interface AffNetwork {
+  networkId: number;
+  networkName: string;
+  website: string;
+  image?: string;
+  csvFormat?: string;
+  confirmeds?: string;
+  pendings?: string;
+  declineds?: string;
+  status: string;
+  added?: string;
+  lastCsvUpload?: string;
 }
 
 export interface AdminTransaction {

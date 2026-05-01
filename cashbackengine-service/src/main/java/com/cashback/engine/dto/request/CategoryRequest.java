@@ -20,4 +20,7 @@ public class CategoryRequest {
 
     @Size(max = 20)
     private String status = "active";
+
+    @Size(max = 512)
+    private String alias = "";
 }

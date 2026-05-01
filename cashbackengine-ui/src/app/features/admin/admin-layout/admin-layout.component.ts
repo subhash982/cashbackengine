@@ -30,6 +30,18 @@ import { MatIconModule } from '@angular/material/icon';
           <a routerLink="/admin/transactions" routerLinkActive="active" class="nav-item">
             <mat-icon>receipt_long</mat-icon><span>Transactions</span>
           </a>
+          <a routerLink="/admin/affnetworks" routerLinkActive="active" class="nav-item">
+            <mat-icon>hub</mat-icon><span>Aff Networks</span>
+          </a>
+          <a routerLink="/admin/content" routerLinkActive="active" class="nav-item">
+            <mat-icon>article</mat-icon><span>Content</span>
+          </a>
+          <a routerLink="/admin/coupons" routerLinkActive="active" class="nav-item">
+            <mat-icon>local_offer</mat-icon><span>Coupons</span>
+          </a>
+          <a routerLink="/admin/email-templates" routerLinkActive="active" class="nav-item">
+            <mat-icon>email</mat-icon><span>Email Templates</span>
+          </a>
         </nav>
 
         <a routerLink="/dashboard" class="back-link">

@@ -13,9 +13,10 @@ import { AdminUser } from '../../../core/models/transaction.model';
   standalone: true,
   imports: [MatTableModule, MatButtonModule, MatIconModule, MatSnackBarModule, MatTooltipModule, DatePipe, UpperCasePipe],
   template: `
+    <h3 class="h3">Users</h3>
+    <div class="content-box">
     <div class="page-header">
       <div>
-        <h1>Users</h1>
         <span class="subtitle">{{ users().length }} registered users</span>
       </div>
     </div>
@@ -90,6 +91,7 @@ import { AdminUser } from '../../../core/models/transaction.model';
           <td class="mat-cell empty-row" [attr.colspan]="cols.length">No users found.</td>
         </tr>
       </table>
+    </div>
     </div>
   `,
   styles: [`

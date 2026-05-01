@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
   ApiResponse, Merchant, Offer, PageResponse, Transaction, Wallet, Payout,
-  AdminStats, Retailer, AdminUser, Category, AdminTransaction
+  AdminStats, Retailer, AdminUser, Category, AdminTransaction, AffNetwork, Content, Coupon, CouponPage, EmailTemplate
 } from '../models/transaction.model';
 
 @Injectable({ providedIn: 'root' })
@@ -123,6 +123,75 @@ export class ApiService {
   updateTransactionStatus(id: number, status: string): Observable<ApiResponse<AdminTransaction>> {
     const params = new HttpParams().set('status', status);
     return this.http.put<ApiResponse<AdminTransaction>>(`${this.base}/transactions/${id}/status`, null, { params });
+  }
+
+  // ── Admin: Email Templates ───────────────────────────
+  getEmailTemplates(): Observable<ApiResponse<EmailTemplate[]>> {
+    return this.http.get<ApiResponse<EmailTemplate[]>>(`${this.base}/email-templates`);
+  }
+
+  createEmailTemplate(data: Partial<EmailTemplate>): Observable<ApiResponse<EmailTemplate>> {
+    return this.http.post<ApiResponse<EmailTemplate>>(`${this.base}/email-templates`, data);
+  }
+
+  updateEmailTemplate(id: number, data: Partial<EmailTemplate>): Observable<ApiResponse<EmailTemplate>> {
+    return this.http.put<ApiResponse<EmailTemplate>>(`${this.base}/email-templates/${id}`, data);
+  }
+
+  deleteEmailTemplate(id: number): Observable<ApiResponse<void>> {
+    return this.http.delete<ApiResponse<void>>(`${this.base}/email-templates/${id}`);
+  }
+
+  // ── Admin: Coupons ──────────────────────────────────
+  getCoupons(page = 0, size = 50, status = 'all'): Observable<ApiResponse<CouponPage>> {
+    const params = new HttpParams().set('page', page).set('size', size).set('status', status);
+    return this.http.get<ApiResponse<CouponPage>>(`${this.base}/coupons`, { params });
+  }
+
+  createCoupon(data: Partial<Coupon>): Observable<ApiResponse<Coupon>> {
+    return this.http.post<ApiResponse<Coupon>>(`${this.base}/coupons`, data);
+  }
+
+  updateCoupon(id: number, data: Partial<Coupon>): Observable<ApiResponse<Coupon>> {
+    return this.http.put<ApiResponse<Coupon>>(`${this.base}/coupons/${id}`, data);
+  }
+
+  deleteCoupon(id: number): Observable<ApiResponse<void>> {
+    return this.http.delete<ApiResponse<void>>(`${this.base}/coupons/${id}`);
+  }
+
+  // ── Admin: Content ──────────────────────────────────
+  getContents(): Observable<ApiResponse<Content[]>> {
+    return this.http.get<ApiResponse<Content[]>>(`${this.base}/content`);
+  }
+
+  createContent(data: Partial<Content>): Observable<ApiResponse<Content>> {
+    return this.http.post<ApiResponse<Content>>(`${this.base}/content`, data);
+  }
+
+  updateContent(id: number, data: Partial<Content>): Observable<ApiResponse<Content>> {
+    return this.http.put<ApiResponse<Content>>(`${this.base}/content/${id}`, data);
+  }
+
+  deleteContent(id: number): Observable<ApiResponse<void>> {
+    return this.http.delete<ApiResponse<void>>(`${this.base}/content/${id}`);
+  }
+
+  // ── Admin: AffNetworks ──────────────────────────────
+  getAffNetworks(): Observable<ApiResponse<AffNetwork[]>> {
+    return this.http.get<ApiResponse<AffNetwork[]>>(`${this.base}/affnetworks`);
+  }
+
+  createAffNetwork(data: Partial<AffNetwork>): Observable<ApiResponse<AffNetwork>> {
+    return this.http.post<ApiResponse<AffNetwork>>(`${this.base}/affnetworks`, data);
+  }
+
+  updateAffNetwork(id: number, data: Partial<AffNetwork>): Observable<ApiResponse<AffNetwork>> {
+    return this.http.put<ApiResponse<AffNetwork>>(`${this.base}/affnetworks/${id}`, data);
+  }
+
+  deleteAffNetwork(id: number): Observable<ApiResponse<void>> {
+    return this.http.delete<ApiResponse<void>>(`${this.base}/affnetworks/${id}`);
   }
 
   // ── Admin: Legacy merchant create ────────────────────

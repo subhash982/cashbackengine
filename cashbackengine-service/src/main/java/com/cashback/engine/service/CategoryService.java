@@ -33,6 +33,7 @@ public class CategoryService {
                 .parentId(request.getParentId())
                 .description(request.getDescription())
                 .categoryUrl(request.getCategoryUrl())
+                .alias(request.getAlias() != null ? request.getAlias() : "")
                 .status(request.getStatus() != null ? request.getStatus() : "active")
                 .build();
         return categoryRepository.save(category);
@@ -46,6 +47,7 @@ public class CategoryService {
         category.setParentId(request.getParentId());
         category.setDescription(request.getDescription());
         category.setCategoryUrl(request.getCategoryUrl());
+        category.setAlias(request.getAlias() != null ? request.getAlias() : "");
         if (request.getStatus() != null) category.setStatus(request.getStatus());
         return categoryRepository.save(category);
     }

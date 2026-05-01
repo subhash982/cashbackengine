@@ -38,4 +38,8 @@ public class Category {
     @Column(name = "sort_order")
     @Builder.Default
     private Integer sortOrder = 0;
+
+    @Column(name = "alias", length = 512)
+    @Builder.Default
+    private String alias = "";
 }

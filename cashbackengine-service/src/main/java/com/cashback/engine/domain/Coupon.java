@@ -15,13 +15,19 @@ public class Coupon {
     @Column(name = "coupon_id")
     private Integer couponId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "retailer_id", nullable = false)
-    private Retailer retailer;
+    @Column(name = "retailer_id")
+    private Integer retailerId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @Column(name = "promo_id", length = 16)
+    @Builder.Default
+    private String promoId = "";
+
+    @Column(name = "coupon_type", length = 20)
+    @Builder.Default
+    private String couponType = "Coupon";
 
     @Column(name = "title", nullable = false, length = 255)
     private String title;
@@ -29,7 +35,7 @@ public class Coupon {
     @Column(name = "code", length = 255)
     private String code;
 
-    @Column(name = "link", length = 255)
+    @Column(name = "link", columnDefinition = "TEXT")
     private String link;
 
     @Column(name = "start_date")
@@ -43,7 +49,7 @@ public class Coupon {
 
     @Column(name = "exclusive")
     @Builder.Default
-    private Boolean exclusive = false;
+    private Integer exclusive = 0;
 
     @Column(name = "visits")
     @Builder.Default
@@ -55,14 +61,33 @@ public class Coupon {
 
     @Column(name = "viewed")
     @Builder.Default
-    private Boolean viewed = false;
+    private Integer viewed = 1;
 
     @Column(name = "status", nullable = false, length = 20)
     @Builder.Default
     private String status = "active";
 
-    @Column(name = "added", nullable = false)
+    @Column(name = "added")
     private LocalDateTime added;
+
+    @Column(name = "old_offer", length = 20)
+    private String oldOffer;
+
+    @Column(name = "offer", length = 20)
+    private String offer;
+
+    @Column(name = "offer_img", length = 256)
+    private String offerImg;
+
+    @Column(name = "special")
+    @Builder.Default
+    private Integer special = 0;
+
+    @Column(name = "banner_img", length = 256)
+    private String bannerImg;
+
+    @Column(name = "offer_template", length = 32)
+    private String offerTemplate;
 
     @PrePersist
     protected void onCreate() {

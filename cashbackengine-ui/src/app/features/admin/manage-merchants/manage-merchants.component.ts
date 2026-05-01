@@ -15,8 +15,8 @@ import { Merchant, PageResponse } from '../../../core/models/transaction.model';
   standalone: true,
   imports: [ReactiveFormsModule, MatCardModule, MatTableModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule, MatSnackBarModule],
   template: `
-    <div class="container">
-      <div class="page-header"><h1>Manage Merchants</h1></div>
+    <h3 class="h3">Manage Merchants</h3>
+    <div class="content-box">
 
       <!-- Create Merchant Form -->
       <mat-card style="margin-bottom:24px">

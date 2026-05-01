@@ -11,11 +11,6 @@ export const routes: Routes = [
     loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent)
   },
 
-  // Auth — no sidebar layout
-  {
-    path: 'auth',
-    loadChildren: () => import('./features/auth/auth.routes').then(m => m.authRoutes)
-  },
 
   // Admin — has its own layout
   {
@@ -77,6 +72,10 @@ export const routes: Routes = [
       {
         path: 'supports',
         loadComponent: () => import('./features/supports/supports.component').then(m => m.SupportsComponent)
+      },
+      {
+        path: 'auth',
+        loadChildren: () => import('./features/auth/auth.routes').then(m => m.authRoutes)
       }
     ]
   },

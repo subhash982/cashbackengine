@@ -259,11 +259,11 @@ import { AuthService } from '../../core/services/auth.service';
     }
 
     .header-nav a {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Josefin Sans', sans-serif;
       color: #fff;
       text-decoration: none;
       padding: 12px 22px;
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 400;
       letter-spacing: 0.2px;
       white-space: nowrap;
@@ -281,9 +281,9 @@ import { AuthService } from '../../core/services/auth.service';
     }
 
     .nav-dropdown {
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Josefin Sans', sans-serif;
       color: #fff;
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 400;
       letter-spacing: 0.2px;
       padding: 12px 22px;

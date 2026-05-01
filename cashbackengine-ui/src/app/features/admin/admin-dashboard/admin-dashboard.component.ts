@@ -12,10 +12,8 @@ import { AdminStats } from '../../../core/models/transaction.model';
   standalone: true,
   imports: [RouterLink, MatIconModule, MatCardModule, MatButtonModule, DecimalPipe],
   template: `
-    <div class="page-header">
-      <h1>Dashboard</h1>
-      <span class="subtitle">Welcome back, Admin</span>
-    </div>
+    <h3 class="h3">Dashboard</h3>
+    <div class="content-box">
 
     <!-- Stats row -->
     <div class="stats-grid">
@@ -72,6 +70,7 @@ import { AdminStats } from '../../../core/models/transaction.model';
         <strong>Transactions</strong>
         <span>Review & update status</span>
       </a>
+    </div>
     </div>
   `,
   styles: [`

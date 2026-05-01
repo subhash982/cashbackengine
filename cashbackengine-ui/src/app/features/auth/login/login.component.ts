@@ -13,10 +13,10 @@ import { AuthService } from '../../../core/services/auth.service';
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule],
   template: `
-    <div class="form-container">
-      <mat-card>
+    <h3 class="h3">Sign In</h3>
+    <div class="content-box">
+      <mat-card style="max-width:480px;margin:0 auto">
         <mat-card-header>
-          <mat-card-title>Sign In</mat-card-title>
           <mat-card-subtitle>Welcome back to CashbackEngine</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
