@@ -22,9 +22,10 @@ import { Retailer } from '../../../core/models/transaction.model';
     MatSnackBarModule, MatTooltipModule, SlicePipe
   ],
   template: `
+    <h3 class="h3">Retailers</h3>
+    <div class="content-box">
     <div class="page-header">
       <div>
-        <h1>Retailers</h1>
         <span class="subtitle">{{ retailers().length }} retailers</span>
       </div>
       <button mat-raised-button class="btn-primary" (click)="openForm()">
@@ -129,6 +130,7 @@ import { Retailer } from '../../../core/models/transaction.model';
           <td class="mat-cell empty-row" [attr.colspan]="cols.length">No retailers found.</td>
         </tr>
       </table>
+    </div>
     </div>
   `,
   styles: [`

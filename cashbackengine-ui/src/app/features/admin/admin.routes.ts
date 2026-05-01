@@ -24,6 +24,22 @@ export const adminRoutes: Routes = [
       {
         path: 'transactions',
         loadComponent: () => import('./manage-transactions/manage-transactions.component').then(m => m.ManageTransactionsComponent)
+      },
+      {
+        path: 'affnetworks',
+        loadComponent: () => import('./manage-affnetworks/manage-affnetworks.component').then(m => m.ManageAffnetworksComponent)
+      },
+      {
+        path: 'content',
+        loadComponent: () => import('./manage-content/manage-content.component').then(m => m.ManageContentComponent)
+      },
+      {
+        path: 'coupons',
+        loadComponent: () => import('./manage-coupons/manage-coupons.component').then(m => m.ManageCouponsComponent)
+      },
+      {
+        path: 'email-templates',
+        loadComponent: () => import('./manage-email-templates/manage-email-templates.component').then(m => m.ManageEmailTemplatesComponent)
       }
     ]
   }

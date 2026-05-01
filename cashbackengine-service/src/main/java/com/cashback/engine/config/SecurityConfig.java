@@ -61,7 +61,11 @@ public class SecurityConfig {
                 ).permitAll()
                 .requestMatchers(org.springframework.http.HttpMethod.GET,
                     "/api/v1/retailers/**",
-                    "/api/v1/categories/**"
+                    "/api/v1/categories/**",
+                    "/api/v1/coupons/**",
+                    "/api/v1/affnetworks/**",
+                    "/api/v1/content/**",
+                    "/api/v1/countries/**"
                 ).permitAll()
                 .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()

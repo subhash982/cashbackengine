@@ -29,52 +29,17 @@ function passwordMatchValidator(control: AbstractControl): ValidationErrors | nu
     MatButtonModule, MatProgressSpinnerModule, MatDividerModule, MatIconModule
   ],
   styles: [`
-    .register-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 32px 16px;
-      background: #f5f5f5;
-    }
-    mat-card {
-      width: 100%;
-      max-width: 600px;
-    }
-    .section-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(0,0,0,.54);
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      margin: 16px 0 8px;
-    }
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 16px;
-    }
-    mat-form-field {
-      width: 100%;
-    }
-    .error-msg {
-      color: #f44336;
-      font-size: 13px;
-      margin: 4px 0 8px;
-    }
-    .submit-btn {
-      width: 100%;
-      margin-top: 8px;
-      height: 44px;
-    }
-    .signin-link {
-      text-align: center;
-      margin-top: 12px;
-      font-size: 14px;
-    }
+    mat-card { width: 100%; max-width: 600px; }
+    .section-title { font-size: 13px; font-weight: 600; color: rgba(0,0,0,.54); letter-spacing: .5px; text-transform: uppercase; margin: 16px 0 8px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+    mat-form-field { width: 100%; }
+    .error-msg { color: #f44336; font-size: 13px; margin: 4px 0 8px; }
+    .submit-btn { width: 100%; margin-top: 8px; height: 44px; }
+    .signin-link { text-align: center; margin-top: 12px; font-size: 14px; }
   `],
   template: `
-    <div class="register-container">
+    <h3 class="h3">Create Account</h3>
+    <div class="content-box">
       <mat-card>
         <mat-card-header>
           <mat-card-title>Create Account</mat-card-title>

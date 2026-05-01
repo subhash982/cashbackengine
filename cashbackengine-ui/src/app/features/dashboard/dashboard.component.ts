@@ -13,10 +13,8 @@ import { Wallet, Transaction } from '../../core/models/transaction.model';
   standalone: true,
   imports: [MatCardModule, MatIconModule, MatButtonModule, RouterLink, CurrencyPipe, DatePipe],
   template: `
-    <div class="container">
-      <div class="page-header">
-        <h1>Welcome back, {{ auth.currentUser()?.fname || auth.currentUser()?.username }}!</h1>
-      </div>
+    <h3 class="h3">Welcome back, {{ auth.currentUser()?.fname || auth.currentUser()?.username }}!</h3>
+    <div class="content-box">
 
       <!-- Wallet Stats -->
       <div class="card-grid" style="margin-bottom:24px">
@@ -101,7 +99,7 @@ import { Wallet, Transaction } from '../../core/models/transaction.model';
     </div>
   `,
   styles: [`
-    .status-chip { font-size: 11px; padding: 2px 8px; border-radius: 12px; background: #e3f2fd; color: #1565c0; }
+    .status-chip { font-size:11px; padding:2px 8px; border-radius:12px; background:#e3f2fd; color:#1565c0; }
   `]
 })
 export class DashboardComponent implements OnInit {

@@ -33,6 +33,8 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
     .layout-right {
       position: sticky;
       top: 16px;
+      max-height: calc(100vh - 32px);
+      overflow-y: auto;
     }
 
     @media (max-width: 768px) {

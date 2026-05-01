@@ -26,9 +26,10 @@ const STATUS_FLOW: Record<string, string> = {
     DatePipe, CurrencyPipe
   ],
   template: `
+    <h3 class="h3">Transactions</h3>
+    <div class="content-box">
     <div class="page-header">
       <div>
-        <h1>Transactions</h1>
         <span class="subtitle">{{ filtered().length }} transactions</span>
       </div>
       <div class="filter-row">
@@ -104,6 +105,7 @@ const STATUS_FLOW: Record<string, string> = {
           <td class="mat-cell empty-row" [attr.colspan]="cols.length">No transactions found.</td>
         </tr>
       </table>
+    </div>
     </div>
   `,
   styles: [`
