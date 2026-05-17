@@ -40,6 +40,10 @@ export const adminRoutes: Routes = [
       {
         path: 'email-templates',
         loadComponent: () => import('./manage-email-templates/manage-email-templates.component').then(m => m.ManageEmailTemplatesComponent)
+      },
+      {
+        path: 'reviews',
+        loadComponent: () => import('./manage-reviews/manage-reviews.component').then(m => m.ManageReviewsComponent)
       }
     ]
   }

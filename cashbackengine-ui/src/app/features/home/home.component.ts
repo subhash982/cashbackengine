@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../core/services/auth.service';
 import { ApiService } from '../../core/services/api.service';
+import { StoreNavigationService } from '../../core/services/store-navigation.service';
 import { Retailer } from '../../core/models/transaction.model';
 
 function passwordsMatch(group: AbstractControl): ValidationErrors | null {
@@ -40,31 +41,32 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
           </div>
 
           <!-- Retailers Carousel -->
-          <div class="retailers-section" *ngIf="retailers().length > 0">
-            <button class="arrow-btn" (click)="prev()" [disabled]="!hasPrev()">
-              <mat-icon>chevron_left</mat-icon>
-            </button>
+          <div class="slider-wrapper retailers" *ngIf="retailers().length > 0">
 
-            <div class="retailers-grid">
-              <a *ngFor="let r of visibleRetailers()" class="retailer-card" [href]="r.url" target="_blank">
-                <div class="retailer-logo">
-                  <img *ngIf="r.image" [src]="r.image" [alt]="r.title" />
-                  <span *ngIf="!r.image" class="retailer-initial">{{ r.title[0] }}</span>
-                </div>
-                <div class="retailer-info">
-                  <p class="retailer-name">{{ r.title }}</p>
-                  <div class="stars">
-                    <mat-icon *ngFor="let s of [1,2,3,4]">star</mat-icon>
-                    <mat-icon class="half-star">star_half</mat-icon>
-                  </div>
-                  <span class="visits"><mat-icon>visibility</mat-icon> {{ r.visits }} visits</span>
-                </div>
+            <!-- Left arrow -->
+            <span class="jssora02l slider-arrow-left" (click)="prev()"></span>
+
+            <!-- Retailer boxes -->
+            <div class="retailers-boxes">
+              <a *ngFor="let r of visibleRetailers()" class="retailer-box"
+                 (click)="storeNav.goToStore(r.retailerId, r.url)" style="cursor:pointer;" [title]="r.title">
+                <span class="retailer-logo">
+                  <img *ngIf="getRetailerImage(r.image)"
+                       [src]="getRetailerImage(r.image)"
+                       [alt]="r.title"
+                       (error)="onImgError($event)" />
+                  <span *ngIf="!getRetailerImage(r.image)" class="retailer-initial-char">{{ r.title[0] }}</span>
+                </span>
+                <p class="clearfix">
+                  <img src="assets/images/hifi/rating-5.png" alt="5 star rating" class="retailer-rating">
+                  <span class="retailers-visit" title="User visited">{{ r.visits }} visits</span>
+                </p>
               </a>
             </div>
 
-            <button class="arrow-btn" (click)="next()" [disabled]="!hasNext()">
-              <mat-icon>chevron_right</mat-icon>
-            </button>
+            <!-- Right arrow -->
+            <span class="jssora02r slider-arrow-right" (click)="next()"></span>
+
           </div>
         </div>
 
@@ -122,14 +124,23 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
           </ng-container>
 
           <ng-template #welcomePanel>
-            <div class="form-header">Welcome Back!</div>
-            <div class="form-body welcome-body">
-              <div class="welcome-avatar">{{ userInitial() }}</div>
-              <p class="welcome-name">Hi, {{ currentUser()?.fname || currentUser()?.username }}</p>
-              <p class="welcome-sub">Ready to earn cashback?</p>
-              <a mat-raised-button class="signup-btn" routerLink="/stores">Browse Stores</a>
-              <a mat-stroked-button routerLink="/dashboard" class="dash-link">My Dashboard</a>
-            </div>
+            <section class="home-top-right white-bg">
+              <div class="how-earn-cashback">
+                <h2 class="h2">How to Earn Cashback</h2>
+                <div class="content-padding">
+                  <ol class="clearfix">
+                    <li class="join-free">Join Free</li>
+                    <li class="shop">Shop</li>
+                    <li class="earn-cashback">Earn Cashback</li>
+                    <li class="bank-transfer">Bank Transfer</li>
+                  </ol>
+                  <p class="text-center">
+                    <a class="button margin-right10" href="#">Refer a Friend</a>
+                    <a class="button secondary" routerLink="/transactions">Balance &amp; History</a>
+                  </p>
+                </div>
+              </div>
+            </section>
           </ng-template>
         </div>
       </div>
@@ -141,35 +152,40 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
         </div>
       </div>
 
-      <!-- ── Coming Soon Hero ── -->
-      <div class="hero">
-        <mat-icon class="hero-icon">account_balance_wallet</mat-icon>
-        <h1>Welcome to <span class="brand">CashbackEngine</span></h1>
-        <p>Earn cashback on every purchase from hundreds of top retailers.</p>
-        <span class="coming-soon">🚀 Full experience coming soon</span>
-        <div class="hero-actions">
-          <a mat-raised-button class="btn-primary" routerLink="/stores">Browse Stores</a>
-          <a mat-stroked-button routerLink="/how-it-works">How It Works</a>
-        </div>
+      <!-- ── No retailers fallback ── -->
+      <div *ngIf="allRetailers().length === 0 && !loading()" class="text-center content-box">
+        <p class="no-item"><span>We did not find any stores at the moment.<br>Please check back later.</span></p>
       </div>
 
-      <!-- ── Feature Cards ── -->
-      <div class="features">
-        <div class="feature-card">
-          <mat-icon>storefront</mat-icon>
-          <strong>500+ Stores</strong>
-          <span>Shop from top brands and earn cashback automatically.</span>
-        </div>
-        <div class="feature-card">
-          <mat-icon>local_offer</mat-icon>
-          <strong>Exclusive Coupons</strong>
-          <span>Access members-only coupon codes updated daily.</span>
-        </div>
-        <div class="feature-card">
-          <mat-icon>payments</mat-icon>
-          <strong>Easy Payouts</strong>
-          <span>Withdraw your cashback straight to your bank or PayPal.</span>
-        </div>
+      <!-- ── Retailers Listing ── -->
+      <div class="retailers-listing-wrap" *ngIf="allRetailers().length > 0">
+        <ul class="deals-listing clearfix">
+          <li class="deals" *ngFor="let r of allRetailers()" (click)="viewStore(r)">
+
+            <p class="store-img">
+              <img *ngIf="getRetailerImage(r.image)"
+                   [src]="getRetailerImage(r.image)"
+                   [alt]="r.title"
+                   [title]="r.title"
+                   (error)="onImgError($event)" />
+              <span *ngIf="!getRetailerImage(r.image)" class="store-initial">{{ r.title[0] }}</span>
+            </p>
+
+            <span class="more-offers">{{ r.cashback ? 'Upto ' + r.cashback + ' cashback' : 'Cashback available' }}</span>
+
+            <div class="deals-button clearfix">
+              <a class="button secondary" (click)="$event.stopPropagation(); goToStore(r)" target="_blank">Go to store</a>
+            </div>
+
+            <span class="listing-hover secondary">
+              <span class="hover-content">
+                <span class="store-name">{{ r.title }}</span>
+                <span class="store-offer">{{ r.cashback ? 'Upto ' + r.cashback + ' cashback' : 'Cashback available' }}</span>
+              </span>
+            </span>
+
+          </li>
+        </ul>
       </div>
 
       </div><!-- /content-wrap -->
@@ -180,15 +196,15 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
     .page-wrap { font-family: 'Open Sans', sans-serif; }
 
     .content-wrap {
-      padding: 0 20px;
+      padding: 0;
     }
 
     /* ── Top Section ── */
     .top-section {
       display: grid;
-      grid-template-columns: 1fr 380px;
+      grid-template-columns: 1fr 400px;
       gap: 20px;
-      padding: 20px 0;
+      padding: 20px 0 0;
       align-items: start;
     }
 
@@ -217,7 +233,6 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 4px;
-      overflow: hidden;
     }
 
     .form-header {
@@ -267,140 +282,67 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
     .login-link { font-size: 13px; color: #555; }
     .login-link a { color: #17A8D4; text-decoration: none; }
 
-    /* Welcome panel */
-    .welcome-body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      padding: 32px 20px;
-    }
-
-    .welcome-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: #17A8D4;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    .welcome-name { margin: 0; font-size: 18px; font-weight: 600; color: #1e293b; }
-    .welcome-sub { margin: 0; font-size: 13px; color: #64748b; }
-
-    .dash-link {
-      color: #17A8D4 !important;
-      border-color: #17A8D4 !important;
+    /* How to earn cashback panel */
+    .home-top-right {
       width: 100%;
+      overflow: hidden;
     }
 
-    /* ── Retailers Section ── */
-    .retailers-section {
-      background: #fff;
+    /* ── Retailers Carousel ── */
+
+    /* Override hifi.css — it sets visibility:hidden and fixed width:732px for jssor JS init */
+    .slider-wrapper.retailers {
+      visibility: visible !important;
+      height: auto !important;
+      width: 100% !important;
+      background: #fff !important;
       border: 1px solid #ddd;
       border-top: none;
-      border-radius: 0 0 4px 4px;
-      padding: 12px 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      overflow: visible !important;
+      position: relative;
     }
 
-    .arrow-btn {
-      background: none;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: #555;
-    }
-
-    .arrow-btn:disabled { opacity: .3; cursor: default; }
-
-    .retailers-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
-
-    .retailer-card {
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      padding: 10px 8px;
+    /* Boxes container — 35px padding each side leaves room for the 18px arrows at 15px offset */
+    .retailers-boxes {
+      padding: 10px 35px;
       text-align: center;
+    }
+
+    /* Expand retailer boxes to fill the full row (3 per row, 9px margin each side) */
+    .retailer-box {
+      width: calc(33.33% - 18px) !important;
+    }
+
+    /* Vertically centre the arrows */
+    .slider-arrow-left,
+    .slider-arrow-right {
+      top: 50% !important;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    /* retailer-box hover — hifi.css provides the base styles */
+    .retailer-box {
       text-decoration: none;
       color: inherit;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      transition: box-shadow .2s;
+      transition: border-color .15s, box-shadow .15s;
     }
 
-    .retailer-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+    .retailer-box:hover {
+      border-color: #0292CA !important;
+      box-shadow: 0 2px 8px rgba(2,146,202,.15);
+      text-decoration: none;
+    }
 
-    .retailer-logo {
-      width: 80px;
-      height: 48px;
+    /* Fallback initial when no image */
+    .retailer-initial-char {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0292CA;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .retailer-logo img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .retailer-initial {
-      font-size: 24px;
-      font-weight: 700;
-      color: #17A8D4;
-    }
-
-    .retailer-name {
-      margin: 0;
-      font-size: 11px;
-      font-weight: 600;
-      color: #333;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100px;
-    }
-
-    .stars mat-icon {
-      font-size: 14px;
-      width: 14px;
-      height: 14px;
-      color: #F5A623;
-    }
-
-    .half-star { color: #F5A623 !important; }
-
-    .visits {
-      font-size: 11px;
-      color: #17A8D4;
-      display: flex;
-      align-items: center;
-      gap: 2px;
-    }
-
-    .visits mat-icon {
-      font-size: 12px;
-      width: 12px;
-      height: 12px;
+      height: 100%;
     }
 
     /* ── Orange Banner ── */
@@ -409,88 +351,32 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
       color: #fff;
       font-size: 16px;
       font-weight: 600;
+      margin-top: 20px;
     }
 
     .orange-banner-inner {
       padding: 14px 0;
     }
 
-    /* ── Coming Soon Hero ── */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 56px 24px 40px;
-      background: linear-gradient(135deg, #17A8D4 0%, #0e7fa3 100%);
-      color: #fff;
-      gap: 14px;
-    }
-
-    .hero-icon {
-      font-size: 64px;
-      width: 64px;
-      height: 64px;
-      background: rgba(255,255,255,.15);
-      border-radius: 50%;
-      padding: 16px;
-      color: #fff;
-    }
-
-    .hero h1 { margin: 0; font-size: 34px; font-weight: 700; }
-    .brand { color: #F5A623; }
-    .hero p { margin: 0; font-size: 16px; opacity: .9; max-width: 460px; }
-
-    .coming-soon {
-      background: rgba(255,255,255,.2);
-      padding: 6px 20px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .hero-actions { display: flex; gap: 12px; margin-top: 8px; }
-
-    .btn-primary { background: #F5A623 !important; color: #fff !important; }
-
-    a[mat-stroked-button] {
-      color: #fff !important;
-      border-color: rgba(255,255,255,.6) !important;
-    }
-
-    /* ── Feature Cards ── */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      padding: 40px 0;
-    }
-
-    .feature-card {
+    /* Retailers listing section */
+    .retailers-listing-wrap {
       background: #fff;
-      border-radius: 8px;
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
+    }
+
+    /* Store initial fallback */
+    .store-initial {
+      display: inline-flex;
       align-items: center;
-      text-align: center;
-      gap: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.07);
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      font-size: 28px;
+      font-weight: 700;
+      color: #0292CA;
     }
-
-    .feature-card mat-icon {
-      font-size: 36px;
-      width: 36px;
-      height: 36px;
-      color: #17A8D4;
-    }
-
-    .feature-card strong { font-size: 16px; color: #1e293b; }
-    .feature-card span { font-size: 13px; color: #64748b; line-height: 1.6; }
 
     @media (max-width: 900px) {
       .top-section { grid-template-columns: 1fr; }
-      .features { grid-template-columns: 1fr; padding: 24px; }
     }
   `]
 })
@@ -499,6 +385,7 @@ export class HomeComponent implements OnInit {
   auth = inject(AuthService);
   private api = inject(ApiService);
   private router = inject(Router);
+  storeNav = inject(StoreNavigationService);
 
   isLoggedIn = this.auth.isLoggedIn;
   currentUser = this.auth.currentUser;
@@ -508,6 +395,7 @@ export class HomeComponent implements OnInit {
   };
 
   retailers = signal<Retailer[]>([]);
+  allRetailers = signal<Retailer[]>([]);
   carouselPage = signal(0);
   readonly pageSize = 6;
 
@@ -516,6 +404,7 @@ export class HomeComponent implements OnInit {
     return this.retailers().slice(start, start + this.pageSize);
   });
 
+  totalPages = computed(() => Math.ceil(this.retailers().length / this.pageSize));
   hasPrev = computed(() => this.carouselPage() > 0);
   hasNext = computed(() => (this.carouselPage() + 1) * this.pageSize < this.retailers().length);
 
@@ -535,12 +424,35 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.api.getRetailers().subscribe({
       next: res => this.retailers.set(res.data || []),
-      error: () => {}
+      error: (err) => console.error('Failed to load retailers', err)
+    });
+    this.api.getAllStores().subscribe({
+      next: res => this.allRetailers.set(res.data || []),
+      error: (err) => console.error('Failed to load all retailers', err)
     });
   }
 
-  prev() { if (this.hasPrev()) this.carouselPage.update(p => p - 1); }
-  next() { if (this.hasNext()) this.carouselPage.update(p => p + 1); }
+  prev() { this.carouselPage.update(p => p === 0 ? this.totalPages() - 1 : p - 1); }
+  next() { this.carouselPage.update(p => p + 1 >= this.totalPages() ? 0 : p + 1); }
+
+  getRetailerImage(image?: string): string {
+    if (!image || image.trim() === '' || image === 'noimg.gif') return '';
+    // Strip any leading path (e.g. /images/retailers/) — keep just the filename
+    const filename = image.includes('/') ? image.split('/').pop()! : image;
+    return `assets/images/retailers/${filename}`;
+  }
+
+  onImgError(event: Event) {
+    (event.target as HTMLImageElement).style.display = 'none';
+  }
+
+  viewStore(r: Retailer) {
+    this.router.navigate(['/stores'], { queryParams: { id: r.retailerId } });
+  }
+
+  goToStore(r: Retailer) {
+    this.storeNav.goToStore(r.retailerId, r.url);
+  }
 
   onSubmit() {
     if (this.form.invalid) { this.form.markAllAsTouched(); return; }

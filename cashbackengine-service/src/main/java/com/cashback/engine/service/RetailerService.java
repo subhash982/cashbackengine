@@ -7,6 +7,7 @@ import com.cashback.engine.dto.response.RetailerResponse;
 import com.cashback.engine.repository.AffNetworkRepository;
 import com.cashback.engine.repository.RetailerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +23,17 @@ public class RetailerService {
 
     @Transactional(readOnly = true)
     public List<RetailerResponse> getAllRetailers() {
-        return retailerRepository.findAll()
+        return retailerRepository.findByStatusOrderByVisitsDesc("active", PageRequest.of(0, 30))
                 .stream()
+                .map(RetailerResponse::from)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<RetailerResponse> getAllActiveRetailers() {
+        return retailerRepository.findByStatus("active")
+                .stream()
+                .sorted((a, b) -> Integer.compare(b.getVisits(), a.getVisits()))
                 .map(RetailerResponse::from)
                 .collect(Collectors.toList());
     }

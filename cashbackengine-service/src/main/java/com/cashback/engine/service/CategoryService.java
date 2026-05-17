@@ -1,23 +1,41 @@
 package com.cashback.engine.service;
 
 import com.cashback.engine.domain.Category;
+import com.cashback.engine.domain.Retailer;
 import com.cashback.engine.dto.request.CategoryRequest;
+import com.cashback.engine.dto.response.RetailerResponse;
 import com.cashback.engine.repository.CategoryRepository;
+import com.cashback.engine.repository.RetailerToCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
 
     private final CategoryRepository categoryRepository;
+    private final RetailerToCategoryRepository retailerToCategoryRepository;
 
     @Transactional(readOnly = true)
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<RetailerResponse> getRetailersByCategory(Integer categoryId) {
+        return retailerToCategoryRepository.findByCategoryCategoryId(categoryId)
+                .stream()
+                .map(rtc -> rtc.getRetailer())
+                .filter(r -> "active".equals(r.getStatus()))
+                .sorted((a, b) -> Integer.compare(
+                        b.getVisits() != null ? b.getVisits() : 0,
+                        a.getVisits() != null ? a.getVisits() : 0))
+                .map(RetailerResponse::from)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

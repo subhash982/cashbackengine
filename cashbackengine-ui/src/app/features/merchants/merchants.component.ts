@@ -13,11 +13,8 @@ import { Merchant, PageResponse } from '../../core/models/transaction.model';
   standalone: true,
   imports: [MatCardModule, MatButtonModule, MatChipsModule, MatIconModule, MatPaginatorModule],
   template: `
-    <div class="container">
-      <div class="page-header">
-        <h1>Merchant Offers</h1>
-      </div>
-
+    <h3 class="h3">Merchant Offers</h3>
+    <div class="content-box">
       <div class="card-grid">
         @for (merchant of page()?.content ?? []; track merchant.id) {
           <mat-card>

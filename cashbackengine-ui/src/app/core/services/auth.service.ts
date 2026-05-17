@@ -13,7 +13,7 @@ const USER_KEY = 'cashback_user';
 export class AuthService {
   private readonly apiUrl = environment.apiBaseUrl;
 
-  isLoggedIn = signal(!!localStorage.getItem(TOKEN_KEY));
+  isLoggedIn = signal(this.checkValidToken());
   currentUser = signal<UserProfile | null>(this.loadUser());
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -59,6 +59,26 @@ export class AuthService {
     };
     localStorage.setItem(USER_KEY, JSON.stringify(profile));
     this.currentUser.set(profile);
+  }
+
+  private checkValidToken(): boolean {
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (!token) return false;
+    if (this.isTokenExpired(token)) {
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem(USER_KEY);
+      return false;
+    }
+    return true;
+  }
+
+  private isTokenExpired(token: string): boolean {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.exp * 1000 < Date.now();
+    } catch {
+      return true;
+    }
   }
 
   private loadUser(): UserProfile | null {

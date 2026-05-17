@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
   ApiResponse, Merchant, Offer, PageResponse, Transaction, Wallet, Payout,
-  AdminStats, Retailer, AdminUser, Category, AdminTransaction, AffNetwork, Content, Coupon, CouponPage, EmailTemplate
+  AdminStats, Retailer, AdminUser, Category, AdminTransaction, AffNetwork, Content, Coupon, CouponPage, CouponWithRetailer, EmailTemplate,
+  Review, ReviewRequest, Favorite, ClickHistoryEntry
 } from '../models/transaction.model';
 
 @Injectable({ providedIn: 'root' })
@@ -69,6 +70,10 @@ export class ApiService {
     return this.http.get<ApiResponse<Retailer[]>>(`${this.base}/retailers`);
   }
 
+  getAllStores(): Observable<ApiResponse<Retailer[]>> {
+    return this.http.get<ApiResponse<Retailer[]>>(`${this.base}/retailers/all`);
+  }
+
   getRetailer(id: number): Observable<ApiResponse<Retailer>> {
     return this.http.get<ApiResponse<Retailer>>(`${this.base}/retailers/${id}`);
   }
@@ -101,6 +106,10 @@ export class ApiService {
   // ── Admin: Categories ────────────────────────────────
   getCategories(): Observable<ApiResponse<Category[]>> {
     return this.http.get<ApiResponse<Category[]>>(`${this.base}/categories`);
+  }
+
+  getCategoryRetailers(categoryId: number): Observable<ApiResponse<Retailer[]>> {
+    return this.http.get<ApiResponse<Retailer[]>>(`${this.base}/categories/${categoryId}/retailers`);
   }
 
   createCategory(data: Partial<Category>): Observable<ApiResponse<Category>> {
@@ -143,6 +152,14 @@ export class ApiService {
   }
 
   // ── Admin: Coupons ──────────────────────────────────
+  getActiveCoupons(): Observable<ApiResponse<CouponWithRetailer[]>> {
+    return this.http.get<ApiResponse<CouponWithRetailer[]>>(`${this.base}/coupons/active`);
+  }
+
+  getActiveCouponsByRetailer(retailerId: number): Observable<ApiResponse<CouponWithRetailer[]>> {
+    return this.http.get<ApiResponse<CouponWithRetailer[]>>(`${this.base}/coupons/active?retailerId=${retailerId}`);
+  }
+
   getCoupons(page = 0, size = 50, status = 'all'): Observable<ApiResponse<CouponPage>> {
     const params = new HttpParams().set('page', page).set('size', size).set('status', status);
     return this.http.get<ApiResponse<CouponPage>>(`${this.base}/coupons`, { params });
@@ -201,5 +218,49 @@ export class ApiService {
 
   createOffer(offer: Partial<Offer> & { merchantId: number }): Observable<ApiResponse<Offer>> {
     return this.http.post<ApiResponse<Offer>>(`${this.base}/admin/offers`, offer);
+  }
+
+  // ── Reviews ──────────────────────────────────────────
+  getRetailerReviews(retailerId: number): Observable<ApiResponse<Review[]>> {
+    return this.http.get<ApiResponse<Review[]>>(`${this.base}/reviews/retailer/${retailerId}`);
+  }
+
+  submitReview(retailerId: number, req: ReviewRequest): Observable<ApiResponse<Review>> {
+    return this.http.post<ApiResponse<Review>>(`${this.base}/reviews/retailer/${retailerId}`, req);
+  }
+
+  // ── Click History ────────────────────────────────────────
+  logClick(retailerId: number): Observable<ApiResponse<void>> {
+    return this.http.post<ApiResponse<void>>(`${this.base}/clicks/${retailerId}`, {});
+  }
+
+  getMyClickHistory(): Observable<ApiResponse<ClickHistoryEntry[]>> {
+    return this.http.get<ApiResponse<ClickHistoryEntry[]>>(`${this.base}/clicks`);
+  }
+
+  // ── Favorites ─────────────────────────────────────────
+  getMyFavorites(): Observable<ApiResponse<Favorite[]>> {
+    return this.http.get<ApiResponse<Favorite[]>>(`${this.base}/favorites`);
+  }
+
+  addFavorite(retailerId: number): Observable<ApiResponse<Favorite>> {
+    return this.http.post<ApiResponse<Favorite>>(`${this.base}/favorites/${retailerId}`, {});
+  }
+
+  removeFavorite(retailerId: number): Observable<ApiResponse<void>> {
+    return this.http.delete<ApiResponse<void>>(`${this.base}/favorites/${retailerId}`);
+  }
+
+  // ── Admin: Reviews ────────────────────────────────────
+  adminGetAllReviews(): Observable<ApiResponse<Review[]>> {
+    return this.http.get<ApiResponse<Review[]>>(`${this.base}/admin/reviews`);
+  }
+
+  adminUpdateReviewStatus(reviewId: number, status: string): Observable<ApiResponse<Review>> {
+    return this.http.put<ApiResponse<Review>>(`${this.base}/admin/reviews/${reviewId}/status`, { status });
+  }
+
+  adminDeleteReview(reviewId: number): Observable<ApiResponse<void>> {
+    return this.http.delete<ApiResponse<void>>(`${this.base}/admin/reviews/${reviewId}`);
   }
 }

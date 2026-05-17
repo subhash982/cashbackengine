@@ -16,8 +16,8 @@ import { Wallet, Payout } from '../../core/models/transaction.model';
   standalone: true,
   imports: [ReactiveFormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatIconModule, MatTableModule, CurrencyPipe, DatePipe],
   template: `
-    <div class="container">
-      <div class="page-header"><h1>My Wallet</h1></div>
+    <h3 class="h3">My Wallet</h3>
+    <div class="content-box">
 
       <div class="card-grid" style="margin-bottom:24px">
         @if (wallet()) {

@@ -101,3 +101,186 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Josefin Sans', sans-serif; }
   background: #ffebee !important;
   color: #c62828 !important;
 }
+
+/* ── Shop by Category dropdown panel ── */
+/* hifi.css scopes these inside @media min-width:1024px — redeclare globally so they always apply */
+
+.shop-by-category .dropdown-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shop-by-category .dropdown-links li {
+  border-style: solid;
+  border-color: #888;
+  border-width: 0 1px 1px 0;
+  padding: 0;
+  width: 20%;
+  height: 48px;
+}
+
+.shop-by-category .dropdown-links li a {
+  position: relative !important;
+  display: block !important;
+  padding: 10px 20px 10px 55px !important;
+  line-height: 27px !important;
+  height: 100%;
+  background: rgba(104, 104, 104, 0.96);
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.shop-by-category .dropdown-links li a:hover {
+  background: rgba(90, 90, 90, 0.96) !important;
+}
+
+.shop-by-category .dropdown-links li a::before {
+  content: "" !important;
+  background-image: url('assets/images/hifi/categories-icons.png') !important;
+  background-repeat: no-repeat !important;
+  position: absolute !important;
+  width: 25px !important;
+  height: 25px !important;
+  left: 20px !important;
+  top: 11px !important;
+}
+
+/* Sprite positions — copied from hifi.css @media block so they apply at all viewports */
+.shop-by-category .dropdown-links li a.AsSeenOnTV::before      { background-position: -25px 0 !important; }
+.shop-by-category .dropdown-links li a.Astrology::before       { background-position: -50px 0 !important; }
+.shop-by-category .dropdown-links li a.Auction::before         { background-position: -75px 0 !important; }
+.shop-by-category .dropdown-links li a.Automotive::before      { background-position: -100px 0 !important; }
+.shop-by-category .dropdown-links li a.BabyKids::before        { background-position: -125px -2px !important; }
+.shop-by-category .dropdown-links li a.Banking::before         { background-position: -150px 0 !important; }
+.shop-by-category .dropdown-links li a.BankingFinanceInsurance::before { background-position: -150px 0 !important; }
+.shop-by-category .dropdown-links li a.BizOpp::before          { background-position: -175px 0 !important; }
+.shop-by-category .dropdown-links li a.CarTaxiRental::before   { background-position: -200px 0 !important; }
+.shop-by-category .dropdown-links li a.CareersJobs::before     { background-position: -225px 0 !important; }
+.shop-by-category .dropdown-links li a.Apparel::before         { background-position: 0 -25px !important; }
+.shop-by-category .dropdown-links li a.ComputersInternet::before { background-position: -26px -25px !important; }
+.shop-by-category .dropdown-links li a.ContentLock::before     { background-position: -75px -29px !important; }
+.shop-by-category .dropdown-links li a.DailyDeals::before      { background-position: -99px -27px !important; }
+.shop-by-category .dropdown-links li a.Dating::before          { background-position: -125px -27px !important; }
+.shop-by-category .dropdown-links li a.Education::before       { background-position: -176px -80px !important; }
+.shop-by-category .dropdown-links li a.EntertainmentMusic::before { background-position: -201px -80px !important; }
+.shop-by-category .dropdown-links li a.Finance::before         { background-position: -176px -25px !important; }
+.shop-by-category .dropdown-links li a.FoodBeverage::before    { background-position: -200px -28px !important; }
+.shop-by-category .dropdown-links li a.Gaming::before          { background-position: 0 -54px !important; }
+.shop-by-category .dropdown-links li a.HealthBeauty::before    { background-position: -25px -54px !important; }
+.shop-by-category .dropdown-links li a.HealthBeautyCosmetics::before { background-position: -150px -105px !important; }
+.shop-by-category .dropdown-links li a.DecorFurniture::before  { background-position: -50px -54px !important; }
+.shop-by-category .dropdown-links li a.Insurance::before       { background-position: -99px -54px !important; }
+.shop-by-category .dropdown-links li a.Jewellery::before       { background-position: -125px -54px !important; }
+.shop-by-category .dropdown-links li a.KidsChildren::before    { background-position: -151px -54px !important; }
+.shop-by-category .dropdown-links li a.Lifestyle::before       { background-position: -176px -54px !important; }
+.shop-by-category .dropdown-links li a.Matrimony::before       { background-position: -201px -55px !important; }
+.shop-by-category .dropdown-links li a.MobilesAccessories::before { background-position: -226px -54px !important; }
+.shop-by-category .dropdown-links li a.PetSupplies::before     { background-position: -75px -105px !important; }
+.shop-by-category .dropdown-links li a.RealEstate::before      { background-position: -51px -80px !important; }
+.shop-by-category .dropdown-links li a.SportsFitness::before   { background-position: -75px -80px !important; }
+.shop-by-category .dropdown-links li a.TourTravel::before      { background-position: -126px -77px !important; }
+.shop-by-category .dropdown-links li a.WomenLingerie::before   { background-position: -151px -80px !important; }
+.shop-by-category .dropdown-links li a.Electronics::before     { background-position: -226px -80px !important; }
+.shop-by-category .dropdown-links li a.FashionAccessories::before { background-position: -200px -105px !important; }
+.shop-by-category .dropdown-links li a.Footwear::before        { background-position: -26px -105px !important; }
+.shop-by-category .dropdown-links li a.KitchenAppliances::before { background-position: -50px -105px !important; }
+.shop-by-category .dropdown-links li a.Stationery::before      { background-position: -100px -105px !important; }
+.shop-by-category .dropdown-links li a.ToolsHardware::before   { background-position: -125px -105px !important; }
+.shop-by-category .dropdown-links li a.RechargeBillPayment::before { background-position: -174px -105px !important; }
+
+/* ── Footer: fix asset paths (hifi.css uses relative ../images/ which don't resolve in Angular build) ── */
+.footer-arrow {
+  background-image: url('assets/images/hifi/footer-arrow.gif') !important;
+}
+
+/* Social icon sprite: override hifi.css relative ../images/ path */
+footer .social-icons a.facebook {
+  background-image: url('assets/images/hifi/social-icons.gif') !important;
+}
+footer .social-icons a.twitter {
+  background-image: url('assets/images/hifi/social-icons.gif') !important;
+  background-position: -80px 0 !important;
+}
+footer .social-icons a.twitter:hover {
+  background-position: -80px -40px !important;
+}
+footer .social-icons a.instagram {
+  background-image: url('assets/images/hifi/social-icons.gif') !important;
+  background-position: -160px 0 !important;
+}
+footer .social-icons a.instagram:hover {
+  background-position: -160px -40px !important;
+}
+
+/* ── Sidebar: how-it-works character sprite (hifi.css uses relative path that fails in Angular build) ── */
+.right-how-works li span.character {
+  background-image: url('assets/images/hifi/how-it-works.jpg') !important;
+  background-repeat: no-repeat !important;
+}
+.right-how-works li span.character.join-us     { background-position: 0 0 !important; }
+.right-how-works li span.character.do-shopping  { background-position: -252px 0 !important; }
+.right-how-works li span.character.earn-cashback { background-position: -506px 0 !important; }
+.right-how-works li span.character.bank-transfer { background-position: -760px 0 !important; }
+
+/* ── FAQs: show answer when li has .active class (hifi.css hides it by default, toggled via Angular) ── */
+.faq-content li.active .answer {
+  display: block !important;
+}
+
+/* ── How It Works: fix number box height and vertical centering ── */
+/* hifi.css uses height:100% on ::before but parent only has min-height,
+   so % doesn't resolve. Use top+bottom:0 / height:auto instead and flex-center the number. */
+.how-it-works-steps li {
+  overflow: visible !important;
+}
+
+.how-it-works-steps li::before {
+  top: 0 !important;
+  bottom: 0 !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+}
+
+/* How-earn-cashback bottom section: ensure background images resolve correctly */
+.how-earn-cashback ol li.find-store {
+  background-image: url('assets/images/hifi/search-icon-big.png') !important;
+}
+.how-earn-cashback ol li.shop {
+  background-image: url('assets/images/hifi/cart-icon.png') !important;
+}
+.how-earn-cashback ol li.earn-cashback {
+  background-image: url('assets/images/hifi/earn-cashback.png') !important;
+}
+
+/* ── Search bar highlight (triggered from How It Works page) ── */
+@keyframes searchPulse {
+  0%   { border-color: #F5A623; box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.6); }
+  50%  { border-color: #e09515; box-shadow: 0 0 0 8px rgba(245, 166, 35, 0); }
+  100% { border-color: #F5A623; box-shadow: 0 0 0 0 rgba(245, 166, 35, 0); }
+}
+
+.search-wrap.search-highlight {
+  animation: searchPulse 0.6s ease-in-out 3 !important;
+  border-color: #e09515 !important;
+}
+
+/* ── Retailers carousel: override hifi.css visibility:hidden set for jssor JS init ── */
+.slider-wrapper.retailers {
+  visibility: visible !important;
+  height: auto !important;
+  overflow: visible !important;
+  background: #fff !important;
+}

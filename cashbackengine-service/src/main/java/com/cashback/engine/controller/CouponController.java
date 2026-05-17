@@ -3,6 +3,7 @@ package com.cashback.engine.controller;
 import com.cashback.engine.domain.Coupon;
 import com.cashback.engine.dto.request.CouponRequest;
 import com.cashback.engine.dto.response.ApiResponse;
+import com.cashback.engine.dto.response.CouponWithRetailerResponse;
 import com.cashback.engine.service.CouponService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,15 @@ import java.util.List;
 public class CouponController {
 
     private final CouponService couponService;
+
+    @GetMapping("/active")
+    public ResponseEntity<ApiResponse<List<CouponWithRetailerResponse>>> getActiveCoupons(
+            @RequestParam(required = false) Integer retailerId) {
+        if (retailerId != null) {
+            return ResponseEntity.ok(ApiResponse.success(couponService.getActiveByRetailer(retailerId)));
+        }
+        return ResponseEntity.ok(ApiResponse.success(couponService.getActiveCoupons()));
+    }
 
     @GetMapping
     public ResponseEntity<ApiResponse<Page<Coupon>>> getAll(

@@ -29,6 +29,11 @@ public class RetailerController {
         return ResponseEntity.ok(ApiResponse.success(retailerService.getRetailerById(id)));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<ApiResponse<List<RetailerResponse>>> getAllActiveRetailers() {
+        return ResponseEntity.ok(ApiResponse.success(retailerService.getAllActiveRetailers()));
+    }
+
     @GetMapping("/featured")
     public ResponseEntity<ApiResponse<List<RetailerResponse>>> getFeaturedRetailers() {
         return ResponseEntity.ok(ApiResponse.success(retailerService.getFeaturedRetailers()));
