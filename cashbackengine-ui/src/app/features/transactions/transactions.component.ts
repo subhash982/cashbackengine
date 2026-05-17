@@ -12,8 +12,8 @@ import { Transaction, PageResponse } from '../../core/models/transaction.model';
   standalone: true,
   imports: [MatTableModule, MatPaginatorModule, MatCardModule, MatChipsModule, CurrencyPipe, DatePipe],
   template: `
-    <div class="container">
-      <div class="page-header"><h1>Transaction History</h1></div>
+    <h3 class="h3">Transaction History</h3>
+    <div class="content-box">
 
       <mat-card>
         <mat-card-content>

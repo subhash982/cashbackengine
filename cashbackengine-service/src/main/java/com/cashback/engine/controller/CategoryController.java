@@ -3,6 +3,7 @@ package com.cashback.engine.controller;
 import com.cashback.engine.domain.Category;
 import com.cashback.engine.dto.request.CategoryRequest;
 import com.cashback.engine.dto.response.ApiResponse;
+import com.cashback.engine.dto.response.RetailerResponse;
 import com.cashback.engine.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,11 @@ public class CategoryController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<Category>> getCategoryById(@PathVariable Integer id) {
         return ResponseEntity.ok(ApiResponse.success(categoryService.getCategoryById(id)));
+    }
+
+    @GetMapping("/{id}/retailers")
+    public ResponseEntity<ApiResponse<List<RetailerResponse>>> getRetailersByCategory(@PathVariable Integer id) {
+        return ResponseEntity.ok(ApiResponse.success(categoryService.getRetailersByCategory(id)));
     }
 
     @PostMapping

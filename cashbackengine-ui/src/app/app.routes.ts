@@ -66,12 +66,33 @@ export const routes: Routes = [
         loadComponent: () => import('./features/favourites/favourites.component').then(m => m.FavouritesComponent)
       },
       {
+        path: 'click-history',
+        canActivate: [authGuard],
+        loadComponent: () => import('./features/click-history/click-history.component').then(m => m.ClickHistoryComponent)
+      },
+      {
         path: 'how-it-works',
         loadComponent: () => import('./features/how-it-works/how-it-works.component').then(m => m.HowItWorksComponent)
       },
       {
         path: 'supports',
         loadComponent: () => import('./features/supports/supports.component').then(m => m.SupportsComponent)
+      },
+      {
+        path: 'terms',
+        loadComponent: () => import('./features/terms/terms.component').then(m => m.TermsComponent)
+      },
+      {
+        path: 'privacy',
+        loadComponent: () => import('./features/privacy/privacy.component').then(m => m.PrivacyComponent)
+      },
+      {
+        path: 'about',
+        loadComponent: () => import('./features/about/about.component').then(m => m.AboutComponent)
+      },
+      {
+        path: 'faqs',
+        loadComponent: () => import('./features/faqs/faqs.component').then(m => m.FaqsComponent)
       },
       {
         path: 'auth',

@@ -1,6 +1,7 @@
 package com.cashback.engine.repository;
 
 import com.cashback.engine.domain.Retailer;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,6 @@ public interface RetailerRepository extends JpaRepository<Retailer, Integer> {
     List<Retailer> findByDealOfWeek(Boolean dealOfWeek);
 
     List<Retailer> findByTitleContainingIgnoreCase(String title);
+
+    List<Retailer> findByStatusOrderByVisitsDesc(String status, Pageable pageable);
 }

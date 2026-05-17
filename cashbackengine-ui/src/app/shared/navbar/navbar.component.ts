@@ -1,14 +1,17 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthService } from '../../core/services/auth.service';
+import { ApiService } from '../../core/services/api.service';
+import { Category } from '../../core/models/transaction.model';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, MatIconModule, MatMenuModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, NgFor, NgIf, MatIconModule, MatMenuModule],
   template: `
     <!-- Top header bar -->
     <div class="header-top">
@@ -50,6 +53,9 @@ import { AuthService } from '../../core/services/auth.service';
             <a mat-menu-item routerLink="/wallet">
               <mat-icon>account_balance_wallet</mat-icon> Wallet
             </a>
+            <a mat-menu-item routerLink="/click-history">
+              <mat-icon>history</mat-icon> Store Visit History
+            </a>
             <button mat-menu-item (click)="auth.logout()">
               <mat-icon>logout</mat-icon> Logout
             </button>
@@ -69,16 +75,17 @@ import { AuthService } from '../../core/services/auth.service';
       <div class="nav-inner">
         <a routerLink="/home" routerLinkActive="nav-active">Home</a>
 
-        <div class="nav-dropdown" [matMenuTriggerFor]="categoryMenu">
+        <!-- Shop by Category custom dropdown -->
+        <div class="nav-cat-trigger" (click)="toggleCatPanel($event)">
           Shop by category <mat-icon class="nav-arrow">arrow_drop_down</mat-icon>
         </div>
-        <mat-menu #categoryMenu="matMenu">
-          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'All Stores' }">All Stores</a>
-          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'Fashion' }">Fashion</a>
-          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'Electronics' }">Electronics</a>
-          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'Travel' }">Travel</a>
-          <a mat-menu-item routerLink="/category" [queryParams]="{ name: 'Food & Dining' }">Food & Dining</a>
-        </mat-menu>
+        <div class="shop-by-category" *ngIf="catPanelOpen()">
+          <ul class="dropdown-links">
+            <li *ngFor="let c of categories()">
+              <a [class]="toCssClass(c.name)" (click)="goToCategory(c)">{{ c.name }}</a>
+            </li>
+          </ul>
+        </div>
 
         <a routerLink="/stores" routerLinkActive="nav-active">Stores</a>
         <a routerLink="/coupons" routerLinkActive="nav-active">Coupons</a>
@@ -247,6 +254,7 @@ import { AuthService } from '../../core/services/auth.service';
     /* ── Nav bar ── */
     .header-nav {
       background: #17A8D4;
+      position: relative;
     }
 
     .nav-inner {
@@ -280,7 +288,7 @@ import { AuthService } from '../../core/services/auth.service';
       border-bottom: 3px solid #F5A623;
     }
 
-    .nav-dropdown {
+    .nav-cat-trigger {
       font-family: 'Josefin Sans', sans-serif;
       color: #fff;
       font-size: 18px;
@@ -294,7 +302,7 @@ import { AuthService } from '../../core/services/auth.service';
       transition: background 0.2s;
     }
 
-    .nav-dropdown:hover {
+    .nav-cat-trigger:hover {
       background: rgba(255,255,255,.15);
     }
 
@@ -304,13 +312,57 @@ import { AuthService } from '../../core/services/auth.service';
       height: 18px;
       margin-left: 2px;
     }
+
+    /* ── Category dropdown panel (layout only — icon sprites in styles.scss) ── */
+    .shop-by-category {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: rgba(104, 104, 104, 0.98);
+    }
   `]
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   auth = inject(AuthService);
+  private api = inject(ApiService);
   private router = inject(Router);
 
+  categories = signal<Category[]>([]);
+  catPanelOpen = signal(false);
   searchQuery = '';
+
+  ngOnInit() {
+    this.api.getCategories().subscribe({
+      next: res => {
+        const cats = (res.data || [])
+          .filter(c => c.status === 'active')
+          .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || a.name.localeCompare(b.name));
+        this.categories.set(cats);
+      },
+      error: () => {}
+    });
+  }
+
+  toggleCatPanel(event: Event) {
+    event.stopPropagation();
+    this.catPanelOpen.update(v => !v);
+  }
+
+  @HostListener('document:click')
+  closeCatPanel() {
+    this.catPanelOpen.set(false);
+  }
+
+  goToCategory(c: Category) {
+    this.catPanelOpen.set(false);
+    this.router.navigate(['/category'], { queryParams: { cat: c.categoryId } });
+  }
+
+  toCssClass(name: string): string {
+    return name.replace(/[\s,&;]/g, '');
+  }
 
   get firstName(): string {
     const user = this.auth.currentUser();

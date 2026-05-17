@@ -42,6 +42,9 @@ import { MatIconModule } from '@angular/material/icon';
           <a routerLink="/admin/email-templates" routerLinkActive="active" class="nav-item">
             <mat-icon>email</mat-icon><span>Email Templates</span>
           </a>
+          <a routerLink="/admin/reviews" routerLinkActive="active" class="nav-item">
+            <mat-icon>rate_review</mat-icon><span>Reviews</span>
+          </a>
         </nav>
 
         <a routerLink="/dashboard" class="back-link">

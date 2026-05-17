@@ -1,24 +1,14 @@
 import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-supports',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [],
   template: `
-    <div class="page-wrap">
-      <mat-icon class="page-icon">support_agent</mat-icon>
-      <h1>Support</h1>
-      <p>We're here to help. Our support team will be available shortly.</p>
-      <span class="badge">Coming Soon</span>
+    <h3 class="h3">Support</h3>
+    <div class="content-box">
+      Coming Soon
     </div>
-  `,
-  styles: [`
-    .page-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:60vh; gap:16px; font-family:'Open Sans',sans-serif; color:#444; }
-    .page-icon { font-size:64px; width:64px; height:64px; color:#17A8D4; }
-    h1 { margin:0; font-size:32px; font-weight:700; color:#222; }
-    p { margin:0; font-size:16px; color:#666; }
-    .badge { background:#F5A623; color:#fff; padding:6px 18px; border-radius:20px; font-size:13px; font-weight:600; }
-  `]
+  `
 })
 export class SupportsComponent {}

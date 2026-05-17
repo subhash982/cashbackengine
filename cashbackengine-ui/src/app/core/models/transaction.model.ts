@@ -117,8 +117,8 @@ export interface Category {
   categoryUrl?: string;
   metaDescription?: string;
   metaKeywords?: string;
-  status: string;
-  sortOrder: number;
+  status?: string;
+  sortOrder?: number;
   parentId?: number;
   alias?: string;
 }
@@ -152,6 +152,23 @@ export interface Coupon {
   offerTemplate?: string;
   status: string;
   added?: string;
+}
+
+export interface CouponWithRetailer {
+  couponId: number;
+  retailerId?: number;
+  title: string;
+  code?: string;
+  description?: string;
+  couponType: string;
+  endDate?: string;
+  status: string;
+  link?: string;
+  retailerTitle?: string;
+  retailerImage?: string;
+  retailerUrl?: string;
+  retailerCashback?: string;
+  retailerConditions?: string;
 }
 
 export interface CouponPage {
@@ -204,3 +221,44 @@ export interface AdminTransaction {
   created: string;
   updated: string;
 }
+
+export interface Review {
+  reviewId: number;
+  retailerId?: number;
+  retailerTitle?: string;
+  rating: number;
+  reviewTitle?: string;
+  review?: string;
+  status: string;
+  added: string;
+  userName: string;
+}
+
+export interface ReviewRequest {
+  rating: number;
+  reviewTitle?: string;
+  review?: string;
+}
+
+export interface Favorite {
+  favoriteId: number;
+  retailerId: number;
+  retailerTitle: string;
+  retailerUrl: string;
+  retailerImage?: string;
+  retailerCashback?: string;
+  retailerDescription?: string;
+  added: string;
+  couponCount: number;
+}
+
+export interface ClickHistoryEntry {
+  clickId: number;
+  retailerId: number;
+  retailerTitle: string;
+  retailerUrl: string;
+  retailerImage?: string;
+  retailerCashback?: string;
+  added: string;
+}
+

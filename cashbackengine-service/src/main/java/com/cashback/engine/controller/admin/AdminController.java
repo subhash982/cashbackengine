@@ -1,9 +1,12 @@
 package com.cashback.engine.controller.admin;
 
+import com.cashback.engine.domain.Review;
 import com.cashback.engine.domain.User;
 import com.cashback.engine.dto.response.ApiResponse;
+import com.cashback.engine.dto.response.ReviewResponse;
 import com.cashback.engine.dto.response.UserResponse;
 import com.cashback.engine.repository.RetailerRepository;
+import com.cashback.engine.repository.ReviewRepository;
 import com.cashback.engine.repository.TransactionRepository;
 import com.cashback.engine.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,7 @@ public class AdminController {
     private final UserRepository userRepository;
     private final RetailerRepository retailerRepository;
     private final TransactionRepository transactionRepository;
+    private final ReviewRepository reviewRepository;
 
     @GetMapping("/users")
     public ResponseEntity<ApiResponse<List<UserResponse>>> getAllUsers() {
@@ -54,6 +58,38 @@ public class AdminController {
         user.setStatus(body.get("status"));
         user = userRepository.save(user);
         return ResponseEntity.ok(ApiResponse.success("Status updated", UserResponse.from(user)));
+    }
+
+    // ── Reviews ──────────────────────────────────────────────────────────────
+
+    @GetMapping("/reviews")
+    public ResponseEntity<ApiResponse<List<ReviewResponse>>> getAllReviews() {
+        List<ReviewResponse> reviews = reviewRepository.findAllWithAssociations()
+                .stream()
+                .map(ReviewResponse::from)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(ApiResponse.success(reviews));
+    }
+
+    @PutMapping("/reviews/{id}/status")
+    @org.springframework.transaction.annotation.Transactional
+    public ResponseEntity<ApiResponse<ReviewResponse>> updateReviewStatus(
+            @PathVariable Integer id,
+            @RequestBody Map<String, String> body) {
+        Review review = reviewRepository.findAllWithAssociations()
+                .stream()
+                .filter(r -> r.getReviewId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Review not found: " + id));
+        review.setStatus(body.get("status"));
+        reviewRepository.save(review);
+        return ResponseEntity.ok(ApiResponse.success("Status updated", ReviewResponse.from(review)));
+    }
+
+    @DeleteMapping("/reviews/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteReview(@PathVariable Integer id) {
+        reviewRepository.deleteById(id);
+        return ResponseEntity.ok(ApiResponse.success("Review deleted", null));
     }
 
     @GetMapping("/stats")
