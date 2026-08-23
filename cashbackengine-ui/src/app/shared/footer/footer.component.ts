@@ -24,7 +24,7 @@ import { Category, Retailer } from '../../core/models/transaction.model';
 
         <!-- Newsletter -->
         <div class="newsletter">
-          Hundreds of Discount Coupons, Offers and Cashback from HiFi Cashback.
+          Hundreds of Discount Coupons, Offers and Cashback from ₹upiya Bachao.
           <input type="text" [(ngModel)]="email" placeholder="Enter your Email...">
           <button class="button primary" type="button" (click)="subscribe()" title="Subscribe">Subscribe</button>
         </div>
@@ -81,7 +81,7 @@ import { Category, Retailer } from '../../core/models/transaction.model';
               </p>
             </div>
             <div class="refer-friend">
-              <h3 class="h3 margin-top30">Spread HiFi Cashback</h3>
+              <h3 class="h3 margin-top30">Spread ₹upiya Bachao</h3>
               <a (click)="go('/auth/register')" style="cursor:pointer;">Refer a Friend</a>
             </div>
           </div>
@@ -90,7 +90,7 @@ import { Category, Retailer } from '../../core/models/transaction.model';
 
         <!-- Bottom bar -->
         <div class="terms-condition">
-          Copyright &copy; {{ year }} HiFiCashback.com. All rights reserved.&nbsp;
+          Copyright &copy; {{ year }} rupiyabachao.in. All rights reserved.&nbsp;
           <a (click)="go('/terms')" style="cursor:pointer;">Terms &amp; Conditions</a> &middot;
           <a (click)="go('/privacy')" style="cursor:pointer;">Privacy Policy</a>
         </div>

@@ -73,7 +73,7 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
         <!-- Right: Register form (or welcome panel) -->
         <div class="form-panel">
           <ng-container *ngIf="!isLoggedIn(); else welcomePanel">
-            <div class="form-header">Hifi Cashback Registration</div>
+            <div class="form-header">₹upiya Bachao Registration</div>
             <div class="form-body">
               <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <mat-form-field appearance="outline" class="full-width">

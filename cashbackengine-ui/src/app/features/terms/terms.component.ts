@@ -13,36 +13,36 @@ import { Component } from '@angular/core';
         <div class="content-box">
 
           <h3 class="h3 secondary">User Agreement</h3>
-          <p>User Agreement to abide to, in order to use the services provided by <strong>"HIFI CASHBACK"</strong> - A Delhi based firm.</p>
-          <p>Before accessing/using the website <a href="https://www.hificashback.com">www.hificashback.com</a> or the services provided by <strong>HIFI CASHBACK</strong>
+          <p>User Agreement to abide to, in order to use the services provided by <strong>"₹UPIYA BACHAO"</strong> - A Delhi based firm.</p>
+          <p>Before accessing/using the website <a href="https://www.rupiyabachao.in">www.rupiyabachao.in</a> or the services provided by <strong>₹UPIYA BACHAO</strong>
             please read, understand &amp; accept all the terms and conditions mentioned in the Agreement herein, also You
-            must read, understand &amp; accept any future amendments or updates in this agreement. <strong>HiFi CASHBACK</strong>
+            must read, understand &amp; accept any future amendments or updates in this agreement. <strong>₹upiya Bachao</strong>
             reserves the right to amend any provision of this User Agreement any time and made available via the website
-            <a href="https://www.hificashback.com">www.hificashback.com</a>. If you do not agree to any of the term &amp; condition, do not use the website or stop using
+            <a href="https://www.rupiyabachao.in">www.rupiyabachao.in</a>. If you do not agree to any of the term &amp; condition, do not use the website or stop using
             it immediately if already using.</p>
 
-          <p class="margin-bottom30">This User Agreement establishes the legal ground of using the website <a href="https://www.hificashback.com">www.hificashback.com</a>
+          <p class="margin-bottom30">This User Agreement establishes the legal ground of using the website <a href="https://www.rupiyabachao.in">www.rupiyabachao.in</a>
             &amp; governs your (hereinafter referred to as <strong>"You" "Your"</strong> or <strong>"User"</strong>) use of the website
             <strong>("Site", "website", "web-site" or "WebSite")</strong> and all the services provided by
-            <strong>HiFi CASHBACK</strong> (hereinafter referred to as <strong>"We", "Us", "hificashback", "HiFiCashback", "HiFi Cashback" or "Our"</strong>) - a Delhi based firm.</p>
+            <strong>₹upiya Bachao</strong> (hereinafter referred to as <strong>"We", "Us", "rupiyabachao", "RupiyaBachao", "₹upiya Bachao" or "Our"</strong>) - a Delhi based firm.</p>
 
           <p class="margin-bottom30">Your acceptance to this agreement is a pre-requisite for the use of this website.
             During registration to this website you must check the check box "I Agree to the User Agreement &amp; Privacy Policy"
             to express your consent to the User Agreement &amp; Privacy Policy.</p>
 
-          <h3 class="h3 secondary">www.hificashback.com - How it works</h3>
-          <p><strong>HIFI CASHBACK</strong> works in a model where it gets commission from the merchants it is associated with, for the
+          <h3 class="h3 secondary">www.rupiyabachao.in - How it works</h3>
+          <p><strong>₹UPIYA BACHAO</strong> works in a model where it gets commission from the merchants it is associated with, for the
             purchases which are made on the merchant's website via accessing the merchant's website through
-            <strong>www.hificashback.com</strong>. We pay this commission back to the user as per Our business strategy. This cashback
+            <strong>www.rupiyabachao.in</strong>. We pay this commission back to the user as per Our business strategy. This cashback
             is apart from any other discount or rebate you may be getting otherwise.</p>
           <p>In general, this business process can be categorized in three steps:</p>
           <ul class="ul margin-bottom30">
-            <li>You make a purchase from some merchant's website via accessing that merchant's website through <strong>www.hificashback.com</strong></li>
+            <li>You make a purchase from some merchant's website via accessing that merchant's website through <strong>www.rupiyabachao.in</strong></li>
             <li>We get cashback from merchant</li>
             <li>We pay cashback to you fully or partially or not at all as per our business strategy</li>
           </ul>
 
-          <p>In order to use <strong>www.hificashback.com</strong>, you will have to register yourself at <strong>www.hificashback.com</strong>
+          <p>In order to use <strong>www.rupiyabachao.in</strong>, you will have to register yourself at <strong>www.rupiyabachao.in</strong>
             via opening an Account (hereinafter referred to as <strong>'Account', 'User Account'</strong>) and accepting our
             <strong>'User Agreement &amp; Privacy Policy'</strong>. Your account can be suspended or even closed if We feel/find that:</p>
           <ul class="ul">
@@ -55,7 +55,7 @@ import { Component } from '@angular/core';
           <p class="margin-bottom30"><strong>Note-</strong> No payment (including but not limited to cashback or bonus) will be made if Account is closed.</p>
 
           <h3 class="h3 secondary">Cashback for the purchases</h3>
-          <p>You, as a user of <strong>www.hificashback.com</strong> may get the cashback for those purchases you make which are
+          <p>You, as a user of <strong>www.rupiyabachao.in</strong> may get the cashback for those purchases you make which are
             <strong>'Cashback Eligible Purchase'</strong>. A purchase will be considered cashback eligible if and only if we get the
             commission from the affiliate merchant for that purchase.</p>
           <p>In order to make your purchase <strong>'Cashback Eligible Purchase'</strong> we recommend you to follow the guidelines given hereunder:</p>
@@ -63,7 +63,7 @@ import { Component } from '@angular/core';
             <li>Enable the cookies in your browser.</li>
             <li>Close all browser windows or any other connection/session you hold with the merchant you want to make the
               purchase from. Also do not open such windows/connection until you are done with your purchase.</li>
-            <li>Login to www.hificashback.com with your user credentials.</li>
+            <li>Login to www.rupiyabachao.in with your user credentials.</li>
             <li>Go to merchant's website via our website. While doing so don't tamper the URL.</li>
             <li>Complete your purchase in the same shopping session. Do not take too much time to make the purchase.</li>
             <li>In order to make another purchase come to our website again and then go to the merchant's website again;
@@ -71,7 +71,7 @@ import { Component } from '@angular/core';
             <li>Do not use any coupon not provided by Us.</li>
             <li>Abide to all the terms &amp; conditions of the merchant including but not limited to general T&amp;C and those related to specific offer.</li>
           </ul>
-          <p class="margin-bottom30"><strong>Note- HIFI CASHBACK reserves the right to determine the eligibility of any purchase for cashback.</strong></p>
+          <p class="margin-bottom30"><strong>Note- ₹UPIYA BACHAO reserves the right to determine the eligibility of any purchase for cashback.</strong></p>
 
           <h3 class="h3 secondary">Cashback Credit</h3>
           <p>Cashback credit will happen in the manner described hereunder:</p>
@@ -95,7 +95,7 @@ import { Component } from '@angular/core';
           <p class="margin-bottom30"><strong>Note- User will be fully responsible for any tax obligation for the cashback earned.</strong></p>
 
           <h3 class="h3 secondary">Important Notes</h3>
-          <p><span class="font-16">*</span> The operation of <strong>www.hificashback.com</strong> is at the sole discretion of management. In the event of
+          <p><span class="font-16">*</span> The operation of <strong>www.rupiyabachao.in</strong> is at the sole discretion of management. In the event of
             discontinuation we will take necessary steps to inform you at your email address or residential address provided
             by you but we do not guarantee to make you informed. In case of discontinuation of website all <strong>'In Progress'</strong>
             cashback will be cancelled. To redeem the <strong>'Confirmed'</strong> cashback you will have to initiate the redemption
@@ -104,8 +104,8 @@ import { Component } from '@angular/core';
           <p><span class="font-16">**</span> We are entitled to act on instructions received under Your username and password, therefore it is your
             responsibility to keep your user credentials confidential.</p>
 
-          <p><span class="font-16">***</span> Please note that www.hificashback.com may contain links to other websites. Clicking any of those links will
-            cause you to leave Our website and visit the third party website. HIFI CASHBACK is not liable for any of the
+          <p><span class="font-16">***</span> Please note that www.rupiyabachao.in may contain links to other websites. Clicking any of those links will
+            cause you to leave Our website and visit the third party website. ₹UPIYA BACHAO is not liable for any of the
             privacy policies &amp; practices followed by those websites. Therefore, it is recommended that you read the privacy
             policy &amp; Terms of Use of each website before you visit them.</p>
 

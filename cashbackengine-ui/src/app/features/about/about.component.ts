@@ -17,7 +17,7 @@ import { Component } from '@angular/core';
             <strong class="special-word">"Thoda Zyada"</strong> brings much more happiness than even getting the merchandise you actually purchase.
           </p>
 
-          <p class="margin-bottom30">And that is where <strong>www.hificashback.com</strong> comes to help you. <strong>www.hificashback.com</strong> offers extra cashback
+          <p class="margin-bottom30">And that is where <strong>www.rupiyabachao.in</strong> comes to help you. <strong>www.rupiyabachao.in</strong> offers extra cashback
             on the merchandise you purchase via our portal. This cashback is over and above any cashback you
             would get from the merchant.</p>
 
@@ -27,8 +27,8 @@ import { Component } from '@angular/core';
             possible way and to bring new and innovative ideas &amp; concepts to you to make your shopping experience
             more rewarding.</p>
 
-          <p class="margin-bottom30">We <strong>"HIFI CASHBACK"</strong> as a firm, believe in abiding our commitments, adhering to the highest standards of
-            ethical conduct and acting as a trustworthy partner for our customers. <strong>HIFI CASHBACK's</strong> excellent
+          <p class="margin-bottom30">We <strong>"₹UPIYA BACHAO"</strong> as a firm, believe in abiding our commitments, adhering to the highest standards of
+            ethical conduct and acting as a trustworthy partner for our customers. <strong>₹UPIYA BACHAO's</strong> excellent
             reputation is reinforced by our pledge to operate with strong &amp; ethical governance, comprehensive efforts
             for customer satisfaction and a deep commitment to ethics and integrity.</p>
 

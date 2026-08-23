@@ -13,7 +13,7 @@ import { Component } from '@angular/core';
         <div class="content-box">
 
           <p>This privacy policy is a natural extension of the User Agreement available at the web site
-            <strong>www.hificashback.com</strong>, therefore it should be read and considered in continuation with the User
+            <strong>www.rupiyabachao.in</strong>, therefore it should be read and considered in continuation with the User
             Agreement referred before. The terminology set/described in the User Agreement carries the same
             meaning/description in this document too.</p>
 
@@ -22,19 +22,19 @@ import { Component } from '@angular/core';
             personal information, shopping related information etc. Data We share with You includes but is not
             limited to all the data/information provided by our website &amp; the services we offer.</p>
 
-          <p class="margin-bottom30">Before accessing/using the website www.hificashback.com or the services provided by <strong>HIFI CASHBACK</strong>
+          <p class="margin-bottom30">Before accessing/using the website www.rupiyabachao.in or the services provided by <strong>₹UPIYA BACHAO</strong>
             please read, understand &amp; accept all the terms and conditions mentioned in the
             <strong>User Agreement &amp; Privacy Policy</strong>, also You must read, understand &amp; accept any future
-            amendments or updates in the <strong>User Agreement &amp; Privacy Policy. HiFi CASHBACK</strong> reserves
+            amendments or updates in the <strong>User Agreement &amp; Privacy Policy. ₹upiya Bachao</strong> reserves
             the right to amend any term/provision/clause of <strong>'User Agreement' or 'Privacy Policy'</strong> any time
-            and make available via the website <strong>www.hificashback.com</strong>. If you do not agree to any of the
+            and make available via the website <strong>www.rupiyabachao.in</strong>. If you do not agree to any of the
             term &amp; condition in <strong>User Agreement or Privacy Policy</strong>, do not use the website or stop using it
             immediately if already using.</p>
 
           <h3 class="h3 secondary">User's Information Collected</h3>
           <p>In the operation of the website and to provide you the services We offer, we require certain
             information including but not limited to your personal info, financial info (bank A/C related info),
-            favourite merchants etc. All this information is used to provide the cashback service offered by <strong>HIFI CASHBACK</strong>.</p>
+            favourite merchants etc. All this information is used to provide the cashback service offered by <strong>₹UPIYA BACHAO</strong>.</p>
           <p>We get the information/data of User in two ways:</p>
           <ul class="ul margin-bottom30">
             <li>User provided information</li>
@@ -42,9 +42,9 @@ import { Component } from '@angular/core';
           </ul>
 
           <h3 class="h3 secondary">User Provided Information</h3>
-          <p class="margin-bottom30">While registering himself at www.hificashback.com the User provides some information (Name, email id,
+          <p class="margin-bottom30">While registering himself at www.rupiyabachao.in the User provides some information (Name, email id,
             Contact Number etc.). Also in order to transfer the 'Confirmed' cashback amount (as per the policy
-            set &amp; described by HIFI CASHBACK), we will require some necessary bank A/C details which is held by
+            set &amp; described by ₹UPIYA BACHAO), we will require some necessary bank A/C details which is held by
             the User himself. If You do not provide the bank A/C detail, We will not be able to transfer any
             cashback to Your bank A/C.</p>
 
@@ -57,7 +57,7 @@ import { Component } from '@angular/core';
             experience all/certain features of the website. Therefore We recommend keeping the Cookies enabled.</p>
 
           <p class="margin-bottom30"><strong class="font-14">Browsing history:</strong> To improve User experience at our website, We also persist &amp; monitor the browsing history of Users at
-            www.hificashback.com.</p>
+            www.rupiyabachao.in.</p>
 
           <h3 class="h3 secondary">Usage of Information &amp; Disclosure</h3>
           <p>Use of the information collected from the User either directly or indirectly is used to provide the
@@ -68,7 +68,7 @@ import { Component } from '@angular/core';
           <p>Your email is used to contact you for any update, offers &amp; promotions etc. If you do not want to
             receive offers &amp; promotions please leave the <strong>'I'd like to receive newsletter'</strong> check box unchecked during
             registration. If You have opted to receive the newsletters etc. during registration and do not want to
-            receive it in future, You can let us know about this via contacting Us via our website <strong>www.hificashback.com</strong>.</p>
+            receive it in future, You can let us know about this via contacting Us via our website <strong>www.rupiyabachao.in</strong>.</p>
           <p>Bank account related information will be used to transfer any cashback to your bank account.</p>
           <p>Any information collected directly or indirectly can be used in trouble shooting of the issues any
             party (You, affiliate merchant or Us) would face.</p>
@@ -82,29 +82,29 @@ import { Component } from '@angular/core';
 
           <h3 class="h3 secondary">Information Security</h3>
           <p class="margin-bottom30">We are highly concerned with the information we possess and we keep that information at secured
-            data centres &amp; servers. Also the access to this information is limited to only HIFI CASHBACK
+            data centres &amp; servers. Also the access to this information is limited to only ₹UPIYA BACHAO
             authorised persons. Though we have taken necessary measures to keep the information safe and we
             will upgrade our security whenever we find it necessary, still no such information can be termed
-            completely secure. HIFI CASHBACK will not be responsible or liable for any data loss or information
+            completely secure. ₹UPIYA BACHAO will not be responsible or liable for any data loss or information
             disclosure.</p>
 
           <h3 class="h3 secondary">Expiration / Retention Policy</h3>
-          <p class="margin-bottom30">We at <strong>HIFI CASHBACK</strong> do not keep the information of the Users whose registration with Us comes to
+          <p class="margin-bottom30">We at <strong>₹UPIYA BACHAO</strong> do not keep the information of the Users whose registration with Us comes to
             an end because of any reason (cancellation of User account by Us or User opts to exit) beyond the
             timeline set by the law of land. Any such information will be removed as per the guidelines of the law of
             land. Beyond that we will not be able to provide any information to anyone including the User himself.</p>
 
           <h3 class="h3 secondary">Content Proprietary Rights</h3>
-          <p>You acknowledge that www.hificashback.com contains Content protected by relevant
+          <p>You acknowledge that www.rupiyabachao.in contains Content protected by relevant
             copyrights, trademarks, trade secrets, or other proprietary rights, and that these rights are valid and
             protected in all forms, media and technologies existing now or developed in the future. We hold the legal
             right to own a copyright in the selection, coordination, and enhancement of this Content. You are not
             permitted to distribute, publish, transmit, participate in the transfer or sale of, or in any way exploit
             any of the Content, in whole or in part unless permitted otherwise specifically by the competent
-            authority of HIFI CASHBACK. You may copy or take a printout of selected portions of the Content,
+            authority of ₹UPIYA BACHAO. You may copy or take a printout of selected portions of the Content,
             provided that this content will be used for personal usage only.</p>
           <p class="margin-bottom30">Violation of these terms and conditions may result in the immediate suspension and may lead to
-            closure of the User's account at www.hificashback.com and no further cashback withdrawal request
+            closure of the User's account at www.rupiyabachao.in and no further cashback withdrawal request
             will be entertained.</p>
 
           <p><strong>Note — For all matters with respect to this Privacy Policy You hereby agree to exclusive

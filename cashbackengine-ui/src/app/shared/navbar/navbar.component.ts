@@ -13,6 +13,12 @@ import { Category } from '../../core/models/transaction.model';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, FormsModule, NgFor, NgIf, MatIconModule, MatMenuModule],
   template: `
+    <!-- Site status notice -->
+    <div class="notice-bar">
+      <mat-icon class="notice-icon">info</mat-icon>
+      <span>Notice: This website is currently in active development. Features and content are provided for evaluation and testing purposes only.</span>
+    </div>
+
     <!-- Top header bar -->
     <div class="header-top">
       <div class="header-inner">
@@ -113,6 +119,29 @@ import { Category } from '../../core/models/transaction.model';
       box-shadow: 0 2px 8px rgba(0,0,0,.18);
     }
 
+    /* ── Notice bar ── */
+    .notice-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #FFF4E5;
+      color: #8A5300;
+      border-bottom: 1px solid #F5A623;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .notice-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      flex-shrink: 0;
+    }
+
     /* ── Top bar ── */
     .header-top {
       background: #fff;
@@ -143,6 +172,7 @@ import { Category } from '../../core/models/transaction.model';
       object-fit: contain;
       background: none !important;  /* override hifi.css header .logo background-image */
       text-indent: 0 !important;    /* override hifi.css text-indent: -99999px */
+      margin-top: -3px;
     }
 
     /* Search */

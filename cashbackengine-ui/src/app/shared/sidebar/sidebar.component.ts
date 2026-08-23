@@ -20,7 +20,7 @@ import { Component, signal, OnInit, OnDestroy } from '@angular/core';
               <span class="step" [class.active]="active() === 4">4</span>
             </div>
             <h3>Join us for free</h3>
-            <p><strong>Join/Login to Hificashback.com.</strong></p>
+            <p><strong>Join/Login to rupiyabachao.in.</strong></p>
             <p>You can search for any product you want to buy, or search by retailer of your choice.</p>
           </li>
 
@@ -33,7 +33,7 @@ import { Component, signal, OnInit, OnDestroy } from '@angular/core';
               <span class="step" [class.active]="active() === 4">4</span>
             </div>
             <h3>Click-through &amp; Shop</h3>
-            <p><strong>Click-out of Hificashback</strong> to the retailer's website e.g. Flipkart, Amazon etc.</p>
+            <p><strong>Click-out of RupiyaBachao</strong> to the retailer's website e.g. Flipkart, Amazon etc.</p>
             <p>Now shop like you normally do on the retailer's site.</p>
           </li>
 
