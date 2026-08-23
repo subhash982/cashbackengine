@@ -1,36 +1,49 @@
 #!/bin/bash
 # ============================================================
-# Cashback Engine — VPS Deployment Script
-# Usage: ./deploy.sh [--fresh]
-#   --fresh  : wipe DB volume and start from scratch (WARNING: data loss)
+# Cashback Engine — Deployment Script
+# Usage:
+#   ./deploy.sh          — rebuild & restart (keeps DB data)
+#   ./deploy.sh --fresh  — wipe DB and start clean
 # ============================================================
 set -e
 
 COMPOSE="docker compose -f docker-compose.yml -f docker-compose.prod.yml"
 
+# Auto-create .env from example if it doesn't exist
+if [ ! -f .env ]; then
+  echo "==> No .env found — copying from .env.example (default passwords)"
+  cp .env.example .env
+fi
+
 echo "==> Pulling latest code..."
 git pull origin main
 
 if [ "$1" == "--fresh" ]; then
-  echo "==> WARNING: Wiping database volume..."
+  echo "==> WARNING: Wiping database volume and all data..."
   $COMPOSE down -v
 else
-  echo "==> Stopping services (keeping data)..."
+  echo "==> Stopping services (keeping DB data)..."
   $COMPOSE down
 fi
 
-echo "==> Building and starting services..."
-$COMPOSE up -d --build
+echo "==> Building images..."
+$COMPOSE build --no-cache
 
-echo "==> Waiting for health checks..."
-sleep 10
+echo "==> Starting services..."
+$COMPOSE up -d
 
+echo ""
+echo "==> Waiting for Spring Boot + Flyway migrations to complete..."
+echo "    (Flyway runs V1–V14 automatically on first start)"
+sleep 15
+
+echo ""
 echo "==> Service status:"
 $COMPOSE ps
 
-echo "==> Service logs (last 30 lines):"
-$COMPOSE logs --tail=30 cashbackengine-service
+echo ""
+echo "==> Recent service logs:"
+$COMPOSE logs --tail=40 cashbackengine-service
 
 echo ""
-echo "✓ Deployment complete!"
-echo "  App: http://$(hostname -I | awk '{print $1}')"
+echo "✓ Done! App running at: http://$(hostname -I | awk '{print $1}')"
