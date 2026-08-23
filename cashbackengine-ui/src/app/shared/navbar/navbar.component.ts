@@ -141,6 +141,8 @@ import { Category } from '../../core/models/transaction.model';
       height: 64px;
       width: auto;
       object-fit: contain;
+      background: none !important;  /* override hifi.css header .logo background-image */
+      text-indent: 0 !important;    /* override hifi.css text-indent: -99999px */
     }
 
     /* Search */
