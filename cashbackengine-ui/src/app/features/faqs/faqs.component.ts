@@ -72,23 +72,23 @@ export class FaqsComponent {
     },
     {
       type: 'qa',
-      question: 'How HifiCashback.com manages to pay Cash back?',
-      answer: 'www.hificashback.com gets the commission against the purchase you make via our website. We offer this commission back to you to make your shopping more rewarding. For more details please refer the <strong>\'How it works\'</strong> section at our website www.hificashback.com.'
+      question: 'How rupiyabachao.in manages to pay Cash back?',
+      answer: 'www.rupiyabachao.in gets the commission against the purchase you make via our website. We offer this commission back to you to make your shopping more rewarding. For more details please refer the <strong>\'How it works\'</strong> section at our website www.rupiyabachao.in.'
     },
     {
       type: 'qa',
-      question: 'Is there any limit on the earnings user can get from www.hificashback.com?',
+      question: 'Is there any limit on the earnings user can get from www.rupiyabachao.in?',
       answer: 'No, there is no limit on the earnings user can get. The more you shop, more you earn.'
     },
     {
       type: 'qa',
-      question: 'When user visits merchant\'s website via www.hificashback.com, is there any change in prices of merchandise at merchant\'s website?',
+      question: 'When user visits merchant\'s website via www.rupiyabachao.in, is there any change in prices of merchandise at merchant\'s website?',
       answer: 'No, there is no price change.'
     },
     {
       type: 'qa',
       question: 'Is there any fee/charge to register or to get cashback?',
-      answer: 'No, www.hificashback.com offers this service free of cost. We do not charge any fee from our customers/visitors.'
+      answer: 'No, www.rupiyabachao.in offers this service free of cost. We do not charge any fee from our customers/visitors.'
     },
     {
       type: 'qa',
@@ -110,7 +110,7 @@ export class FaqsComponent {
     {
       type: 'qa',
       question: 'Is there any limit on the referral amount I can earn?',
-      answer: 'No, there is no limit on referral amount. However, you will get referral amount only for that friend referred by you, who makes at least one \'Cashback Eligible Purchase\' via www.hificashback.com.'
+      answer: 'No, there is no limit on referral amount. However, you will get referral amount only for that friend referred by you, who makes at least one \'Cashback Eligible Purchase\' via www.rupiyabachao.in.'
     },
     {
       type: 'qa',
@@ -122,7 +122,7 @@ export class FaqsComponent {
     {
       type: 'qa',
       question: 'Do you deduct any tax on the earning generated this way?',
-      answer: 'No, we do not. You are solely responsible for any tax liability. HIFI CASHBACK is not responsible for any tax obligation for the cashback earned.'
+      answer: 'No, we do not. You are solely responsible for any tax liability. ₹UPIYA BACHAO is not responsible for any tax obligation for the cashback earned.'
     },
     {
       type: 'qa',
@@ -137,7 +137,7 @@ export class FaqsComponent {
     {
       type: 'qa',
       question: 'I do not hold any bank account on my name. Can I get the cashback in the bank account of my friend?',
-      answer: 'No, cashback can be transferred to the bank account of the respective HIFI CASHBACK account holder only.'
+      answer: 'No, cashback can be transferred to the bank account of the respective ₹UPIYA BACHAO account holder only.'
     },
     {
       type: 'qa',
@@ -149,7 +149,7 @@ export class FaqsComponent {
     {
       type: 'qa',
       question: 'How can I contact your customer care team?',
-      answer: 'Please write to us after clicking \'Support\' at www.hificashback.com.'
+      answer: 'Please write to us after clicking \'Support\' at www.rupiyabachao.in.'
     },
     {
       type: 'qa',
@@ -158,7 +158,7 @@ export class FaqsComponent {
         <ul class="ul">
           <li>Enable the cookies in your browser.</li>
           <li>Close all browser windows or any other connection/session you hold with the merchant you want to make the purchase from. Also do not open such windows/connection until you are done with your purchase.</li>
-          <li>Login to www.hificashback.com with your user credentials.</li>
+          <li>Login to www.rupiyabachao.in with your user credentials.</li>
           <li>Go to merchant's website via our website. While doing so don't tamper the URL.</li>
           <li>Complete your purchase in the same shopping session. Do not take too much time to make the purchase.</li>
           <li>In order to make another purchase come to our website again and then go to the merchant's website again; this will establish a new shopping session for you.</li>

@@ -50,7 +50,7 @@ INSERT INTO cashbackengine_content (content_id, language, name, link_title, titl
 (7, 'english', 'contact', '', 'Contact Us',
  '<p>If you have any questions, please contact us.</p>
 
-<p>Email: support@hificashback.com</p>',
+<p>Email: support@rupiyabachao.in</p>',
  '', '', '', '', 'active', '2016-04-24 17:55:06');
 
 -- Reset sequence
