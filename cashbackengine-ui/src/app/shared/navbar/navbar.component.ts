@@ -19,7 +19,7 @@ import { Category } from '../../core/models/transaction.model';
 
         <!-- Logo -->
         <a routerLink="/" class="logo-wrap">
-          <img src="assets/images/hifi/logo.jpg" alt="HiFi Cashback" class="logo-img" />
+          <img src="assets/images/pb_logo.svg" alt="RupiyaBachao" class="logo-img" />
         </a>
 
         <!-- Search bar -->
