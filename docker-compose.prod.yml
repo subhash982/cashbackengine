@@ -1,0 +1,36 @@
+# Production overrides — use with:
+#   docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# Key differences from base:
+#   - Postgres port NOT exposed externally (only internal docker network)
+#   - Memory limits on all containers
+#   - Service port NOT exposed externally (nginx is the only entry point)
+#   - Healthcheck tuned for production
+
+services:
+
+  postgres:
+    ports: !reset []   # remove the 5432 external binding
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+        reservations:
+          memory: 256m
+
+  cashbackengine-service:
+    ports: !reset []   # remove the 8080 external binding — nginx proxies internally
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+        reservations:
+          memory: 512m
+
+  cashbackengine-ui:
+    deploy:
+      resources:
+        limits:
+          memory: 128m
+        reservations:
+          memory: 64m

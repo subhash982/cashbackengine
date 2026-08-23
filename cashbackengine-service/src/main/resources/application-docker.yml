@@ -3,6 +3,10 @@ spring:
     url: jdbc:postgresql://${POSTGRES_HOST:postgres}:${POSTGRES_PORT:5432}/${POSTGRES_DB:cashbackengine}
     username: ${POSTGRES_USER:cashback_user}
     password: ${POSTGRES_PASSWORD:cashback_pass}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
 
   mail:
     host: ${MAIL_HOST:smtp.gmail.com}
@@ -10,11 +14,29 @@ spring:
     username: ${MAIL_USERNAME}
     password: ${MAIL_PASSWORD}
 
+  # Disable Swagger UI in production (API docs still available for internal use)
+  mvc:
+    pathmatch:
+      use-suffix-pattern: false
+
 management:
   health:
     mail:
       enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+# Disable Swagger UI endpoint exposure in production
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false
 
 logging:
   level:
     com.cashback: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
