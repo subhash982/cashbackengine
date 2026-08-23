@@ -78,9 +78,9 @@ CREATE TABLE cashbackengine_users (
     PRIMARY KEY (user_id)
 );
 
--- Insert default admin user (password: Admin@123)
+-- Insert default admin user (password: Admin1234)
 INSERT INTO cashbackengine_users (username, password, email, fname, role, status, created)
-VALUES ('admin', '$2b$10$0rTcZzkmde37hmUejjKVe.Z.ZYXgA5imNrqkYzKlX8n8G2qvRIm.O', 'admin@cashbackengine.com', 'Admin', 'ADMIN', 'active', NOW());
+VALUES ('admin', '$2a$10$heT6fyVPmwVmkcx4Mkmy0OmXZNBsOcb2b119cOEImkXF5sjc/u7Yi', 'admin@cashbackengine.com', 'Admin', 'ADMIN', 'active', NOW());
 
 -- Retailers
 CREATE TABLE cashbackengine_retailers (
