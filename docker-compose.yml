@@ -38,6 +38,7 @@ services:
       MAIL_PORT: ${MAIL_PORT:-587}
       MAIL_USERNAME: ${MAIL_USERNAME:-noreply@cashbackengine.com}
       MAIL_PASSWORD: ${MAIL_PASSWORD:-changeme}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:4200,http://localhost:80}
     depends_on:
       postgres:
         condition: service_healthy
